@@ -1,231 +1,305 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>🤣 تصويت صحابنا 🤣</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>InstaPlay 🎮</title>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    body {
-      margin: 0;
-      font-family: 'Arial', sans-serif;
-      color: #fff;
-      background: linear-gradient(-45deg,#f9ce34,#ee2a7b,#6228d7,#f9ce34);
-      background-size: 400% 400%;
-      animation: gradientMove 10s ease infinite;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      flex-direction: column;
-      overflow-x: hidden;
+    body{margin:0;font-family:"Tajawal",sans-serif;
+      background:linear-gradient(-45deg,#f9ce34,#ee2a7b,#6228d7,#f9ce34);
+      background-size:400% 400%;animation:gradientMove 12s ease infinite;
+      color:white;min-height:100vh;display:flex;justify-content:center;align-items:center;padding:20px;}
+    @keyframes gradientMove{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+    .card{background:rgba(0,0,0,0.6);padding:20px;border-radius:18px;width:100%;max-width:420px;box-shadow:0 10px 30px rgba(0,0,0,0.5);margin:10px auto;animation:fadeIn .6s ease;}
+    h1,h2,h3{margin:0 0 15px;text-align:center;}
+    input,button,select{width:100%;margin:6px 0;padding:12px;border:none;border-radius:10px;font-size:15px;}
+    input,select{background:#fff;color:#333}
+    button{cursor:pointer;font-weight:bold;background:white;color:#6228d7;transition:.3s}
+    button:hover{background:#ee2a7b;color:white;transform:scale(1.05)}
+    .hidden{display:none}
+    .games-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:10px}
+    .game-btn{background:#fff;color:#6228d7;padding:14px;border-radius:10px;font-weight:bold;cursor:pointer;transition:.3s}
+    .game-btn:hover{background:#f9ce34;color:#000;transform:scale(1.05)}
+    table{width:100%;border-collapse:collapse;background:rgba(255,255,255,0.1);margin-top:10px;}
+    th,td{padding:6px;border:1px solid rgba(255,255,255,0.2);font-size:13px;text-align:center}
+    th{background:rgba(0,0,0,0.4)}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+    @media (max-width:600px){
+      .card{width:95%;padding:15px;}
+      input,button,select{font-size:14px;padding:10px;}
+      h1,h2,h3{font-size:18px;}
+      .games-grid{grid-template-columns:1fr;}
     }
-    @keyframes gradientMove {
-      0% {background-position:0% 50%}
-      50% {background-position:100% 50%}
-      100% {background-position:0% 50%}
-    }
-    header {
-      font-size: 28px;
-      font-weight: bold;
-      margin-bottom: 20px;
-      text-shadow: 0 0 8px #fff, 0 0 15px #ff00ff, 0 0 25px #00f;
-    }
-    .card {
-      background: rgba(0,0,0,0.6);
-      border-radius: 16px;
-      padding: 20px;
-      width: 95%;
-      max-width: 420px;
-      text-align: center;
-      box-shadow: 0 0 15px rgba(0,0,0,0.6),0 0 25px #ff00ff;
-      animation: fadeIn 0.6s ease;
-    }
-    @keyframes fadeIn {
-      from {opacity: 0; transform: translateY(30px);}
-      to {opacity: 1; transform: translateY(0);}
-    }
-    .card h3 {
-      margin-bottom: 15px;
-      font-size: 22px;
-      text-shadow: 0 0 6px #ff0,0 0 10px #0ff;
-    }
-    button {
-      display: block;
-      width: 100%;
-      margin: 6px 0;
-      padding: 12px;
-      background: #222;
-      border: 1px solid #ff00ff;
-      border-radius: 10px;
-      color: #fff;
-      font-size: 18px;
-      cursor: pointer;
-      transition: 0.3s;
-      position: relative;
-      overflow: hidden;
-    }
-    button:hover {
-      background: #ff00ff;
-      color: #fff;
-      box-shadow: 0 0 12px #ff00ff,0 0 20px #0ff;
-    }
-    .emoji-fly {
-      position: absolute;
-      animation: fly 1s forwards;
-      font-size: 26px;
-      pointer-events: none;
-    }
-    @keyframes fly {
-      0% {opacity:1; transform:translateY(0) scale(1);}
-      100% {opacity:0; transform:translateY(-60px) scale(1.5);}
-    }
-    .controls {
-      margin-top: 15px;
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-    }
-    .leaderboard {
-      background: rgba(0,0,0,0.7);
-      padding: 20px;
-      border-radius: 16px;
-      box-shadow: 0 0 15px #0ff, 0 0 25px #f0f;
-      text-align: center;
-      width: 95%;
-      max-width: 420px;
-    }
-    .leaderboard h2 {
-      margin-bottom: 15px;
-      font-size: 24px;
-    }
-    .progress {
-      background: #444;
-      border-radius: 8px;
-      height: 22px;
-      margin: 5px 0;
-      overflow: hidden;
-    }
-    .progress-fill {
-      height: 100%;
-      text-align: center;
-      line-height: 22px;
-      color: #fff;
-      font-size: 13px;
-      transition: width 0.5s;
-    }
-    .gold {color: gold; font-weight: bold;}
-    .silver {color: silver; font-weight: bold;}
-    .bronze {color: #cd7f32; font-weight: bold;}
   </style>
 </head>
 <body>
 
-<header>🤣 تصويت على صحابنا 🤣</header>
-<div class="card" id="questionCard">
-  <h3 id="question"></h3>
-  <div id="options"></div>
-  <div class="controls">
-    <button onclick="prevQuestion()">⬅️ السابق</button>
-    <button onclick="nextQuestion()">التالي ➡️</button>
+<!-- 🔐 Auth -->
+<div id="auth" class="card">
+  <h1>🎮 InstaPlay</h1>
+  <h3>Login / Register</h3>
+  <input id="name" type="text" placeholder="Full name">
+  <input id="email" type="text" placeholder="Email">
+  <input id="pass" type="password" placeholder="Password">
+  <button onclick="register()">Register</button>
+  <button onclick="login()">Login</button>
+  <button onclick="show('adminLogin')">👑 Admin Login</button>
+</div>
+
+<!-- 👑 Admin Login -->
+<div id="adminLogin" class="card hidden">
+  <h2>👑 Admin Login</h2>
+  <input id="adminEmail" type="text" placeholder="Email">
+  <input id="adminPass" type="password" placeholder="Password">
+  <button onclick="adminLogin()">Login</button>
+  <button onclick="backToAuth()">⬅️ Back</button>
+</div>
+
+<!-- 👑 Admin Panel -->
+<div id="adminPanel" class="card hidden">
+  <h2>👑 Admin Panel</h2>
+  <input id="searchId" type="text" placeholder="Search by ID">
+  <button onclick="searchUserById()">🔍 Search</button>
+  <div id="searchResult" style="margin:8px 0;font-size:14px"></div>
+  <table id="usersTable">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>ID</th>
+        <th>Balance</th>
+        <th>Edit Balance</th>
+        <th>Mode</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+  <button onclick="backToAuth()">⬅️ Logout</button>
+</div>
+
+<!-- 🎮 Dashboard -->
+<div id="dashboard" class="card hidden">
+  <h2>Welcome <span id="userName"></span></h2>
+  <p>ID: <span id="userId"></span></p>
+  <p>💰 Balance: <span id="balance"></span> $</p>
+  <select id="betAmount">
+    <option value="5">5$</option>
+    <option value="10">10$</option>
+    <option value="20">20$</option>
+    <option value="50">50$</option>
+  </select>
+  <div class="games-grid">
+    <div class="game-btn" onclick="hideAll();show('rpsGame')">✊✋✌️ RPS</div>
+    <div class="game-btn" onclick="hideAll();show('slotGame')">🎰 Slot</div>
+    <div class="game-btn" onclick="startMines()">💣 Mines</div>
   </div>
-  <button onclick="randomVote()">🎲 Surprise Me 😂</button>
+  <button onclick="hideAll();show('bankCard')">🏦 Deposit / Withdraw</button>
+  <button onclick="show('historyCard');renderHistory()">📜 Transactions</button>
+  <button onclick="logout()">🚪 Logout</button>
 </div>
 
-<div class="leaderboard" id="leaderboard" style="display:none;">
-  <h2>🏆 الترتيب النهائي 🏆</h2>
-  <div id="results"></div>
+<!-- 📜 Transactions -->
+<div id="historyCard" class="card hidden">
+  <h2>📜 Transactions</h2>
+  <table id="historyTable">
+    <thead><tr><th>Type</th><th>Amount</th><th>Date</th></tr></thead>
+    <tbody></tbody>
+  </table>
+  <button onclick="backToDash()">⬅️ Back</button>
 </div>
 
-<!-- أصوات -->
-<audio id="laugh1" src="https://www.myinstants.com/media/sounds/cartoon-laugh.mp3"></audio>
-<audio id="laugh2" src="https://www.myinstants.com/media/sounds/laugh.mp3"></audio>
-<audio id="laugh3" src="https://www.myinstants.com/media/sounds/trollolol.mp3"></audio>
+<!-- 🏦 Banks -->
+<div id="bankCard" class="card hidden">
+  <h2>🏦 Deposit / Withdraw</h2>
+  <ul style="list-style:none;padding:0;text-align:center">
+    <li>💳 Cash Plus</li>
+    <li>🏦 CIH Bank</li>
+    <li>🏦 Al Barid Bank</li>
+    <li>🏦 Attijariwafa Bank</li>
+  </ul>
+  <p>📞 تواصل معنا عبر الواتساب:<br>
+     <b style="color:#0f0">+212 713-041921</b></p>
+  <button onclick="backToDash()">⬅️ Back</button>
+</div>
+
+<!-- 🎮 Games -->
+<div id="rpsGame" class="card hidden"><h2>✊✋✌️ RPS</h2>
+  <button onclick="playRPS('✊')">✊</button>
+  <button onclick="playRPS('✋')">✋</button>
+  <button onclick="playRPS('✌️')">✌️</button>
+  <p>انت: <span id="playerChoice"></span></p>
+  <p>الكمبيوتر: <span id="computerChoice"></span></p>
+  <p id="rpsResult"></p><button onclick="backToDash()">⬅️ Back</button>
+</div>
+
+<div id="slotGame" class="card hidden"><h2>🎰 Slot</h2><button onclick="playSlot()">▶️ Spin</button><p id="slotResult"></p><button onclick="backToDash()">⬅️ Back</button></div>
+
+<div id="minesGame" class="card hidden"><h2>💣 Mines</h2>
+  <div id="minesGrid" style="display:grid;grid-template-columns:repeat(5,60px);gap:10px;justify-content:center;margin:15px 0;"></div>
+  <p id="minesResult"></p>
+  <button onclick="cashoutMines()">💵 Cashout</button>
+  <button onclick="resetMines()">🔄 Reset</button>
+  <button onclick="backToDash()">⬅️ Back</button>
+</div>
 
 <script>
-  const names = ["Bilal","Youssef","Adam","Mahmod","Khalid","Ayman"];
-  const categories = [
-    "زامل لكبير 😂","لعندو طرمة 🤕","لكيتعطل 🐌","لفه سلوكية 🤡","لكيطير 🕊️","ضحكي 🤣","طنيزي 😜"
-  ];
-  let votes = JSON.parse(localStorage.getItem("votes2077")) || {};
-  let current = 0;
+const ADMIN_EMAIL="special@gmail.com";
+const ADMIN_PASS="special123";
+let currentUser=null;
 
-  function renderQuestion() {
-    if(current >= categories.length) {showLeaderboard(); return;}
-    document.getElementById("question").textContent = categories[current];
-    const options = document.getElementById("options");
-    options.innerHTML = "";
-    names.forEach(n=>{
-      if(!votes[categories[current]]) votes[categories[current]]={};
-      if(!votes[categories[current]][n]) votes[categories[current]][n]=0;
-      const btn = document.createElement("button");
-      btn.textContent = n;
-      btn.onclick = (e)=>vote(categories[current],n,e);
-      options.appendChild(btn);
-    });
+/* Helpers */
+function uid(){return "UID"+Math.floor(Math.random()*99999);}
+function saveUser(u){localStorage.setItem("user_"+u.email,JSON.stringify(u));renderUsers();}
+function loadUser(e){return JSON.parse(localStorage.getItem("user_"+e));}
+function allUsers(){let arr=[];for(let i=0;i<localStorage.length;i++){let k=localStorage.key(i);if(k.startsWith("user_"))arr.push(JSON.parse(localStorage.getItem(k)));}return arr;}
+function hideAll(){document.querySelectorAll(".card").forEach(c=>c.classList.add("hidden"));}
+function show(id){hideAll();document.getElementById(id).classList.remove("hidden");}
+function backToDash(){hideAll();show("dashboard");}
+function backToAuth(){hideAll();show("auth");}
+
+/* Auth */
+function register(){
+  let name=document.getElementById("name").value;
+  let email=document.getElementById("email").value;
+  let pass=document.getElementById("pass").value;
+  if(!name||!email||!pass){alert("Fill all fields");return;}
+  if(loadUser(email)){alert("Account already exists");return;}
+  let u={name,email,password:pass,balance:20,id:uid(),mode:"normal"};
+  saveUser(u);alert("Registered successfully (20$ bonus).");renderUsers();
+}
+function login(){
+  let email=document.getElementById("email").value;
+  let pass=document.getElementById("pass").value;
+  let u=loadUser(email);
+  if(!u||u.password!==pass){alert("Invalid credentials");return;}
+  currentUser=u;updateUI();show("dashboard");
+}
+function logout(){currentUser=null;backToAuth();}
+function adminLogin(){
+  let email=document.getElementById("adminEmail").value;
+  let pass=document.getElementById("adminPass").value;
+  if(email===ADMIN_EMAIL && pass===ADMIN_PASS){show("adminPanel");renderUsers();}
+  else alert("❌ Wrong admin login");
+}
+function updateUI(){
+  document.getElementById("userName").innerText=currentUser.name;
+  document.getElementById("userId").innerText=currentUser.id;
+  document.getElementById("balance").innerText=currentUser.balance;
+  saveUser(currentUser);
+}
+function getBet(){
+  let v=parseInt(document.getElementById("betAmount").value);
+  if(currentUser.balance<v){alert("Not enough balance");return null;}
+  return v;
+}
+function forceResult(){return currentUser.mode||"normal";}
+
+/* Admin Panel */
+function renderUsers(){
+  let tbody=document.querySelector("#usersTable tbody");tbody.innerHTML="";
+  allUsers().forEach(u=>{
+    let safeId=btoa(u.email);
+    let tr=document.createElement("tr");
+    tr.innerHTML=`
+      <td>${u.name}</td>
+      <td>${u.id}</td>
+      <td>${u.balance}</td>
+      <td><input type='number' value='${u.balance}' id='bal_${safeId}'><button onclick="updateBal('${u.email}')">✔️</button></td>
+      <td><select id="mode_${safeId}" onchange="changeMode('${u.email}')">
+        <option value="normal" ${u.mode==="normal"?"selected":""}>⚖️ Normal</option>
+        <option value="win" ${u.mode==="win"?"selected":""}>🔥 Always Win</option>
+        <option value="lose" ${u.mode==="lose"?"selected":""}>❌ Always Lose</option>
+      </select></td>`;
+    tbody.appendChild(tr);
+  });
+}
+function updateBal(email){
+  let safeId=btoa(email);
+  let u=loadUser(email);
+  u.balance=parseInt(document.getElementById("bal_"+safeId).value);
+  saveUser(u);
+  if(currentUser && currentUser.email===email){currentUser=u;updateUI();}
+  renderUsers();
+}
+function changeMode(email){
+  let safeId=btoa(email);
+  let u=loadUser(email);
+  u.mode=document.getElementById("mode_"+safeId).value;
+  saveUser(u);
+  if(currentUser && currentUser.email===email){currentUser=u;}
+  renderUsers();
+}
+function searchUserById(){
+  let id=document.getElementById("searchId").value.trim();
+  let users=allUsers();
+  let found=users.find(u=>u.id===id);
+  let div=document.getElementById("searchResult");
+  if(found){div.innerHTML=`<p>👤 <b>${found.name}</b><br>🆔 ${found.id}<br>💰 ${found.balance}$</p>`;}
+  else{div.innerHTML="<p>❌ No user found</p>";}
+}
+
+/* Games */
+// RPS
+function playRPS(player){
+  let bet=getBet();if(!bet)return;
+  let options=["✊","✋","✌️"];
+  let comp;
+  let mode=forceResult();
+  if(mode==="win"){comp=(player==="✊"?"✌️":player==="✋"?"✊":"✋");}
+  else if(mode==="lose"){comp=(player==="✊"?"✋":player==="✋"?"✌️":"✊");}
+  else{comp=options[Math.floor(Math.random()*3)];}
+  document.getElementById("playerChoice").innerText=player;
+  document.getElementById("computerChoice").innerText=comp;
+  let result="";
+  if(player===comp){result="🤝 Draw";}
+  else if((player==="✊"&&comp==="✌️")||(player==="✋"&&comp==="✊")||(player==="✌️"&&comp==="✋")){
+    currentUser.balance+=bet;result="🎉 Win +"+bet;
+  }else{
+    currentUser.balance-=bet;result="❌ Lose -"+bet;
   }
-
-  function vote(cat,name,e) {
-    votes[cat][name]++;
-    localStorage.setItem("votes2077",JSON.stringify(votes));
-
-    // ضحك عشوائي
-    const laughs=["laugh1","laugh2","laugh3"];
-    document.getElementById(laughs[Math.floor(Math.random()*laughs.length)]).play();
-
-    // Emoji طايرة
-    const emojiList=["😂","🤣","😜","😹","😅"];
-    const emoji=document.createElement("div");
-    emoji.className="emoji-fly";
-    emoji.textContent=emojiList[Math.floor(Math.random()*emojiList.length)];
-    e.target.appendChild(emoji);
-    setTimeout(()=>emoji.remove(),1000);
+  document.getElementById("rpsResult").innerText=result;
+  updateUI();
+}
+// Slot
+function playSlot(){
+  let bet=getBet();if(!bet)return;
+  let mode=forceResult();
+  let s=["🍒","🍋","⭐","🔔","7️⃣"];
+  let r;
+  if(mode==="win"){r=["7️⃣","7️⃣","7️⃣"];}
+  else if(mode==="lose"){r=["🍒","⭐","🔔"];}
+  else{r=[s[Math.floor(Math.random()*s.length)],s[Math.floor(Math.random()*s.length)],s[Math.floor(Math.random()*s.length)]];}
+  let msg="";
+  if(r[0]===r[1]&&r[1]===r[2]){currentUser.balance+=bet*5;msg="🎉 Jackpot!! +"+(bet*5);}
+  else if(r[0]===r[1]||r[1]===r[2]||r[0]===r[2]){currentUser.balance+=bet;msg="✨ Small Win +"+bet;}
+  else{currentUser.balance-=bet;msg="❌ Lose -"+bet;}
+  document.getElementById("slotResult").innerText=r.join(" ")+" → "+msg;
+  updateUI();
+}
+// Mines
+let minesData=[];let minesActive=false;let minesBet=0;
+function startMines(){hideAll();show("minesGame");resetMines();}
+function resetMines(){
+  let g=document.getElementById("minesGrid");g.innerHTML="";
+  minesData=[];minesActive=true;minesBet=getBet();if(!minesBet)return;
+  for(let i=0;i<25;i++){
+    let mine=Math.random()<0.2;
+    minesData.push(mine);
+    let b=document.createElement("button");
+    b.innerText="❓";b.style.width="60px";b.style.height="60px";b.style.fontSize="22px";
+    b.onclick=()=>clickMine(i,b);g.appendChild(b);
   }
+}
+function clickMine(i,btn){
+  if(!minesActive)return;
+  if(minesData[i]){btn.innerText="💣";btn.style.background="#ff4444";currentUser.balance-=minesBet;minesActive=false;document.getElementById("minesResult").innerText="❌ Boom! -"+minesBet;}
+  else{btn.innerText="💎";btn.style.background="#44ff44";currentUser.balance+=minesBet;document.getElementById("minesResult").innerText="🎉 Safe! +"+minesBet;}
+  updateUI();
+}
+function cashoutMines(){if(minesActive){minesActive=false;document.getElementById("minesResult").innerText+=" 💵 Cashed Out";}}
 
-  function nextQuestion() {
-    current++;
-    renderQuestion();
-  }
-  function prevQuestion() {
-    if(current>0) current--;
-    renderQuestion();
-  }
-  function randomVote() {
-    const randName = names[Math.floor(Math.random()*names.length)];
-    vote(categories[current],randName,{target:document.querySelector("#options button")});
-  }
-
-  function showLeaderboard() {
-    document.getElementById("questionCard").style.display="none";
-    document.getElementById("leaderboard").style.display="block";
-    const resultsDiv=document.getElementById("results");
-    resultsDiv.innerHTML="";
-    let scores={};
-    categories.forEach(cat=>{
-      for(let n in votes[cat]) {
-        if(!scores[n]) scores[n]=0;
-        scores[n]+=votes[cat][n];
-      }
-    });
-    const sorted=Object.entries(scores).sort((a,b)=>b[1]-a[1]);
-    sorted.forEach((s,i)=>{
-      const bar=document.createElement("div");
-      bar.className="progress";
-      const fill=document.createElement("div");
-      fill.className="progress-fill";
-      let percent=Math.round((s[1]/(categories.length*names.length))*100);
-      fill.style.width=percent+"%";
-      fill.textContent=`${s[0]} : ${s[1]} صوت (${percent}%)`;
-      if(i===0) fill.style.background="gold";
-      else if(i===1) fill.style.background="silver";
-      else if(i===2) fill.style.background="#cd7f32";
-      else fill.style.background="#1877f2";
-      bar.appendChild(fill);
-      resultsDiv.appendChild(bar);
-    });
-  }
-
-  renderQuestion();
+/* Transactions */
+function addHistory(type,amount){}
+function renderHistory(){let tbody=document.querySelector("#historyTable tbody");tbody.innerHTML="";}
 </script>
-
 </body>
 </html>
