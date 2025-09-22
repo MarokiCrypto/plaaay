@@ -30,6 +30,18 @@
       h1,h2,h3{font-size:18px;}
       .games-grid{grid-template-columns:1fr;}
     }
+    /* إشعار صغير */
+    #adminNotice {
+      background:#0f0;
+      color:#000;
+      padding:8px;
+      border-radius:8px;
+      margin:10px 0;
+      font-size:14px;
+      font-weight:bold;
+      text-align:center;
+      display:none;
+    }
   </style>
 </head>
 <body>
@@ -58,6 +70,7 @@
 <!-- 👑 Admin Panel -->
 <div id="adminPanel" class="card hidden">
   <h2>👑 Admin Panel</h2>
+  <div id="adminNotice"></div>
   <input id="searchId" type="text" placeholder="Search by ID">
   <button onclick="searchUserById()">🔍 Search</button>
   <div id="searchResult" style="margin:8px 0;font-size:14px"></div>
@@ -156,6 +169,14 @@ function show(id){hideAll();document.getElementById(id).classList.remove("hidden
 function backToDash(){hideAll();show("dashboard");}
 function backToAuth(){hideAll();show("auth");}
 
+/* إشعار صغير للـ Admin */
+function showAdminNotice(msg){
+  let n=document.getElementById("adminNotice");
+  n.innerText=msg;
+  n.style.display="block";
+  setTimeout(()=>{n.style.display="none";},4000);
+}
+
 /* Auth */
 function register(){
   let name=document.getElementById("name").value;
@@ -163,8 +184,16 @@ function register(){
   let pass=document.getElementById("pass").value;
   if(!name||!email||!pass){alert("Fill all fields");return;}
   if(loadUser(email)){alert("Account already exists");return;}
+  
   let u={name,email,password:pass,balance:20,id:uid(),mode:"normal"};
-  saveUser(u);alert("Registered successfully (20$ bonus).");renderUsers();
+  saveUser(u);
+  alert("Registered successfully (20$ bonus).");
+
+  // 🔥 تحديث مباشر للـ Admin Panel + إشعار
+  if(document.getElementById("adminPanel") && !document.getElementById("adminPanel").classList.contains("hidden")){
+    renderUsers();
+    showAdminNotice("✅ New user registered: "+name);
+  }
 }
 function login(){
   let email=document.getElementById("email").value;
@@ -236,70 +265,6 @@ function searchUserById(){
   if(found){div.innerHTML=`<p>👤 <b>${found.name}</b><br>🆔 ${found.id}<br>💰 ${found.balance}$</p>`;}
   else{div.innerHTML="<p>❌ No user found</p>";}
 }
-
-/* Games */
-// RPS
-function playRPS(player){
-  let bet=getBet();if(!bet)return;
-  let options=["✊","✋","✌️"];
-  let comp;
-  let mode=forceResult();
-  if(mode==="win"){comp=(player==="✊"?"✌️":player==="✋"?"✊":"✋");}
-  else if(mode==="lose"){comp=(player==="✊"?"✋":player==="✋"?"✌️":"✊");}
-  else{comp=options[Math.floor(Math.random()*3)];}
-  document.getElementById("playerChoice").innerText=player;
-  document.getElementById("computerChoice").innerText=comp;
-  let result="";
-  if(player===comp){result="🤝 Draw";}
-  else if((player==="✊"&&comp==="✌️")||(player==="✋"&&comp==="✊")||(player==="✌️"&&comp==="✋")){
-    currentUser.balance+=bet;result="🎉 Win +"+bet;
-  }else{
-    currentUser.balance-=bet;result="❌ Lose -"+bet;
-  }
-  document.getElementById("rpsResult").innerText=result;
-  updateUI();
-}
-// Slot
-function playSlot(){
-  let bet=getBet();if(!bet)return;
-  let mode=forceResult();
-  let s=["🍒","🍋","⭐","🔔","7️⃣"];
-  let r;
-  if(mode==="win"){r=["7️⃣","7️⃣","7️⃣"];}
-  else if(mode==="lose"){r=["🍒","⭐","🔔"];}
-  else{r=[s[Math.floor(Math.random()*s.length)],s[Math.floor(Math.random()*s.length)],s[Math.floor(Math.random()*s.length)]];}
-  let msg="";
-  if(r[0]===r[1]&&r[1]===r[2]){currentUser.balance+=bet*5;msg="🎉 Jackpot!! +"+(bet*5);}
-  else if(r[0]===r[1]||r[1]===r[2]||r[0]===r[2]){currentUser.balance+=bet;msg="✨ Small Win +"+bet;}
-  else{currentUser.balance-=bet;msg="❌ Lose -"+bet;}
-  document.getElementById("slotResult").innerText=r.join(" ")+" → "+msg;
-  updateUI();
-}
-// Mines
-let minesData=[];let minesActive=false;let minesBet=0;
-function startMines(){hideAll();show("minesGame");resetMines();}
-function resetMines(){
-  let g=document.getElementById("minesGrid");g.innerHTML="";
-  minesData=[];minesActive=true;minesBet=getBet();if(!minesBet)return;
-  for(let i=0;i<25;i++){
-    let mine=Math.random()<0.2;
-    minesData.push(mine);
-    let b=document.createElement("button");
-    b.innerText="❓";b.style.width="60px";b.style.height="60px";b.style.fontSize="22px";
-    b.onclick=()=>clickMine(i,b);g.appendChild(b);
-  }
-}
-function clickMine(i,btn){
-  if(!minesActive)return;
-  if(minesData[i]){btn.innerText="💣";btn.style.background="#ff4444";currentUser.balance-=minesBet;minesActive=false;document.getElementById("minesResult").innerText="❌ Boom! -"+minesBet;}
-  else{btn.innerText="💎";btn.style.background="#44ff44";currentUser.balance+=minesBet;document.getElementById("minesResult").innerText="🎉 Safe! +"+minesBet;}
-  updateUI();
-}
-function cashoutMines(){if(minesActive){minesActive=false;document.getElementById("minesResult").innerText+=" 💵 Cashed Out";}}
-
-/* Transactions */
-function addHistory(type,amount){}
-function renderHistory(){let tbody=document.querySelector("#historyTable tbody");tbody.innerHTML="";}
 </script>
 </body>
 </html>
