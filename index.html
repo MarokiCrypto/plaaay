@@ -3,271 +3,151 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/>
-<title>INSTAPlay — Demo مع شحن/سحب ووكلاء</title>
+<title>INSTAPlay — Admin Secret + Encrypted Code</title>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --bg-1:#feda75;--bg-2:#fa7e1e;--bg-3:#d62976;--bg-4:#962fbf;
-    --card-radius:16px;--accent-white:#ffffff;
-  }
+  :root{--ig1:#feda75;--ig2:#fa7e1e;--ig3:#d62976;--ig4:#962fbf}
   *{box-sizing:border-box}
-  body{margin:0;font-family:"Tajawal",sans-serif;background:linear-gradient(135deg,var(--bg-1),var(--bg-2),var(--bg-3),var(--bg-4));min-height:100vh;color:var(--accent-white);padding:16px}
+  body{margin:0;font-family:"Tajawal",sans-serif;background:linear-gradient(135deg,var(--ig1),var(--ig2),var(--ig3),var(--ig4));min-height:100vh;color:#fff;padding:18px}
   .wrap{max-width:420px;margin:0 auto}
-  header{display:flex;justify-content:space-between;align-items:center;padding:10px;background:rgba(0,0,0,0.12);border-radius:12px}
-  #logoTap{display:flex;gap:10px;align-items:center;cursor:pointer}
-  .icon{width:44px;height:44px;border-radius:10px;background:linear-gradient(45deg,var(--bg-3),var(--bg-4));display:flex;align-items:center;justify-content:center;font-weight:800}
+  header{display:flex;justify-content:space-between;align-items:center;background:rgba(0,0,0,0.12);padding:10px;border-radius:12px}
+  #logo{display:flex;gap:10px;align-items:center;cursor:pointer}
+  #logo .icon{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:linear-gradient(45deg,var(--ig3),var(--ig4));font-weight:800}
   .badge{background:rgba(255,255,255,0.08);padding:6px 8px;border-radius:10px;font-size:13px}
-  .card{background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(0,0,0,0.12));padding:12px;border-radius:12px;margin-top:12px;box-shadow:0 8px 30px rgba(0,0,0,0.2)}
-  label{display:block;margin-top:8px;font-size:13px;color:rgba(255,255,255,0.9)}
-  input,select,textarea,button{width:100%;padding:10px;border-radius:10px;border:0;background:rgba(255,255,255,0.06);color:#fff;margin-top:8px;font-family:inherit}
-  textarea{min-height:80px;resize:vertical}
-  .row{display:flex;gap:8px}
-  .btn{background:linear-gradient(90deg,var(--bg-3),var(--bg-4));font-weight:700;cursor:pointer;border-radius:10px}
-  .muted{font-size:13px;color:rgba(255,255,255,0.85)}
-  .small{font-size:12px}
+  .card{background:rgba(0,0,0,0.36);padding:14px;border-radius:12px;margin-top:14px;box-shadow:0 8px 30px rgba(0,0,0,0.25)}
+  input,button{width:100%;padding:10px;border-radius:10px;border:0;background:rgba(255,255,255,0.06);color:#fff;font-size:15px;margin-top:8px}
+  button.primary{background:linear-gradient(90deg,var(--ig3),var(--ig4));font-weight:700;cursor:pointer}
+  .muted{font-size:13px;color:rgba(255,255,255,0.85);margin-top:6px}
   .hidden{display:none}
+  /* admin modal */
   .modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.6);z-index:9999}
-  .modal .panel{width:94%;max-width:420px;background:#0b0b0b;padding:14px;border-radius:12px}
-  .chip{display:inline-block;padding:8px 10px;border-radius:10px;background:rgba(255,255,255,0.03);cursor:pointer}
-  .list-bank{display:flex;flex-direction:column;gap:8px}
-  .agents{display:flex;flex-direction:column;gap:8px;margin-top:8px}
-  .agent-item{display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.03);padding:8px;border-radius:8px}
-  footer{margin-top:12px;text-align:center;font-size:12px;color:rgba(255,255,255,0.8)}
+  .modal .panel{width:94%;max-width:420px;background:#0b0b0b;padding:16px;border-radius:12px}
+  .row{display:flex;gap:8px}
+  .small{font-size:13px}
+  .danger{background:linear-gradient(90deg,#ff4d6d,#ff7b9a)}
+  .ok{background:linear-gradient(90deg,#34d399,#10b981)}
 </style>
 </head>
 <body>
   <div class="wrap">
     <header>
-      <div id="logoTap" title="اضغط 6 مرات لفتح لوحة الأدمين">
+      <div id="logo" title="اضغط 6 مرات لفتح لوحة الأدمين">
         <div class="icon">IP</div>
         <div>
           <div style="font-weight:800">INSTAPlay</div>
-          <div class="muted small">ألعاب — هاتف</div>
+          <div style="font-size:13px;color:rgba(255,255,255,0.85)">ألعاب المرهنات — هاتف</div>
         </div>
       </div>
-      <div style="display:flex;gap:8px;align-items:center">
-        <div id="notifyDot" class="badge hidden">جديد</div>
-        <div id="adminBadgePlaceholder"></div>
+      <div id="adminBadgeWrap">
+        <!-- سيتم وضع اسم الأدمين هنا فقط بعد تسجيل الدخول -->
       </div>
     </header>
 
-    <!-- تسجيل -->
+    <!-- auth card -->
     <div class="card" id="authCard">
-      <div class="muted">أنشئ حساب تجريبي سريع</div>
-      <label>الاسم الكامل</label>
-      <input id="name" placeholder="مثال: أمين">
-      <label>البريد الإلكتروني</label>
-      <input id="email" placeholder="email@example.com">
-      <label>كلمة المرور</label>
-      <input id="pass" type="password" placeholder="كلمة مرور">
-      <div style="display:flex;gap:8px;margin-top:8px">
-        <select id="role" style="width:50%">
-          <option value="player">لاعب</option>
-          <option value="vip">VIP</option>
-        </select>
-        <button id="registerBtn" class="btn" style="width:50%">تسجيل & دخول</button>
-      </div>
-      <div class="muted small" style="margin-top:8px">التجربة محلية: يعرض رصيد وهمي ويُسجل في متصفحك فقط.</div>
+      <div class="muted">أنشئ حساب تجريبي</div>
+      <input id="name" placeholder="الاسم الكامل">
+      <input id="email" placeholder="البريد الإلكتروني">
+      <input id="pass" type="password" placeholder="كلمة المرور (محلية)">
+      <button id="registerBtn" class="primary">تسجيل & دخول</button>
+      <div class="muted small">بالضغط سيُخزن الحساب محليًا (demo).</div>
     </div>
 
-    <!-- لوحة المستخدم -->
+    <!-- dashboard -->
     <div class="card hidden" id="dashCard">
       <div style="display:flex;justify-content:space-between;align-items:center">
         <div>
           <div style="font-weight:800" id="uName">-</div>
-          <div class="muted small">ID: <span id="uId">-</span></div>
+          <div class="muted small">معرّف: <span id="uId">-</span></div>
         </div>
         <div style="text-align:right">
           <div class="muted small">الرصيد</div>
           <div style="font-weight:900;font-size:18px" id="uBal">0</div>
         </div>
       </div>
-
-      <div style="display:flex;gap:8px;margin-top:10px">
-        <button id="openDeposit" class="btn" style="flex:1">شحن</button>
-        <button id="openWithdraw" class="btn" style="flex:1;background:linear-gradient(90deg,#ef4444,#f97316)">سحب</button>
-      </div>
-
-      <div style="margin-top:10px;display:flex;gap:8px">
-        <button id="playGamesBtn" class="btn" style="flex:1;background:linear-gradient(90deg,#6b7280,#374151)">الألعاب</button>
-        <button id="logoutBtn" class="btn" style="flex:1;background:linear-gradient(90deg,#111827,#374151)">خروج</button>
-      </div>
     </div>
 
-    <!-- ألعاب مبسطة -->
+    <!-- الألعاب المختصرة (مثال) -->
     <div class="card hidden" id="gamesCard">
-      <h3>ألعاب تجريبية</h3>
-      <div class="muted small">اضغط للعب — كل لعبة تغير الرصيد وتراعي وضع الأدمين</div>
-      <div style="display:flex;flex-direction:column;gap:8px;margin-top:8px">
-        <button onclick="playCoin('Heads')" class="btn">🪙 Coin (Heads)</button>
-        <button onclick="playDice()" class="btn">🎲 Dice</button>
-        <button onclick="playRPS('✊')" class="btn">✊ RPS</button>
-        <button onclick="playSlot()" class="btn">🎰 Slot</button>
-        <button onclick="resetMines()" class="btn" style="background:linear-gradient(90deg,#10b981,#059669)">💣 Reset Mines</button>
+      <h3>ألعاب (تجريبي)</h3>
+      <div class="muted small">كل لعبة تعدّل الرصيد فورًا وتعكس إعدادات الأدمين</div>
+      <div style="margin-top:10px">
+        <button onclick="playCoin('Heads')">🪙 Coin — اختار Heads</button>
+        <button onclick="playCoin('Tails')">🪙 Coin — اختار Tails</button>
+        <button onclick="playDice()">🎲 Dice</button>
+        <button onclick="playRPS('✊')">✊ RPS</button>
+        <button onclick="playSlot()">🎰 Slot</button>
+        <button onclick="resetMines()">💣 Reset Mines</button>
       </div>
-      <div id="gameMsg" class="muted small" style="margin-top:10px"></div>
-      <div id="gameResult" class="muted small" style="margin-top:6px"></div>
-    </div>
-
-    <!-- Agents display -->
-    <div class="card hidden" id="agentsCard">
-      <h3>وكلاء معتمدين للشحن</h3>
-      <div class="muted small">تواصل مع الوكيل عبر واتساب لإتمام الشحن (وهمي للتجربة)</div>
-      <div class="agents">
-        <!-- example agent -->
-        <div class="agent-item">
-          <div>وكيل رسمي — واتساب: +212 713-041921</div>
-          <div style="display:flex;gap:8px">
-            <a id="agentWA" class="chip" target="_blank" rel="noreferrer" href="https://wa.me/212713041921">واتساب</a>
-            <button class="chip" onclick="useAgent('+212713041921')">اختر الوكيل</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <footer>© INSTAPlay — Demo</footer>
-  </div>
-
-  <!-- Deposit Modal -->
-  <div id="depositModal" class="modal hidden" aria-hidden="true">
-    <div class="panel" style="background:#071013;padding:14px;border-radius:12px;max-width:420px;width:94%">
-      <h3>شحن الرصيد</h3>
-      <div class="muted small">اختر بنكك ثم املأ معلومات الحوالة / الإيصال</div>
-      <label>البنك</label>
-      <div class="list-bank">
-        <select id="depositBank">
-          <option value="CIH">CIH</option>
-          <option value="Attijari">Attijari</option>
-          <option value="Banque Populaire">Banque Populaire</option>
-          <option value="Al Barid">Al Barid</option>
-          <option value="Cash Plus">Cash Plus</option>
-          <option value="Orange Money">Orange Money</option>
-        </select>
-      </div>
-      <label>المبلغ (درهم)</label>
-      <input id="depositAmount" type="number" placeholder="مثال: 100">
-      <label>معلومات الإرسال (رقم التحويل / ملاحظات)</label>
-      <textarea id="depositInfo" placeholder="ضع ملاحظات أو معرف الحوالة"></textarea>
-
-      <div style="display:flex;gap:8px;margin-top:12px">
-        <button id="sendDeposit" class="btn" style="flex:1">إرسال طلب الشحن</button>
-        <button onclick="closeDeposit()" class="chip" style="flex:1">إلغاء</button>
-      </div>
-
-      <div id="depositMsg" class="muted small" style="margin-top:10px"></div>
+      <div id="gameMsg" class="muted small" style="margin-top:8px"></div>
     </div>
   </div>
 
-  <!-- Withdraw Modal -->
-  <div id="withdrawModal" class="modal hidden" aria-hidden="true">
-    <div class="panel" style="background:#10070b;padding:14px;border-radius:12px;max-width:420px;width:94%">
-      <h3>طلب سحب</h3>
-      <div class="muted small">اختر البنك الذي تريد استقبال السحب فيه واملأ معلومات الحساب</div>
-      <label>البنك المستلم</label>
-      <select id="withdrawBank">
-        <option value="CIH">CIH</option>
-        <option value="Attijari">Attijari</option>
-        <option value="Banque Populaire">Banque Populaire</option>
-        <option value="Al Barid">Al Barid</option>
-        <option value="Cash Plus">Cash Plus</option>
-        <option value="Orange Money">Orange Money</option>
-      </select>
-      <label>المبلغ المراد سحبه (درهم)</label>
-      <input id="withdrawAmount" type="number" placeholder="مثال: 50">
-      <label>معلومات الحساب (رقم الحساب / الاسم / ملاحظة)</label>
-      <textarea id="withdrawInfo" placeholder="مثال: رقم الحساب / اسم البنك"></textarea>
-
-      <div style="display:flex;gap:8px;margin-top:12px">
-        <button id="sendWithdraw" class="btn" style="flex:1;background:linear-gradient(90deg,#ef4444,#f97316)">إرسال طلب السحب</button>
-        <button onclick="closeWithdraw()" class="chip" style="flex:1">إلغاء</button>
-      </div>
-
-      <div id="withdrawMsg" class="muted small" style="margin-top:10px"></div>
-    </div>
-  </div>
-
-  <!-- Admin secret modal -->
+  <!-- Admin modal (secret) -->
   <div id="adminModal" class="modal hidden" aria-hidden="true">
-    <div class="panel" style="background:#050812">
-      <div style="display:flex;justify-content:space-between;align-items:center">
-        <div style="font-weight:800">لوحة الأدمين (سرية)</div>
-        <div id="closeAdmin" class="chip">إغلاق</div>
-      </div>
-
-      <!-- create / login -->
-      <div id="adminCreateWrap" class="hidden" style="margin-top:10px">
-        <h4>إنشاء أدمين سري</h4>
-        <label>الاسم الظاهر</label>
-        <input id="adminCreateName" placeholder="اسم الأدمين للعرض">
-        <label>الكود السري</label>
-        <input id="adminCreateCode" type="password">
-        <label>تأكيد الكود</label>
-        <input id="adminCreateCode2" type="password">
-        <div style="display:flex;gap:8px;margin-top:8px">
-          <button id="createAdminBtn" class="btn" style="flex:1">إنشاء & تشفير</button>
-          <button id="cancelCreate" class="chip" style="flex:1">إلغاء</button>
+    <div class="panel">
+      <div id="adminCreateWrap" class="hidden">
+        <h3>إنشاء حساب أدمين (سري)</h3>
+        <div class="muted small">ادخل اسم الأدمين وكود سري - سيُشفر ويُخزن محليًا</div>
+        <input id="adminCreateName" placeholder="اسم الأدمين الذي سيُعرض فقط">
+        <input id="adminCreateCode" type="password" placeholder="الكود السري">
+        <input id="adminCreateCode2" type="password" placeholder="تأكيد الكود">
+        <div class="row">
+          <button id="createAdminBtn" class="primary">إنشاء & تشفير</button>
+          <button id="cancelCreate" class="danger">إلغاء</button>
         </div>
-        <div id="createMsg" class="muted small" style="margin-top:8px"></div>
+        <div id="createMsg" class="muted small"></div>
       </div>
 
-      <div id="adminLoginWrap" class="hidden" style="margin-top:10px">
-        <h4>دخول الأدمين</h4>
-        <label>الاسم</label>
-        <input id="adminLoginName">
-        <label>الكود</label>
-        <input id="adminLoginCode" type="password">
-        <div style="display:flex;gap:8px;margin-top:8px">
-          <button id="loginAdminBtn" class="btn" style="flex:1">دخول</button>
-          <button id="showCreateBtn" class="chip" style="flex:1">أنشئ جديد</button>
+      <div id="adminLoginWrap" class="hidden">
+        <h3>تسجيل دخول الأدمين</h3>
+        <div class="muted small">ادخل اسم الأدمين والكود</div>
+        <input id="adminLoginName" placeholder="اسم الأدمين">
+        <input id="adminLoginCode" type="password" placeholder="الكود السري">
+        <div class="row">
+          <button id="loginAdminBtn" class="primary">دخول</button>
+          <button id="showCreateBtn" class="ok">إنشاء حساب جديد</button>
         </div>
-        <div id="loginMsg" class="muted small" style="margin-top:8px"></div>
+        <div id="loginMsg" class="muted small"></div>
       </div>
 
-      <div id="adminPanelWrap" class="hidden" style="margin-top:10px">
-        <h4>لوحة الأدمين</h4>
+      <div id="adminPanelWrap" class="hidden">
+        <h3>لوحة الأدمين</h3>
         <div class="muted small">الاسم: <b id="adminNameDisplay">-</b></div>
         <div style="margin-top:10px">
-          <div class="muted small">الإشعارات الأخيرة</div>
-          <div id="adminNotif" style="font-weight:700;margin-top:6px"></div>
+          <div class="muted small">تغيير رصيد المستخدم الحالي:</div>
+          <input id="adminSetBal" type="number" placeholder="أدخل رصيد جديد">
+          <button id="adminSaveBal" class="primary">حفظ الرصيد</button>
         </div>
-
-        <div style="margin-top:12px">
-          <div class="muted small">التحكم العام</div>
-          <div style="display:flex;gap:6px;margin-top:6px">
-            <button id="setForceWin" class="chip">ربح دائم</button>
-            <button id="setForceLose" class="chip">خسارة دائم</button>
-            <button id="setNormal" class="chip">عادي</button>
+        <div style="margin-top:10px">
+          <div class="muted small">وضع التحكم العام:</div>
+          <div class="row">
+            <button id="setForceWin" class="">ربح دائم</button>
+            <button id="setForceLose" class="">خسارة دائم</button>
+            <button id="setNormal" class="ok">عادي</button>
           </div>
           <div class="muted small" style="margin-top:8px">الوضع الحالي: <b id="adminModeLabel">عادي</b></div>
         </div>
-
         <div style="margin-top:12px">
-          <div class="muted small">قائمة المستخدمين</div>
-          <div class="users-list" id="usersList" style="margin-top:8px"></div>
-        </div>
-
-        <div style="margin-top:12px">
-          <div class="muted small">تغيير كود (يتطلب الكود القديم)</div>
+          <div class="muted small">تغيير كود الأدمين (يتطلب إدخال الكود القديم):</div>
           <input id="oldCode" type="password" placeholder="الكود القديم">
           <input id="newCode" type="password" placeholder="الكود الجديد">
-          <input id="newCode2" type="password" placeholder="تأكيد">
-          <div style="display:flex;gap:8px;margin-top:8px">
-            <button id="changeCodeBtn" class="btn" style="flex:1">تغيير الكود</button>
-            <button id="logoutAdminBtn" class="chip" style="flex:1">خروج</button>
+          <input id="newCode2" type="password" placeholder="تأكيد الكود الجديد">
+          <div class="row">
+            <button id="changeCodeBtn" class="primary">تغيير الكود</button>
+            <button id="logoutAdminBtn" class="danger">خروج الأدمين</button>
           </div>
-          <div id="adminActionMsg" class="muted small" style="margin-top:6px"></div>
+          <div id="adminActionMsg" class="muted small"></div>
         </div>
-
+        <div style="margin-top:12px">
+          <button id="closeAdminModal" class="">إغلاق</button>
+        </div>
       </div>
-
-      <div style="margin-top:12px" class="muted small">ملاحظة: هذه نافذة سرية — لفتحها اضغط على الشعار 6 مرات.</div>
     </div>
   </div>
 
 <script>
-/* -------------------------
-   Helpers: hashing & storage
-   ------------------------- */
+/* ---------- Helpers: hashing + base64 ---------- */
 async function sha256Hex(message){
   const enc = new TextEncoder();
   const data = enc.encode(message);
@@ -278,294 +158,36 @@ async function sha256Hex(message){
 function randBase64(lenBytes=12){
   const a=new Uint8Array(lenBytes);
   crypto.getRandomValues(a);
+  // base64
   let s='';
   for(let i=0;i<a.length;i++) s += String.fromCharCode(a[i]);
   return btoa(s);
 }
 
-/* Admin stored: {name, salt, hash} under key 'insta_admin' */
+/* ---------- Admin storage format ----------
+  localStorage key: "insta_admin"
+  value: JSON.stringify({name, salt, hash})
+  where hash = sha256Hex(salt + code)
+-------------------------------------------- */
+
 function getAdminStored(){ try{ return JSON.parse(localStorage.getItem('insta_admin')||'null'); }catch(e){return null;} }
-function setAdminStored(o){ localStorage.setItem('insta_admin', JSON.stringify(o)); }
+function setAdminStored(obj){ localStorage.setItem('insta_admin', JSON.stringify(obj)); }
 
-/* users list stored under insta_users */
-function loadUsers(){ try{return JSON.parse(localStorage.getItem('insta_users')||'[]')}catch(e){return []} }
-function saveUsers(u){ localStorage.setItem('insta_users', JSON.stringify(u)); }
-function pushNotif(msg){ localStorage.setItem('insta_last_notif', JSON.stringify({t:new Date().toISOString(), m: msg})); }
-function setAdminMode(mode){ localStorage.setItem('insta_admin_mode', mode); }
-function getAdminMode(){ return localStorage.getItem('insta_admin_mode') || 'normal'; }
+/* ---------- User (demo) ---------- */
+function saveUser(u){ localStorage.setItem('insta_user_demo', JSON.stringify(u)); }
+function loadUser(){ try{return JSON.parse(localStorage.getItem('insta_user_demo')||'null')}catch(e){return null;} }
 
-/* demo current user saved under insta_current_user */
-function saveCurrentUser(u){ localStorage.setItem('insta_current_user', JSON.stringify(u)); }
-function loadCurrentUser(){ try{ return JSON.parse(localStorage.getItem('insta_current_user')||'null')}catch(e){return null} }
-
-/* -------------------------
-   Registration / UI wiring
-   ------------------------- */
-const registerBtn = document.getElementById('registerBtn');
-const nameIn = document.getElementById('name');
-const emailIn = document.getElementById('email');
-const passIn = document.getElementById('pass');
-const roleSel = document.getElementById('role');
-
-const dashCard = document.getElementById('dashCard');
-const uNameEl = document.getElementById('uName');
-const uIdEl = document.getElementById('uId');
-const uBalEl = document.getElementById('uBal');
-
-const openDepositBtn = document.getElementById('openDeposit');
-const openWithdrawBtn = document.getElementById('openWithdraw');
-const playGamesBtn = document.getElementById('playGamesBtn');
-const logoutBtn = document.getElementById('logoutBtn');
-
-registerBtn.addEventListener('click', ()=>{
-  const name = nameIn.value.trim() || 'لاسم';
-  const email = emailIn.value.trim() || '';
-  const pass = passIn.value || '';
-  if(!name || !email || !pass){ alert('املأ الحقول'); return; }
-  const users = loadUsers();
-  const id = 'u' + Date.now().toString(36).slice(-6);
-  const user = {id, name, email, pass, role: roleSel.value, balance: 100, created: new Date().toISOString()};
-  users.push(user);
-  saveUsers(users);
-  saveCurrentUser(user);
-  pushNotif(`تسجيل جديد: ${name} (${email})`);
-  // clear
-  nameIn.value=''; emailIn.value=''; passIn.value='';
-  showUser();
-});
-
-function showUser(){
-  const u = loadCurrentUser();
-  if(!u) return;
-  dashCard.classList.remove('hidden');
-  document.getElementById('authCard').classList && document.getElementById('authCard').classList.add('hidden');
-  uNameEl.innerText = u.name;
-  uIdEl.innerText = u.id;
-  uBalEl.innerText = u.balance;
-  // show agents & games
-  document.getElementById('agentsCard').classList.remove('hidden');
-}
-
-showUser();
-
-/* logout */
-logoutBtn.addEventListener('click', ()=>{
-  localStorage.removeItem('insta_current_user');
-  dashCard.classList.add('hidden');
-  document.getElementById('authCard').classList.remove('hidden');
-  document.getElementById('gamesCard').classList.add('hidden');
-  document.getElementById('agentsCard').classList.add('hidden');
-});
-
-/* open deposit/withdraw/games */
-openDepositBtn.addEventListener('click', ()=> openDeposit());
-openWithdrawBtn.addEventListener('click', ()=> openWithdraw());
-playGamesBtn.addEventListener('click', ()=> {
-  document.getElementById('gamesCard').classList.toggle('hidden');
-});
-
-/* -------------------------
-   Deposit flow
-   ------------------------- */
-const depositModal = document.getElementById('depositModal');
-const depositAmount = document.getElementById('depositAmount');
-const depositBank = document.getElementById('depositBank');
-const depositInfo = document.getElementById('depositInfo');
-const depositMsg = document.getElementById('depositMsg');
-document.getElementById('sendDeposit').addEventListener('click', sendDeposit);
-
-function openDeposit(){ depositMsg.innerText=''; depositAmount.value=''; depositInfo.value=''; depositModal.classList.remove('hidden'); depositModal.setAttribute('aria-hidden','false'); }
-function closeDeposit(){ depositModal.classList.add('hidden'); depositModal.setAttribute('aria-hidden','true'); }
-
-function sendDeposit(){
-  const amt = parseInt(depositAmount.value);
-  if(isNaN(amt) || amt<=0){ depositMsg.innerText='ادخل مبلغ صالح'; return; }
-  const bank = depositBank.value;
-  const info = depositInfo.value.trim();
-  const u = loadCurrentUser();
-  if(!u){ depositMsg.innerText='سجّل أولا'; return; }
-
-  // record pending deposit
-  const tx = {type:'deposit', userId: u.id, amount: amt, bank, info, t: new Date().toISOString()};
-  localStorage.setItem('insta_last_tx', JSON.stringify(tx));
-  pushNotif(`طلب شحن: ${u.name} — ${amt} درهم`);
-
-  // instant message then delayed credit
-  depositMsg.innerText = 'تم الشحن — ستتوصل برصيدك قريباً';
-  // simulate processing delay then credit
-  setTimeout(()=>{
-    // credit user
-    const users = loadUsers();
-    const idx = users.findIndex(x=>x.id===u.id);
-    if(idx!==-1){ users[idx].balance = (users[idx].balance||0) + amt; saveUsers(users); saveCurrentUser(users[idx]); showUser(); }
-    depositMsg.innerText = 'تمت العملية بنجاح — تم إضافة الرصيد';
-    pushNotif(`شحن مُعالج: ${u.name} +${amt} درهم`);
-    localStorage.setItem('insta_last_tx', JSON.stringify({type:'deposit_done', userId:u.id, amount:amt, t:new Date().toISOString()}));
-  }, 2000);
-
-  // close modal after short delay visually
-  setTimeout(()=>{ closeDeposit(); }, 2600);
-}
-
-/* -------------------------
-   Withdraw flow
-   ------------------------- */
-const withdrawModal = document.getElementById('withdrawModal');
-const withdrawBank = document.getElementById('withdrawBank');
-const withdrawAmount = document.getElementById('withdrawAmount');
-const withdrawInfo = document.getElementById('withdrawInfo');
-const withdrawMsg = document.getElementById('withdrawMsg');
-document.getElementById('sendWithdraw').addEventListener('click', sendWithdraw);
-
-function openWithdraw(){ withdrawMsg.innerText=''; withdrawAmount.value=''; withdrawInfo.value=''; withdrawModal.classList.remove('hidden'); withdrawModal.setAttribute('aria-hidden','false'); }
-function closeWithdraw(){ withdrawModal.classList.add('hidden'); withdrawModal.setAttribute('aria-hidden','true'); }
-
-function sendWithdraw(){
-  const amt = parseInt(withdrawAmount.value);
-  if(isNaN(amt) || amt<=0){ withdrawMsg.innerText='ادخل مبلغ صالح'; return; }
-  const bank = withdrawBank.value;
-  const info = withdrawInfo.value.trim();
-  const u = loadCurrentUser();
-  if(!u){ withdrawMsg.innerText='سجّل أولا'; return; }
-  if((u.balance||0) < amt){ withdrawMsg.innerText='الرصيد غير كافٍ'; return; }
-
-  // deduct immediately
-  const users = loadUsers();
-  const idx = users.findIndex(x=>x.id===u.id);
-  if(idx===-1){ withdrawMsg.innerText='حساب غير موجود'; return; }
-  users[idx].balance = Math.max(0, users[idx].balance - amt);
-  saveUsers(users);
-  saveCurrentUser(users[idx]);
-  showUser();
-
-  // record tx
-  const tx = {type:'withdraw', userId: u.id, amount: amt, bank, info, t: new Date().toISOString()};
-  localStorage.setItem('insta_last_tx', JSON.stringify(tx));
-  pushNotif(`طلب سحب: ${u.name} — ${amt} درهم`);
-
-  withdrawMsg.innerText = 'تمت العملية بنجاح — سحب قيد المعالجة';
-  setTimeout(()=>{ closeWithdraw(); }, 1600);
-}
-
-/* -------------------------
-   Agents (fake) handling
-   ------------------------- */
-function useAgent(number){
-  alert('تم اختيار الوكيل — افتح واتساب للتواصل: ' + number);
-  // open WA
-  const link = 'https://wa.me/' + number.replace(/\D/g,'');
-  window.open(link, '_blank');
-}
-
-/* -------------------------
-   Games (integrated with admin mode)
-   ------------------------- */
-function applyResult(delta, message){
-  const u = loadCurrentUser();
-  if(!u){ alert('سجّل أولا'); return; }
-  const users = loadUsers();
-  const idx = users.findIndex(x=>x.id===u.id);
-  if(idx===-1) return;
-  users[idx].balance = Math.max(0, (users[idx].balance||0) + delta);
-  saveUsers(users);
-  saveCurrentUser(users[idx]);
-  showUser();
-  document.getElementById('gameMsg').innerText = message;
-  // log tx
-  localStorage.setItem('insta_last_tx', JSON.stringify({type:'game', userId:u.id, amount:delta, msg:message, t:new Date().toISOString()}));
-  pushNotif(`لعب: ${u.name} — ${message}`);
-}
-
-function playCoin(choice){
-  const mode = getAdminMode();
-  let result = Math.random() < 0.5 ? 'Heads' : 'Tails';
-  if(mode === 'win') result = choice;
-  if(mode === 'lose') result = (choice === 'Heads' ? 'Tails' : 'Heads');
-  if(result === choice) applyResult(+10, `فزت +10 (${result})`);
-  else applyResult(-5, `خسرت -5 (${result})`);
-}
-function playDice(){
-  const mode = getAdminMode();
-  let r = Math.floor(Math.random()*6)+1;
-  if(mode === 'win') r = 6;
-  if(mode === 'lose') r = 1;
-  if(r === 6) applyResult(+10, `🎉 6 — فزت +10`);
-  else if(r >= 4) applyResult(+5, `+5 — نتيجة ${r}`);
-  else applyResult(-5, `-5 — نتيجة ${r}`);
-}
-function playRPS(p){
-  const opts=['✊','✋','✌️'];
-  let comp = opts[Math.floor(Math.random()*3)];
-  const mode = getAdminMode();
-  if(mode === 'win'){ comp = (p === '✊' ? '✌️' : p === '✋' ? '✊' : '✋'); }
-  if(mode === 'lose'){ comp = (p === '✊' ? '✋' : p === '✋' ? '✌️' : '✊'); }
-  let res='';
-  if(p === comp) res = 'تعادل';
-  else if((p==='✊'&&comp==='✌️')||(p==='✋'&&comp==='✊')||(p==='✌️'&&comp==='✋')) res = 'فزت';
-  else res = 'خسرت';
-  if(res === 'فزت') applyResult(+10, `فزت +10 — خصم: ${comp}`);
-  else if(res === 'خسرت') applyResult(-5, `خسرت -5 — خصم: ${comp}`);
-  else applyResult(0, `تعادل — خصم: ${comp}`);
-}
-function playSlot(){
-  const s=['🍒','🍋','⭐','7️⃣'];
-  let r = [s[Math.random()*s.length|0], s[Math.random()*s.length|0], s[Math.random()*s.length|0]];
-  const mode = getAdminMode();
-  if(mode === 'win') r = ['7️⃣','7️⃣','7️⃣'];
-  if(mode === 'lose') r = ['🍒','🍋','⭐'];
-  if(r[0]===r[1] && r[1]===r[2]) applyResult(+20, `🎰 Jackpot +20 ${r.join('')}`);
-  else if(r[0]===r[1]||r[1]===r[2]||r[0]===r[2]) applyResult(+5, `فوز صغير +5 ${r.join('')}`);
-  else applyResult(-5, `خسرت -5 ${r.join('')}`);
-}
-let minesGrid = [];
-function resetMines(){
-  const gridEl = document.getElementById('minesGrid');
-  if(!gridEl) return;
-  gridEl.innerHTML = '';
-  minesGrid = [];
-  for(let i=0;i<25;i++){
-    const mine = Math.random() < 0.18;
-    minesGrid.push(mine);
-    const b = document.createElement('button');
-    b.style.width='50px'; b.style.height='50px'; b.style.borderRadius='6px';
-    b.innerText = '❓';
-    b.onclick = function(){
-      if(minesGrid[i]){
-        b.innerText='💣'; b.style.background='#7f1d1d'; applyResult(-5, 'لغم — خسرت -5');
-      } else {
-        b.innerText='💎'; b.style.background='#064e3b'; applyResult(+10, 'آمن — فزت +10');
-      }
-    };
-    gridEl.appendChild(b);
-  }
-}
-
-/* on first load, ensure a mines grid container exists in DOM for resetMines */
-(function ensureMinesContainer(){
-  if(!document.getElementById('minesGrid')){
-    const div = document.createElement('div');
-    div.id = 'minesGrid';
-    div.style.display='grid';
-    div.style.gridTemplateColumns='repeat(5,50px)';
-    div.style.gap='6px';
-    div.style.justifyContent='center';
-    const gamesCard = document.getElementById('gamesCard');
-    if(gamesCard) gamesCard.appendChild(div);
-  }
-  resetMines();
-})();
-
-/* -------------------------
-   Secret admin: tap flow + create/login + panel
-   ------------------------- */
-let taps = 0, tTimer = null;
-const logo = document.getElementById('logoTap');
+/* ---------- UI refs ---------- */
+const logo = document.getElementById('logo');
 const adminModal = document.getElementById('adminModal');
 const adminCreateWrap = document.getElementById('adminCreateWrap');
 const adminLoginWrap = document.getElementById('adminLoginWrap');
 const adminPanelWrap = document.getElementById('adminPanelWrap');
-const adminBadgePlaceholder = document.getElementById('adminBadgePlaceholder');
 
+const adminBadgeWrap = document.getElementById('adminBadgeWrap');
+
+/* ---------- tap secret ---------- */
+let taps=0, tTimer=null;
 logo.addEventListener('click', ()=>{
   taps++;
   if(tTimer) clearTimeout(tTimer);
@@ -573,15 +195,17 @@ logo.addEventListener('click', ()=>{
   if(taps >= 6){
     taps = 0;
     openAdminSecret();
-    alert('تم كشف النافذة السرية للأدمين (تجريبي)');
   }
 });
 
+/* ---------- open secret modal ---------- */
 function openAdminSecret(){
-  const stored = getAdminStored();
+  const a = getAdminStored();
   adminModal.classList.remove('hidden');
   adminModal.setAttribute('aria-hidden','false');
-  if(!stored){
+  // decide view
+  if(!a){
+    // show create
     adminCreateWrap.classList.remove('hidden');
     adminLoginWrap.classList.add('hidden');
     adminPanelWrap.classList.add('hidden');
@@ -589,69 +213,77 @@ function openAdminSecret(){
     adminCreateWrap.classList.add('hidden');
     adminLoginWrap.classList.remove('hidden');
     adminPanelWrap.classList.add('hidden');
-    document.getElementById('adminLoginName').value = stored.name || '';
+    document.getElementById('adminLoginName').value = a.name || '';
+    document.getElementById('loginMsg').innerText = '';
   }
 }
-document.getElementById('closeAdmin').addEventListener('click', ()=>{ adminModal.classList.add('hidden'); adminModal.setAttribute('aria-hidden','true'); });
 
-/* create admin */
+/* ---------- create admin ---------- */
 document.getElementById('createAdminBtn').addEventListener('click', async ()=>{
   const name = document.getElementById('adminCreateName').value.trim();
   const code = document.getElementById('adminCreateCode').value;
   const code2 = document.getElementById('adminCreateCode2').value;
-  const createMsg = document.getElementById('createMsg');
-  createMsg.innerText = '';
-  if(!name || !code){ createMsg.innerText = 'املأ الاسم و الكود'; return; }
-  if(code !== code2){ createMsg.innerText = 'الكودين غير متطابقين'; return; }
+  const msg = document.getElementById('createMsg');
+  msg.innerText = '';
+  if(!name || !code) { msg.innerText = 'المرجو ملء الاسم و الكود'; return; }
+  if(code !== code2){ msg.innerText = 'كلا الكودين غير متطابقين'; return; }
   const salt = randBase64(12);
   const hash = await sha256Hex(salt + code);
   setAdminStored({name, salt, hash});
-  createMsg.innerText = 'تم الإنشاء والتشفير بنجاح';
-  setTimeout(()=>{ openAdminSecret(); }, 700);
+  msg.innerText = 'تم الإنشاء والتشفير بنجاح';
+  // auto show login panel after short delay
+  setTimeout(()=>{ openAdminSecret(); }, 800);
 });
 
-/* show create from login */
-document.getElementById('showCreateBtn').addEventListener('click', ()=>{
-  adminLoginWrap.classList.add('hidden');
-  adminCreateWrap.classList.remove('hidden');
+/* cancel create */
+document.getElementById('cancelCreate').addEventListener('click', ()=>{
+  adminModal.classList.add('hidden');
 });
 
-/* login admin */
+/* ---------- admin login ---------- */
 document.getElementById('loginAdminBtn').addEventListener('click', async ()=>{
   const name = document.getElementById('adminLoginName').value.trim();
   const code = document.getElementById('adminLoginCode').value;
-  const loginMsg = document.getElementById('loginMsg');
-  loginMsg.innerText = '';
+  const msg = document.getElementById('loginMsg');
+  msg.innerText = '';
   const stored = getAdminStored();
-  if(!stored){ loginMsg.innerText = 'لا يوجد أدمين — أنشئ أولاً'; return; }
-  if(name !== stored.name){ loginMsg.innerText = 'الاسم غير مطابق'; return; }
+  if(!stored){ msg.innerText = 'لا يوجد أدمين، أنشئ حساباً أولاً.'; return; }
+  if(name !== stored.name){ msg.innerText = 'الاسم غير مطابق'; return; }
   const hash = await sha256Hex(stored.salt + code);
   if(hash === stored.hash){
-    loginMsg.innerText = 'تم تسجيل دخول الأدمين';
+    // success
+    msg.innerText = 'تم تسجيل دخول الأدمين';
     showAdminPanel(stored.name);
   } else {
-    loginMsg.innerText = 'الكود خاطئ';
+    msg.innerText = 'الكود خاطئ';
   }
 });
 
-/* show admin panel after login */
+/* ---------- show admin panel after login ---------- */
+let adminState = {mode:'normal'}; // modes: normal | win | lose
 function showAdminPanel(name){
   adminCreateWrap.classList.add('hidden');
   adminLoginWrap.classList.add('hidden');
   adminPanelWrap.classList.remove('hidden');
   document.getElementById('adminNameDisplay').innerText = name;
-  adminBadgePlaceholder.innerHTML = `<div class="badge">Admin: ${escapeHtml(name)}</div>`;
-  renderUsersList();
+  adminState.mode = localStorage.getItem('insta_admin_mode') || 'normal';
   renderAdminMode();
+  // show badge with admin name only (no sensitive info)
+  adminBadgeWrap.innerHTML = `<div class="badge">Admin: ${escapeHtml(name)}</div>`;
+  document.getElementById('adminActionMsg').innerText = '';
+  document.getElementById('adminModal').scrollTop = 0;
 }
 
-/* admin mode control */
-document.getElementById('setForceWin').addEventListener('click', ()=>{ setAdminMode('win'); renderAdminMode(); });
-document.getElementById('setForceLose').addEventListener('click', ()=>{ setAdminMode('lose'); renderAdminMode(); });
-document.getElementById('setNormal').addEventListener('click', ()=>{ setAdminMode('normal'); renderAdminMode(); });
-function renderAdminMode(){ document.getElementById('adminModeLabel').innerText = getAdminMode() === 'normal' ? 'عادي' : getAdminMode() === 'win' ? 'ربح دائم' : 'خسارة دائم'; }
+/* ---------- admin mode controls ---------- */
+function renderAdminMode(){
+  document.getElementById('adminModeLabel').innerText = adminState.mode === 'normal' ? 'عادي' : adminState.mode === 'win' ? 'ربح دائم' : 'خسارة دائم';
+  localStorage.setItem('insta_admin_mode', adminState.mode);
+}
+document.getElementById('setForceWin').addEventListener('click', ()=>{ adminState.mode='win'; renderAdminMode(); });
+document.getElementById('setForceLose').addEventListener('click', ()=>{ adminState.mode='lose'; renderAdminMode(); });
+document.getElementById('setNormal').addEventListener('click', ()=>{ adminState.mode='normal'; renderAdminMode(); });
 
-/* change admin code */
+/* ---------- change code (requires old code) ---------- */
 document.getElementById('changeCodeBtn').addEventListener('click', async ()=>{
   const oldC = document.getElementById('oldCode').value;
   const n1 = document.getElementById('newCode').value;
@@ -659,111 +291,170 @@ document.getElementById('changeCodeBtn').addEventListener('click', async ()=>{
   const msg = document.getElementById('adminActionMsg');
   msg.innerText = '';
   const stored = getAdminStored();
-  if(!stored){ msg.innerText = 'لا يوجد أدمين'; return; }
-  if(!oldC || !n1){ msg.innerText = 'املأ الحقول'; return; }
+  if(!stored){ msg.innerText = 'لا يوجد أدمين.'; return; }
+  if(!oldC || !n1) { msg.innerText = 'املأ الحقول المطلوبة'; return; }
   const oldHash = await sha256Hex(stored.salt + oldC);
   if(oldHash !== stored.hash){ msg.innerText = 'الكود القديم خاطئ'; return; }
   if(n1 !== n2){ msg.innerText = 'الكود الجديد غير متطابق'; return; }
+  // create new salt+hash
   const newSalt = randBase64(12);
   const newHash = await sha256Hex(newSalt + n1);
   setAdminStored({name: stored.name, salt: newSalt, hash: newHash});
-  msg.innerText = 'تم تغيير الكود';
+  msg.innerText = 'تم تغيير الكود بنجاح';
+  // clear inputs
   document.getElementById('oldCode').value=''; document.getElementById('newCode').value=''; document.getElementById('newCode2').value='';
 });
 
-/* logout admin */
+/* ---------- admin logout ---------- */
 document.getElementById('logoutAdminBtn').addEventListener('click', ()=>{
+  adminBadgeWrap.innerHTML = '';
   adminPanelWrap.classList.add('hidden');
   adminLoginWrap.classList.remove('hidden');
   document.getElementById('loginMsg').innerText = 'تم الخروج';
-  adminBadgePlaceholder.innerHTML = '';
 });
 
-/* render users list in admin panel */
-function renderUsersList(){
-  const ul = document.getElementById('usersList');
-  const users = loadUsers().slice().reverse();
-  ul.innerHTML = '';
-  if(users.length===0){ ul.innerHTML = '<div class="muted small">لا مستخدمين بعد</div>'; return; }
-  users.forEach(u=>{
-    const div = document.createElement('div');
-    div.className = 'user-item';
-    div.innerHTML = `
-      <div style="display:flex;gap:10px;align-items:center">
-        <div style="width:40px;height:40px;border-radius:8px;background:linear-gradient(45deg,#feda75,#d62976);display:flex;align-items:center;justify-content:center;font-weight:700">${escapeHtml((u.name||'؟').slice(0,2).toUpperCase())}</div>
-        <div style="display:flex;flex-direction:column">
-          <div style="font-weight:700">${escapeHtml(u.name)}</div>
-          <div class="muted small">${escapeHtml(u.email)} · ${escapeHtml(u.role)}</div>
-        </div>
-      </div>
-      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px">
-        <div style="font-weight:800">${u.balance}</div>
-        <div style="display:flex;gap:6px">
-          <button class="chip" onclick="adminAdjustBalance('${u.id}',+10)">+10</button>
-          <button class="chip" onclick="adminAdjustBalance('${u.id}',-10)">-10</button>
-          <button class="chip" onclick="adminEditUser('${u.id}')">تعديل</button>
-        </div>
-      </div>
-    `;
-    ul.appendChild(div);
-  });
-}
-window.adminAdjustBalance = function(userId, delta){
-  const users = loadUsers();
-  const idx = users.findIndex(x=>x.id===userId);
-  if(idx===-1) return alert('مستخدم غير موجود');
-  users[idx].balance = Math.max(0, (users[idx].balance||0) + delta);
-  saveUsers(users);
-  renderUsersList();
-  // sync if current user
-  const cur = loadCurrentUser();
-  if(cur && cur.id === userId){ saveCurrentUser(users[idx]); showUser(); }
-  pushNotif(`Admin عدّل الرصيد: ${users[idx].name} (${delta>0? '+'+delta:delta})`);
-};
-window.adminEditUser = function(userId){
-  const users = loadUsers();
-  const idx = users.findIndex(x=>x.id===userId);
-  if(idx===-1) return;
-  const name = prompt('اسم المستخدم:', users[idx].name);
-  if(name===null) return;
-  users[idx].name = name;
-  saveUsers(users);
-  renderUsersList();
-  pushNotif(`Admin عدّل اسم المستخدم: ${users[idx].name}`);
-};
+/* close admin modal */
+document.getElementById('closeAdminModal').addEventListener('click', ()=>{
+  adminModal.classList.add('hidden');
+  adminModal.setAttribute('aria-hidden','true');
+});
 
-/* listen to storage events for cross-tab notifications */
-window.addEventListener('storage', (e)=>{
-  if(e.key === 'insta_last_notif' || e.key === 'insta_last_tx'){
-    document.getElementById('notifyDot').classList.remove('hidden');
-    const n = JSON.parse(localStorage.getItem('insta_last_notif')||'{}');
-    if(n && n.m) document.getElementById('adminNotif').innerText = `${n.t.split('T')[0]} — ${n.m}`;
-    // if admin panel open, refresh users list
-    if(!adminPanelWrap.classList.contains('hidden')) renderUsersList();
+/* show "create new" inside login (in case they want to recreate) */
+document.getElementById('showCreateBtn').addEventListener('click', ()=>{
+  adminLoginWrap.classList.add('hidden');
+  adminCreateWrap.classList.remove('hidden');
+});
+
+/* ---------- Basic demo user register/login ---------- */
+document.getElementById('registerBtn').addEventListener('click', ()=>{
+  const name = document.getElementById('name').value.trim() || 'لاسم';
+  const email = document.getElementById('email').value.trim() || '';
+  const pass = document.getElementById('pass').value || '';
+  const id = 'u'+Date.now().toString(36).slice(-6);
+  const user = {id,name,email,balance:100,created: new Date().toISOString()};
+  saveUser(user);
+  showUser(user);
+});
+function showUser(u){
+  if(!u) u = loadUser();
+  if(!u) return;
+  document.getElementById('dashCard').classList.remove('hidden');
+  document.getElementById('gamesCard').classList.remove('hidden');
+  document.getElementById('uName').innerText = u.name;
+  document.getElementById('uId').innerText = u.id;
+  document.getElementById('uBal').innerText = u.balance;
+}
+
+/* load existing user on start */
+showUser(loadUser());
+
+/* ---------- Game functions (connect to admin mode and update user) ---------- */
+async function applyResult(delta, txt){
+  const u = loadUser();
+  if(!u){ alert('سجّل أولًا'); return; }
+  u.balance = Math.max(0, (u.balance||0) + delta);
+  saveUser(u);
+  showUser(u);
+  document.getElementById('gameMsg').innerText = txt;
+}
+
+/* coin */
+async function playCoin(choice){
+  const admin = getAdminStored();
+  let mode = localStorage.getItem('insta_admin_mode') || 'normal';
+  let result = Math.random() < 0.5 ? 'Heads' : 'Tails';
+  if(mode === 'win') result = choice;
+  if(mode === 'lose') result = (choice === 'Heads' ? 'Tails' : 'Heads');
+  if(result === choice) await applyResult(+10, `فزت! (${result})`);
+  else await applyResult(-5, `خسرت (${result})`);
+}
+
+/* dice */
+async function playDice(){
+  let mode = localStorage.getItem('insta_admin_mode') || 'normal';
+  let r = Math.floor(Math.random()*6)+1;
+  if(mode === 'win') r = 6;
+  if(mode === 'lose') r = 1;
+  if(r === 6) await applyResult(+10, `🎉 6 - فزت`);
+  else if(r >= 4) await applyResult(+5, `+5 (النتيجة ${r})`);
+  else await applyResult(-5, `خسرت (النتيجة ${r})`);
+}
+
+/* RPS */
+async function playRPS(p){
+  const opts=['✊','✋','✌️'];
+  let comp = opts[Math.floor(Math.random()*3)];
+  const mode = localStorage.getItem('insta_admin_mode') || 'normal';
+  if(mode === 'win'){ comp = (p === '✊' ? '✌️' : p === '✋' ? '✊' : '✋'); }
+  if(mode === 'lose'){ comp = (p === '✊' ? '✋' : p === '✋' ? '✌️' : '✊'); }
+  let res='';
+  if(p === comp) res = 'تعادل';
+  else if((p==='✊'&&comp==='✌️')||(p==='✋'&&comp==='✊')||(p==='✌️'&&comp==='✋')) res = 'فزت';
+  else res = 'خسرت';
+  if(res==='فزت') await applyResult(+10, `فزت — خصم: ${comp}`);
+  else if(res==='خسرت') await applyResult(-5, `خسرت — خصم: ${comp}`);
+  else await applyResult(0, `تعادل — خصم: ${comp}`);
+}
+
+/* Slot */
+async function playSlot(){
+  const s=['🍒','🍋','⭐','7️⃣'];
+  let r = [s[Math.random()*s.length|0], s[Math.random()*s.length|0], s[Math.random()*s.length|0]];
+  const mode = localStorage.getItem('insta_admin_mode') || 'normal';
+  if(mode === 'win') r = ['7️⃣','7️⃣','7️⃣'];
+  if(mode === 'lose') r = ['🍒','🍋','⭐'];
+  if(r[0]===r[1] && r[1]===r[2]) await applyResult(+20, `الجائزة الكبرى ${r.join('')}`);
+  else if(r[0]===r[1]||r[1]===r[2]||r[0]===r[2]) await applyResult(+5, `فوز صغير ${r.join('')}`);
+  else await applyResult(-5, `خسرت ${r.join('')}`);
+}
+
+/* Mines (simple) */
+function resetMines(){
+  const grid = document.getElementById('minesGrid');
+  grid.innerHTML='';
+  const mines = [];
+  for(let i=0;i<25;i++){
+    const isMine = Math.random() < 0.18;
+    mines.push(isMine);
+    const b = document.createElement('button');
+    b.style.width='50px'; b.style.height='50px'; b.style.borderRadius='6px';
+    b.innerText = '❓';
+    b.onclick = async ()=>{
+      if(isMine){ await applyResult(-5, '💥 Boom — لغم!'); b.innerText='💣'; b.style.background='#7f1d1d'; }
+      else { await applyResult(+10, '💎 آمِن'); b.innerText='💎'; b.style.background='#064e3b'; }
+    };
+    grid.appendChild(b);
+  }
+}
+
+/* ---------- admin set balance (applies to current demo user) ---------- */
+document.getElementById('adminSaveBal').addEventListener('click', ()=>{
+  const val = parseInt(document.getElementById('adminSetBal').value);
+  if(isNaN(val)){ document.getElementById('adminActionMsg').innerText = 'أدخل قيمة صحيحة'; return; }
+  const u = loadUser();
+  if(!u){ document.getElementById('adminActionMsg').innerText = 'لا يوجد مستخدم حالي'; return; }
+  u.balance = val; saveUser(u); showUser(u);
+  document.getElementById('adminActionMsg').innerText = 'تم ضبط الرصيد';
+});
+
+/* small helper */
+function escapeHtml(s){ return String(s).replace(/[&<>"']/g, c=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c])); }
+
+/* allow closing modal by clicking background */
+adminModal.addEventListener('click', (e)=>{
+  if(e.target === adminModal){
+    adminModal.classList.add('hidden');
+    adminModal.setAttribute('aria-hidden','true');
   }
 });
 
-/* init admin label if exists when logged (but we only show after login) */
+/* init: load admin mode label if any */
 (function init(){
-  const n = JSON.parse(localStorage.getItem('insta_last_notif')||'{}');
-  if(n && n.m) document.getElementById('adminNotif').innerText = `${n.t.split('T')[0]} — ${n.m}`;
+  const m = localStorage.getItem('insta_admin_mode') || 'normal';
+  adminState.mode = m;
+  renderAdminMode();
+  // if admin stored but no badge (not logged) do nothing — badge only after login
 })();
-
-/* helper */
-function escapeHtml(s){ return String(s).replace(/[&<>"']/g, c=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c])); }
-
-/* close modals by clicking background */
-document.getElementById('depositModal').addEventListener('click', (e)=>{ if(e.target === document.getElementById('depositModal')) closeDeposit(); });
-document.getElementById('withdrawModal').addEventListener('click', (e)=>{ if(e.target === document.getElementById('withdrawModal')) closeWithdraw(); });
-document.getElementById('adminModal').addEventListener('click', (e)=>{ if(e.target === document.getElementById('adminModal')){ adminModal.classList.add('hidden'); adminModal.setAttribute('aria-hidden','true'); } });
-
-/* expose some functions to global for inline usage */
-window.openDeposit = openDeposit;
-window.openWithdraw = openWithdraw;
-window.useAgent = useAgent;
-window.resetMines = resetMines;
-
-/* end of script */
 </script>
 </body>
 </html>
