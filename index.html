@@ -1,460 +1,413 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="utf-8" />
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/>
-<title>INSTAPlay — Admin Secret + Encrypted Code</title>
+<title>INSTAPlay 🎮</title>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-  :root{--ig1:#feda75;--ig2:#fa7e1e;--ig3:#d62976;--ig4:#962fbf}
-  *{box-sizing:border-box}
-  body{margin:0;font-family:"Tajawal",sans-serif;background:linear-gradient(135deg,var(--ig1),var(--ig2),var(--ig3),var(--ig4));min-height:100vh;color:#fff;padding:18px}
-  .wrap{max-width:420px;margin:0 auto}
-  header{display:flex;justify-content:space-between;align-items:center;background:rgba(0,0,0,0.12);padding:10px;border-radius:12px}
-  #logo{display:flex;gap:10px;align-items:center;cursor:pointer}
-  #logo .icon{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:linear-gradient(45deg,var(--ig3),var(--ig4));font-weight:800}
-  .badge{background:rgba(255,255,255,0.08);padding:6px 8px;border-radius:10px;font-size:13px}
-  .card{background:rgba(0,0,0,0.36);padding:14px;border-radius:12px;margin-top:14px;box-shadow:0 8px 30px rgba(0,0,0,0.25)}
-  input,button{width:100%;padding:10px;border-radius:10px;border:0;background:rgba(255,255,255,0.06);color:#fff;font-size:15px;margin-top:8px}
-  button.primary{background:linear-gradient(90deg,var(--ig3),var(--ig4));font-weight:700;cursor:pointer}
-  .muted{font-size:13px;color:rgba(255,255,255,0.85);margin-top:6px}
-  .hidden{display:none}
-  /* admin modal */
-  .modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.6);z-index:9999}
-  .modal .panel{width:94%;max-width:420px;background:#0b0b0b;padding:16px;border-radius:12px}
-  .row{display:flex;gap:8px}
-  .small{font-size:13px}
-  .danger{background:linear-gradient(90deg,#ff4d6d,#ff7b9a)}
-  .ok{background:linear-gradient(90deg,#34d399,#10b981)}
+:root {
+  --ig1:#feda75;--ig2:#fa7e1e;--ig3:#d62976;--ig4:#962fbf;
+  --card-bg:rgba(255,255,255,0.05);
+  --radius:18px;--txt:#fff;--muted:rgba(255,255,255,0.7);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;margin:0;padding:0}
+body{
+  font-family:"Tajawal",sans-serif;color:var(--txt);
+  background:linear-gradient(135deg,var(--ig1),var(--ig2),var(--ig3),var(--ig4));
+  background-size:300% 300%;animation:move 12s linear infinite;
+}
+@keyframes move{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+.wrap{min-height:100vh;display:flex;align-items:flex-start;justify-content:center;padding:20px}
+.phone{
+  width:100%;max-width:420px;background:rgba(0,0,0,0.25);
+  border-radius:24px;overflow:hidden;
+  box-shadow:0 12px 40px rgba(0,0,0,0.4);
+}
+header{
+  height:56px;display:flex;justify-content:space-between;align-items:center;
+  padding:0 14px;background:rgba(0,0,0,0.2);
+}
+.logo{display:flex;align-items:center;gap:8px}
+.logo .icon{
+  width:34px;height:34px;border-radius:10px;
+  background:linear-gradient(45deg,var(--ig3),var(--ig4));
+  display:flex;align-items:center;justify-content:center;font-weight:700
+}
+.badge{padding:6px 10px;border-radius:8px;background:rgba(255,255,255,0.15);font-size:12px;cursor:pointer}
+main{padding:16px}
+.card{
+  background:var(--card-bg);border-radius:var(--radius);
+  padding:16px;margin-bottom:14px;box-shadow:0 8px 24px rgba(0,0,0,0.25);
+}
+label{font-size:12px;color:var(--muted);margin-bottom:4px;display:block}
+input,select{
+  width:100%;padding:10px;border-radius:12px;border:none;
+  background:rgba(255,255,255,0.08);color:#fff;margin-bottom:10px
+}
+.btn{
+  padding:12px;border:none;border-radius:12px;
+  background:linear-gradient(90deg,var(--ig3),var(--ig4));
+  color:#fff;font-weight:700;cursor:pointer;width:100%;box-shadow:0 8px 20px rgba(0,0,0,0.3)
+}
+.row{display:flex;gap:10px}
+.hidden{display:none}
+footer{text-align:center;font-size:12px;color:var(--muted);padding:10px}
+
+/* الألعاب */
+.game-card{
+  background:var(--card-bg);padding:14px;border-radius:var(--radius);
+  margin-bottom:16px;box-shadow:0 4px 16px rgba(0,0,0,0.3);
+}
+.game-card h3{margin-bottom:10px;font-size:15px}
+.slot-reels{display:flex;justify-content:center;font-size:40px;gap:10px;margin-bottom:10px}
+.mines-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:10px}
+.mines-grid button{padding:12px;font-size:18px;border:none;border-radius:8px;background:#333;color:#fff;cursor:pointer}
+.mines-grid button.revealed.safe{background:#16a34a}
+.mines-grid button.revealed.bomb{background:#dc2626}
+
+/* مودال عام */
+.modal{position:fixed;top:0;left:0;width:100%;height:100%;
+  background:rgba(0,0,0,0.6);display:flex;align-items:center;justify-content:center;
+  z-index:999}
+.modal .inner{
+  background:#111;padding:18px;border-radius:16px;max-width:420px;width:92%;color:#fff;
+  box-shadow:0 8px 30px rgba(0,0,0,0.5);max-height:90vh;overflow:auto
+}
+.modal h3{margin-bottom:12px}
+
+/* أزرار التحكم */
+.chip{
+  padding:6px 10px;border-radius:10px;background:rgba(255,255,255,0.1);
+  font-size:12px;cursor:pointer;margin:2px
+}
+.chip.on{background:linear-gradient(90deg,#10b981,#059669)}
+.chip.off{background:rgba(255,255,255,0.1)}
 </style>
 </head>
 <body>
-  <div class="wrap">
+<div class="wrap">
+  <div class="phone">
     <header>
-      <div id="logo" title="اضغط 6 مرات لفتح لوحة الأدمين">
-        <div class="icon">IP</div>
-        <div>
-          <div style="font-weight:800">INSTAPlay</div>
-          <div style="font-size:13px;color:rgba(255,255,255,0.85)">ألعاب المرهنات — هاتف</div>
-        </div>
-      </div>
-      <div id="adminBadgeWrap">
-        <!-- سيتم وضع اسم الأدمين هنا فقط بعد تسجيل الدخول -->
-      </div>
+      <div class="logo"><div class="icon">IP</div><div>INSTAPlay</div></div>
+      <div class="badge" id="openSVBtn">SV</div>
     </header>
-
-    <!-- auth card -->
-    <div class="card" id="authCard">
-      <div class="muted">أنشئ حساب تجريبي</div>
-      <input id="name" placeholder="الاسم الكامل">
-      <input id="email" placeholder="البريد الإلكتروني">
-      <input id="pass" type="password" placeholder="كلمة المرور (محلية)">
-      <button id="registerBtn" class="primary">تسجيل & دخول</button>
-      <div class="muted small">بالضغط سيُخزن الحساب محليًا (demo).</div>
-    </div>
-
-    <!-- dashboard -->
-    <div class="card hidden" id="dashCard">
-      <div style="display:flex;justify-content:space-between;align-items:center">
-        <div>
-          <div style="font-weight:800" id="uName">-</div>
-          <div class="muted small">معرّف: <span id="uId">-</span></div>
-        </div>
-        <div style="text-align:right">
-          <div class="muted small">الرصيد</div>
-          <div style="font-weight:900;font-size:18px" id="uBal">0</div>
+    <main>
+      <!-- التسجيل -->
+      <div class="card" id="authCard">
+        <label>الاسم</label><input id="name">
+        <label>البريد</label><input id="email" type="email">
+        <label>كلمة السر</label><input id="pass" type="password">
+        <button class="btn" id="registerBtn">تسجيل</button>
+      </div>
+      <!-- داشبورد -->
+      <div class="card hidden" id="dashCard">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div><b id="userName"></b><div>💳 <span id="userBal">0</span></div></div>
+          <button id="logoutBtn" class="badge">خروج</button>
         </div>
       </div>
-    </div>
-
-    <!-- الألعاب المختصرة (مثال) -->
-    <div class="card hidden" id="gamesCard">
-      <h3>ألعاب (تجريبي)</h3>
-      <div class="muted small">كل لعبة تعدّل الرصيد فورًا وتعكس إعدادات الأدمين</div>
-      <div style="margin-top:10px">
-        <button onclick="playCoin('Heads')">🪙 Coin — اختار Heads</button>
-        <button onclick="playCoin('Tails')">🪙 Coin — اختار Tails</button>
-        <button onclick="playDice()">🎲 Dice</button>
-        <button onclick="playRPS('✊')">✊ RPS</button>
-        <button onclick="playSlot()">🎰 Slot</button>
-        <button onclick="resetMines()">💣 Reset Mines</button>
+      <!-- الألعاب -->
+      <div id="games" class="hidden">
+        <div class="game-card">
+          <h3>🪙 عملة</h3>
+          <button onclick="coin('Heads')">وجه</button>
+          <button onclick="coin('Tails')">ظهر</button>
+          <div id="coinRes"></div>
+        </div>
+        <div class="game-card">
+          <h3>🎲 نرد</h3>
+          <button onclick="dice()">رمي</button>
+          <div id="diceRes"></div>
+        </div>
+        <div class="game-card">
+          <h3>✊✋✌️ حجر ورق مقص</h3>
+          <button onclick="rps('✊')">✊</button>
+          <button onclick="rps('✋')">✋</button>
+          <button onclick="rps('✌️')">✌️</button>
+          <div id="rpsRes"></div>
+        </div>
+        <div class="game-card">
+          <h3>🎰 سلوت</h3>
+          <div class="slot-reels"><span id="s1">❓</span><span id="s2">❓</span><span id="s3">❓</span></div>
+          <button onclick="slot()">Spin</button>
+          <div id="slotRes"></div>
+        </div>
+        <div class="game-card">
+          <h3>💣 Mines</h3>
+          <div class="mines-grid" id="mines"></div>
+          <div id="minesRes"></div>
+          <button onclick="resetMines()">إعادة</button>
+        </div>
       </div>
-      <div id="gameMsg" class="muted small" style="margin-top:8px"></div>
-    </div>
+      <!-- الشحن -->
+      <div class="card hidden" id="chargeCard">
+        <h3>شحن الرصيد</h3>
+        <input id="chAmount" type="number" placeholder="المبلغ">
+        <select id="chBank"><option>CIH</option><option>CashPlus</option><option>BaridBank</option></select>
+        <button class="btn" onclick="charge()">تأكيد</button>
+        <div id="chMsg"></div>
+      </div>
+      <!-- السحب -->
+      <div class="card hidden" id="withdrawCard">
+        <h3>سحب الرصيد</h3>
+        <input id="wAmount" type="number" placeholder="المبلغ">
+        <select id="wBank"><option>CIH</option><option>CashPlus</option><option>BaridBank</option></select>
+        <input id="wInfo" placeholder="معلومات الحساب">
+        <button class="btn" onclick="withdraw()">تأكيد</button>
+        <div id="wMsg"></div>
+      </div>
+      <!-- وكلاء -->
+      <div class="card">
+        <h3>📞 وكلاء الشحن</h3>
+        <div><a href="https://wa.me/212713041921" target="_blank">+212713041921 (حقيقي)</a></div>
+        <div><a href="#">+212600000000 (وهمي)</a></div>
+      </div>
+    </main>
+    <footer>© INSTAPlay — Demo</footer>
   </div>
+</div>
 
-  <!-- Admin modal (secret) -->
-  <div id="adminModal" class="modal hidden" aria-hidden="true">
-    <div class="panel">
-      <div id="adminCreateWrap" class="hidden">
-        <h3>إنشاء حساب أدمين (سري)</h3>
-        <div class="muted small">ادخل اسم الأدمين وكود سري - سيُشفر ويُخزن محليًا</div>
-        <input id="adminCreateName" placeholder="اسم الأدمين الذي سيُعرض فقط">
-        <input id="adminCreateCode" type="password" placeholder="الكود السري">
-        <input id="adminCreateCode2" type="password" placeholder="تأكيد الكود">
-        <div class="row">
-          <button id="createAdminBtn" class="primary">إنشاء & تشفير</button>
-          <button id="cancelCreate" class="danger">إلغاء</button>
-        </div>
-        <div id="createMsg" class="muted small"></div>
-      </div>
-
-      <div id="adminLoginWrap" class="hidden">
-        <h3>تسجيل دخول الأدمين</h3>
-        <div class="muted small">ادخل اسم الأدمين والكود</div>
-        <input id="adminLoginName" placeholder="اسم الأدمين">
-        <input id="adminLoginCode" type="password" placeholder="الكود السري">
-        <div class="row">
-          <button id="loginAdminBtn" class="primary">دخول</button>
-          <button id="showCreateBtn" class="ok">إنشاء حساب جديد</button>
-        </div>
-        <div id="loginMsg" class="muted small"></div>
-      </div>
-
-      <div id="adminPanelWrap" class="hidden">
-        <h3>لوحة الأدمين</h3>
-        <div class="muted small">الاسم: <b id="adminNameDisplay">-</b></div>
-        <div style="margin-top:10px">
-          <div class="muted small">تغيير رصيد المستخدم الحالي:</div>
-          <input id="adminSetBal" type="number" placeholder="أدخل رصيد جديد">
-          <button id="adminSaveBal" class="primary">حفظ الرصيد</button>
-        </div>
-        <div style="margin-top:10px">
-          <div class="muted small">وضع التحكم العام:</div>
-          <div class="row">
-            <button id="setForceWin" class="">ربح دائم</button>
-            <button id="setForceLose" class="">خسارة دائم</button>
-            <button id="setNormal" class="ok">عادي</button>
-          </div>
-          <div class="muted small" style="margin-top:8px">الوضع الحالي: <b id="adminModeLabel">عادي</b></div>
-        </div>
-        <div style="margin-top:12px">
-          <div class="muted small">تغيير كود الأدمين (يتطلب إدخال الكود القديم):</div>
-          <input id="oldCode" type="password" placeholder="الكود القديم">
-          <input id="newCode" type="password" placeholder="الكود الجديد">
-          <input id="newCode2" type="password" placeholder="تأكيد الكود الجديد">
-          <div class="row">
-            <button id="changeCodeBtn" class="primary">تغيير الكود</button>
-            <button id="logoutAdminBtn" class="danger">خروج الأدمين</button>
-          </div>
-          <div id="adminActionMsg" class="muted small"></div>
-        </div>
-        <div style="margin-top:12px">
-          <button id="closeAdminModal" class="">إغلاق</button>
-        </div>
+<!-- لوحة SV -->
+<div id="svModal" class="modal hidden">
+  <div class="inner">
+    <h3>لوحة SV</h3>
+    <label>الإيميل</label><input id="svEmail">
+    <label>كلمة السر</label><input id="svPass" type="password">
+    <button class="btn" id="svLogin">دخول</button>
+    <div id="svMsg"></div>
+    <div id="svPanel" class="hidden">
+      <h4>👥 المستخدمين</h4>
+      <div id="users"></div>
+      <h4>⚙️ التحكم</h4>
+      <div>
+        <span class="chip off" id="forceWin">ربح دائم</span>
+        <span class="chip off" id="forceLose">خسارة دائمة</span>
       </div>
     </div>
   </div>
-
-<script>
-/* ---------- Helpers: hashing + base64 ---------- */
-async function sha256Hex(message){
-  const enc = new TextEncoder();
-  const data = enc.encode(message);
-  const hash = await crypto.subtle.digest('SHA-256', data);
-  const arr = Array.from(new Uint8Array(hash));
-  return arr.map(b=>b.toString(16).padStart(2,'0')).join('');
-}
-function randBase64(lenBytes=12){
-  const a=new Uint8Array(lenBytes);
-  crypto.getRandomValues(a);
-  // base64
-  let s='';
-  for(let i=0;i<a.length;i++) s += String.fromCharCode(a[i]);
-  return btoa(s);
-}
-
-/* ---------- Admin storage format ----------
-  localStorage key: "insta_admin"
-  value: JSON.stringify({name, salt, hash})
-  where hash = sha256Hex(salt + code)
--------------------------------------------- */
-
-function getAdminStored(){ try{ return JSON.parse(localStorage.getItem('insta_admin')||'null'); }catch(e){return null;} }
-function setAdminStored(obj){ localStorage.setItem('insta_admin', JSON.stringify(obj)); }
-
-/* ---------- User (demo) ---------- */
-function saveUser(u){ localStorage.setItem('insta_user_demo', JSON.stringify(u)); }
-function loadUser(){ try{return JSON.parse(localStorage.getItem('insta_user_demo')||'null')}catch(e){return null;} }
-
-/* ---------- UI refs ---------- */
-const logo = document.getElementById('logo');
-const adminModal = document.getElementById('adminModal');
-const adminCreateWrap = document.getElementById('adminCreateWrap');
-const adminLoginWrap = document.getElementById('adminLoginWrap');
-const adminPanelWrap = document.getElementById('adminPanelWrap');
-
-const adminBadgeWrap = document.getElementById('adminBadgeWrap');
-
-/* ---------- tap secret ---------- */
-let taps=0, tTimer=null;
-logo.addEventListener('click', ()=>{
-  taps++;
-  if(tTimer) clearTimeout(tTimer);
-  tTimer = setTimeout(()=> taps = 0, 900);
-  if(taps >= 6){
-    taps = 0;
-    openAdminSecret();
-  }
-});
-
-/* ---------- open secret modal ---------- */
-function openAdminSecret(){
-  const a = getAdminStored();
-  adminModal.classList.remove('hidden');
-  adminModal.setAttribute('aria-hidden','false');
-  // decide view
-  if(!a){
-    // show create
-    adminCreateWrap.classList.remove('hidden');
-    adminLoginWrap.classList.add('hidden');
-    adminPanelWrap.classList.add('hidden');
-  } else {
-    adminCreateWrap.classList.add('hidden');
-    adminLoginWrap.classList.remove('hidden');
-    adminPanelWrap.classList.add('hidden');
-    document.getElementById('adminLoginName').value = a.name || '';
-    document.getElementById('loginMsg').innerText = '';
-  }
-}
-
-/* ---------- create admin ---------- */
-document.getElementById('createAdminBtn').addEventListener('click', async ()=>{
-  const name = document.getElementById('adminCreateName').value.trim();
-  const code = document.getElementById('adminCreateCode').value;
-  const code2 = document.getElementById('adminCreateCode2').value;
-  const msg = document.getElementById('createMsg');
-  msg.innerText = '';
-  if(!name || !code) { msg.innerText = 'المرجو ملء الاسم و الكود'; return; }
-  if(code !== code2){ msg.innerText = 'كلا الكودين غير متطابقين'; return; }
-  const salt = randBase64(12);
-  const hash = await sha256Hex(salt + code);
-  setAdminStored({name, salt, hash});
-  msg.innerText = 'تم الإنشاء والتشفير بنجاح';
-  // auto show login panel after short delay
-  setTimeout(()=>{ openAdminSecret(); }, 800);
-});
-
-/* cancel create */
-document.getElementById('cancelCreate').addEventListener('click', ()=>{
-  adminModal.classList.add('hidden');
-});
-
-/* ---------- admin login ---------- */
-document.getElementById('loginAdminBtn').addEventListener('click', async ()=>{
-  const name = document.getElementById('adminLoginName').value.trim();
-  const code = document.getElementById('adminLoginCode').value;
-  const msg = document.getElementById('loginMsg');
-  msg.innerText = '';
-  const stored = getAdminStored();
-  if(!stored){ msg.innerText = 'لا يوجد أدمين، أنشئ حساباً أولاً.'; return; }
-  if(name !== stored.name){ msg.innerText = 'الاسم غير مطابق'; return; }
-  const hash = await sha256Hex(stored.salt + code);
-  if(hash === stored.hash){
-    // success
-    msg.innerText = 'تم تسجيل دخول الأدمين';
-    showAdminPanel(stored.name);
-  } else {
-    msg.innerText = 'الكود خاطئ';
-  }
-});
-
-/* ---------- show admin panel after login ---------- */
-let adminState = {mode:'normal'}; // modes: normal | win | lose
-function showAdminPanel(name){
-  adminCreateWrap.classList.add('hidden');
-  adminLoginWrap.classList.add('hidden');
-  adminPanelWrap.classList.remove('hidden');
-  document.getElementById('adminNameDisplay').innerText = name;
-  adminState.mode = localStorage.getItem('insta_admin_mode') || 'normal';
-  renderAdminMode();
-  // show badge with admin name only (no sensitive info)
-  adminBadgeWrap.innerHTML = `<div class="badge">Admin: ${escapeHtml(name)}</div>`;
-  document.getElementById('adminActionMsg').innerText = '';
-  document.getElementById('adminModal').scrollTop = 0;
-}
-
-/* ---------- admin mode controls ---------- */
-function renderAdminMode(){
-  document.getElementById('adminModeLabel').innerText = adminState.mode === 'normal' ? 'عادي' : adminState.mode === 'win' ? 'ربح دائم' : 'خسارة دائم';
-  localStorage.setItem('insta_admin_mode', adminState.mode);
-}
-document.getElementById('setForceWin').addEventListener('click', ()=>{ adminState.mode='win'; renderAdminMode(); });
-document.getElementById('setForceLose').addEventListener('click', ()=>{ adminState.mode='lose'; renderAdminMode(); });
-document.getElementById('setNormal').addEventListener('click', ()=>{ adminState.mode='normal'; renderAdminMode(); });
-
-/* ---------- change code (requires old code) ---------- */
-document.getElementById('changeCodeBtn').addEventListener('click', async ()=>{
-  const oldC = document.getElementById('oldCode').value;
-  const n1 = document.getElementById('newCode').value;
-  const n2 = document.getElementById('newCode2').value;
-  const msg = document.getElementById('adminActionMsg');
-  msg.innerText = '';
-  const stored = getAdminStored();
-  if(!stored){ msg.innerText = 'لا يوجد أدمين.'; return; }
-  if(!oldC || !n1) { msg.innerText = 'املأ الحقول المطلوبة'; return; }
-  const oldHash = await sha256Hex(stored.salt + oldC);
-  if(oldHash !== stored.hash){ msg.innerText = 'الكود القديم خاطئ'; return; }
-  if(n1 !== n2){ msg.innerText = 'الكود الجديد غير متطابق'; return; }
-  // create new salt+hash
-  const newSalt = randBase64(12);
-  const newHash = await sha256Hex(newSalt + n1);
-  setAdminStored({name: stored.name, salt: newSalt, hash: newHash});
-  msg.innerText = 'تم تغيير الكود بنجاح';
-  // clear inputs
-  document.getElementById('oldCode').value=''; document.getElementById('newCode').value=''; document.getElementById('newCode2').value='';
-});
-
-/* ---------- admin logout ---------- */
-document.getElementById('logoutAdminBtn').addEventListener('click', ()=>{
-  adminBadgeWrap.innerHTML = '';
-  adminPanelWrap.classList.add('hidden');
-  adminLoginWrap.classList.remove('hidden');
-  document.getElementById('loginMsg').innerText = 'تم الخروج';
-});
-
-/* close admin modal */
-document.getElementById('closeAdminModal').addEventListener('click', ()=>{
-  adminModal.classList.add('hidden');
-  adminModal.setAttribute('aria-hidden','true');
-});
-
-/* show "create new" inside login (in case they want to recreate) */
-document.getElementById('showCreateBtn').addEventListener('click', ()=>{
-  adminLoginWrap.classList.add('hidden');
-  adminCreateWrap.classList.remove('hidden');
-});
-
-/* ---------- Basic demo user register/login ---------- */
-document.getElementById('registerBtn').addEventListener('click', ()=>{
-  const name = document.getElementById('name').value.trim() || 'لاسم';
-  const email = document.getElementById('email').value.trim() || '';
-  const pass = document.getElementById('pass').value || '';
-  const id = 'u'+Date.now().toString(36).slice(-6);
-  const user = {id,name,email,balance:100,created: new Date().toISOString()};
-  saveUser(user);
-  showUser(user);
-});
-function showUser(u){
-  if(!u) u = loadUser();
-  if(!u) return;
-  document.getElementById('dashCard').classList.remove('hidden');
-  document.getElementById('gamesCard').classList.remove('hidden');
-  document.getElementById('uName').innerText = u.name;
-  document.getElementById('uId').innerText = u.id;
-  document.getElementById('uBal').innerText = u.balance;
-}
-
-/* load existing user on start */
-showUser(loadUser());
-
-/* ---------- Game functions (connect to admin mode and update user) ---------- */
-async function applyResult(delta, txt){
-  const u = loadUser();
-  if(!u){ alert('سجّل أولًا'); return; }
-  u.balance = Math.max(0, (u.balance||0) + delta);
-  saveUser(u);
-  showUser(u);
-  document.getElementById('gameMsg').innerText = txt;
-}
-
-/* coin */
-async function playCoin(choice){
-  const admin = getAdminStored();
-  let mode = localStorage.getItem('insta_admin_mode') || 'normal';
-  let result = Math.random() < 0.5 ? 'Heads' : 'Tails';
-  if(mode === 'win') result = choice;
-  if(mode === 'lose') result = (choice === 'Heads' ? 'Tails' : 'Heads');
-  if(result === choice) await applyResult(+10, `فزت! (${result})`);
-  else await applyResult(-5, `خسرت (${result})`);
-}
-
-/* dice */
-async function playDice(){
-  let mode = localStorage.getItem('insta_admin_mode') || 'normal';
-  let r = Math.floor(Math.random()*6)+1;
-  if(mode === 'win') r = 6;
-  if(mode === 'lose') r = 1;
-  if(r === 6) await applyResult(+10, `🎉 6 - فزت`);
-  else if(r >= 4) await applyResult(+5, `+5 (النتيجة ${r})`);
-  else await applyResult(-5, `خسرت (النتيجة ${r})`);
-}
-
-/* RPS */
-async function playRPS(p){
-  const opts=['✊','✋','✌️'];
-  let comp = opts[Math.floor(Math.random()*3)];
-  const mode = localStorage.getItem('insta_admin_mode') || 'normal';
-  if(mode === 'win'){ comp = (p === '✊' ? '✌️' : p === '✋' ? '✊' : '✋'); }
-  if(mode === 'lose'){ comp = (p === '✊' ? '✋' : p === '✋' ? '✌️' : '✊'); }
-  let res='';
-  if(p === comp) res = 'تعادل';
-  else if((p==='✊'&&comp==='✌️')||(p==='✋'&&comp==='✊')||(p==='✌️'&&comp==='✋')) res = 'فزت';
-  else res = 'خسرت';
-  if(res==='فزت') await applyResult(+10, `فزت — خصم: ${comp}`);
-  else if(res==='خسرت') await applyResult(-5, `خسرت — خصم: ${comp}`);
-  else await applyResult(0, `تعادل — خصم: ${comp}`);
-}
-
-/* Slot */
-async function playSlot(){
-  const s=['🍒','🍋','⭐','7️⃣'];
-  let r = [s[Math.random()*s.length|0], s[Math.random()*s.length|0], s[Math.random()*s.length|0]];
-  const mode = localStorage.getItem('insta_admin_mode') || 'normal';
-  if(mode === 'win') r = ['7️⃣','7️⃣','7️⃣'];
-  if(mode === 'lose') r = ['🍒','🍋','⭐'];
-  if(r[0]===r[1] && r[1]===r[2]) await applyResult(+20, `الجائزة الكبرى ${r.join('')}`);
-  else if(r[0]===r[1]||r[1]===r[2]||r[0]===r[2]) await applyResult(+5, `فوز صغير ${r.join('')}`);
-  else await applyResult(-5, `خسرت ${r.join('')}`);
-}
-
-/* Mines (simple) */
-function resetMines(){
-  const grid = document.getElementById('minesGrid');
-  grid.innerHTML='';
-  const mines = [];
-  for(let i=0;i<25;i++){
-    const isMine = Math.random() < 0.18;
-    mines.push(isMine);
-    const b = document.createElement('button');
-    b.style.width='50px'; b.style.height='50px'; b.style.borderRadius='6px';
-    b.innerText = '❓';
-    b.onclick = async ()=>{
-      if(isMine){ await applyResult(-5, '💥 Boom — لغم!'); b.innerText='💣'; b.style.background='#7f1d1d'; }
-      else { await applyResult(+10, '💎 آمِن'); b.innerText='💎'; b.style.background='#064e3b'; }
-    };
-    grid.appendChild(b);
-  }
-}
-
-/* ---------- admin set balance (applies to current demo user) ---------- */
-document.getElementById('adminSaveBal').addEventListener('click', ()=>{
-  const val = parseInt(document.getElementById('adminSetBal').value);
-  if(isNaN(val)){ document.getElementById('adminActionMsg').innerText = 'أدخل قيمة صحيحة'; return; }
-  const u = loadUser();
-  if(!u){ document.getElementById('adminActionMsg').innerText = 'لا يوجد مستخدم حالي'; return; }
-  u.balance = val; saveUser(u); showUser(u);
-  document.getElementById('adminActionMsg').innerText = 'تم ضبط الرصيد';
-});
-
-/* small helper */
-function escapeHtml(s){ return String(s).replace(/[&<>"']/g, c=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c])); }
-
-/* allow closing modal by clicking background */
-adminModal.addEventListener('click', (e)=>{
-  if(e.target === adminModal){
-    adminModal.classList.add('hidden');
-    adminModal.setAttribute('aria-hidden','true');
-  }
-});
-
-/* init: load admin mode label if any */
-(function init(){
-  const m = localStorage.getItem('insta_admin_mode') || 'normal';
-  adminState.mode = m;
-  renderAdminMode();
-  // if admin stored but no badge (not logged) do nothing — badge only after login
-})();
-</script>
+</div>
+<script src="app.js"></script>
 </body>
 </html>
+/* ==========================
+   INSTAPlay — JavaScript
+   ========================== */
+
+// حالة النظام
+let users = [];
+let current = null;
+let svLogged = false;
+let mode = "off"; // "win" أو "lose" أو "off"
+
+// ====== Helpers ======
+function save() {
+  localStorage.setItem("insta_users", JSON.stringify(users));
+}
+function load() {
+  users = JSON.parse(localStorage.getItem("insta_users") || "[]");
+}
+function uid() {
+  return "u" + Math.random().toString(36).slice(2, 9);
+}
+function updateBalanceUI() {
+  if (current) document.getElementById("userBal").innerText = current.balance;
+}
+
+// ====== تسجيل ======
+document.getElementById("registerBtn").onclick = () => {
+  const n = document.getElementById("name").value.trim();
+  const e = document.getElementById("email").value.trim();
+  const p = document.getElementById("pass").value.trim();
+  if (!n || !e || !p) return alert("املأ جميع الحقول");
+
+  const u = { id: uid(), name: n, email: e, pass: p, balance: 20 };
+  users.push(u);
+  save();
+  login(u);
+};
+
+function login(u) {
+  current = u;
+  document.getElementById("authCard").classList.add("hidden");
+  document.getElementById("dashCard").classList.remove("hidden");
+  document.getElementById("games").classList.remove("hidden");
+  document.getElementById("chargeCard").classList.remove("hidden");
+  document.getElementById("withdrawCard").classList.remove("hidden");
+  document.getElementById("userName").innerText = u.name;
+  updateBalanceUI();
+}
+
+document.getElementById("logoutBtn").onclick = () => {
+  current = null;
+  document.getElementById("authCard").classList.remove("hidden");
+  document.getElementById("dashCard").classList.add("hidden");
+  document.getElementById("games").classList.add("hidden");
+  document.getElementById("chargeCard").classList.add("hidden");
+  document.getElementById("withdrawCard").classList.add("hidden");
+};
+
+// ====== ألعاب ======
+function applyResult(win, plus, minus, el) {
+  if (mode === "win") win = true;
+  if (mode === "lose") win = false;
+
+  if (win) {
+    current.balance += plus;
+    el.innerText = "🎉 ربحت +" + plus;
+  } else {
+    current.balance = Math.max(0, current.balance - minus);
+    el.innerText = "❌ خسرت -" + minus;
+  }
+  updateBalanceUI();
+  save();
+}
+
+function coin(choice) {
+  let result = Math.random() < 0.5 ? "Heads" : "Tails";
+  let win = result === choice;
+  applyResult(win, 5, 2, document.getElementById("coinRes"));
+}
+
+function dice() {
+  let r = Math.floor(Math.random() * 6) + 1;
+  let win = r >= 4;
+  document.getElementById("diceRes").innerText = "🎲 " + r;
+  applyResult(win, 5, 2, document.getElementById("diceRes"));
+}
+
+function rps(p) {
+  let arr = ["✊", "✋", "✌️"];
+  let c = arr[Math.floor(Math.random() * arr.length)];
+  let win =
+    (p === "✊" && c === "✌️") ||
+    (p === "✋" && c === "✊") ||
+    (p === "✌️" && c === "✋");
+  document.getElementById("rpsRes").innerText = p + " vs " + c;
+  applyResult(win, 5, 2, document.getElementById("rpsRes"));
+}
+
+function slot() {
+  let s = ["🍒", "🍋", "⭐", "7️⃣"];
+  let r = [
+    s[Math.floor(Math.random() * s.length)],
+    s[Math.floor(Math.random() * s.length)],
+    s[Math.floor(Math.random() * s.length)],
+  ];
+  document.getElementById("s1").innerText = r[0];
+  document.getElementById("s2").innerText = r[1];
+  document.getElementById("s3").innerText = r[2];
+  let win = r[0] === r[1] && r[1] === r[2];
+  applyResult(win, 15, 5, document.getElementById("slotRes"));
+}
+
+// Mines
+let minesData = [];
+function resetMines() {
+  const g = document.getElementById("mines");
+  g.innerHTML = "";
+  minesData = [];
+  for (let i = 0; i < 25; i++) {
+    let isMine = Math.random() < 0.2;
+    minesData.push(isMine);
+    let b = document.createElement("button");
+    b.innerText = "❓";
+    b.onclick = () => {
+      if (b.classList.contains("revealed")) return;
+      if (isMine) {
+        b.innerText = "💣";
+        b.classList.add("revealed", "bomb");
+        applyResult(false, 0, 5, document.getElementById("minesRes"));
+      } else {
+        b.innerText = "💎";
+        b.classList.add("revealed", "safe");
+        applyResult(true, 5, 0, document.getElementById("minesRes"));
+      }
+    };
+    g.appendChild(b);
+  }
+}
+resetMines();
+
+// ====== شحن/سحب ======
+function charge() {
+  if (!current) return;
+  let amt = +document.getElementById("chAmount").value;
+  if (amt <= 0) return alert("مبلغ غير صالح");
+  current.balance += amt;
+  updateBalanceUI();
+  save();
+  document.getElementById("chMsg").innerText = "✅ تم الشحن: +" + amt;
+}
+
+function withdraw() {
+  if (!current) return;
+  let amt = +document.getElementById("wAmount").value;
+  if (amt <= 0) return alert("مبلغ غير صالح");
+  if (amt > current.balance) {
+    document.getElementById("wMsg").innerText = "❌ رصيد غير كاف";
+    return;
+  }
+  current.balance -= amt;
+  updateBalanceUI();
+  save();
+  document.getElementById("wMsg").innerText = "✅ سيتم تحويل " + amt + " قريبا";
+}
+
+// ====== لوحة SV ======
+document.getElementById("openSVBtn").onclick = () => {
+  document.getElementById("svModal").classList.remove("hidden");
+};
+document.getElementById("svLogin").onclick = () => {
+  let e = document.getElementById("svEmail").value.trim();
+  let p = document.getElementById("svPass").value.trim();
+  if (e === "sv@local" && p === "123") {
+    svLogged = true;
+    document.getElementById("svMsg").innerText = "✅ دخول ناجح";
+    document.getElementById("svPanel").classList.remove("hidden");
+    renderUsers();
+  } else {
+    document.getElementById("svMsg").innerText = "❌ خطأ في البيانات";
+  }
+};
+function renderUsers() {
+  let box = document.getElementById("users");
+  box.innerHTML = "";
+  users.forEach((u) => {
+    let div = document.createElement("div");
+    div.style.marginBottom = "6px";
+    div.innerHTML = `
+      ${u.name} — ${u.balance}
+      <button class="chip" onclick="adjBalance('${u.id}',5)">+5</button>
+      <button class="chip" onclick="adjBalance('${u.id}',-5)">-5</button>
+    `;
+    box.appendChild(div);
+  });
+}
+function adjBalance(id, delta) {
+  let u = users.find((x) => x.id === id);
+  if (!u) return;
+  u.balance = Math.max(0, u.balance + delta);
+  save();
+  renderUsers();
+  if (current && current.id === id) {
+    current.balance = u.balance;
+    updateBalanceUI();
+  }
+}
+// Force modes
+document.getElementById("forceWin").onclick = () => setMode("win");
+document.getElementById("forceLose").onclick = () => setMode("lose");
+function setMode(m) {
+  mode = mode === m ? "off" : m;
+  document.getElementById("forceWin").className =
+    "chip " + (mode === "win" ? "on" : "off");
+  document.getElementById("forceLose").className =
+    "chip " + (mode === "lose" ? "on" : "off");
+  document.getElementById("svMsg").innerText = "الوضع: " + mode;
+}
+
+// ====== Init ======
+load();
+
+  
