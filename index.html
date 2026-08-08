@@ -1,243 +1,2044 @@
+```html
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GT Max Premium | Offres</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            --accent: #00d2ff;
-            --accent-glow: rgba(0, 210, 255, 0.3);
-            --success: #00ff87;
-            --bg-deep: #050a10;
-            --glass: rgba(255, 255, 255, 0.03);
-            --border: rgba(255, 255, 255, 0.08);
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="NUTRIX - Boutique premium de nutrition sportive au Maroc">
+<title>NUTRIX | Nutrition Sportive Premium</title>
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+<script src="https://cdn.tailwindcss.com"></script>
 
-        body {
-            font-family: 'Outfit', sans-serif;
-            background: var(--bg-deep);
-            color: #fff;
-            overflow-x: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-        /* 1. خلفية متحركة بـ SVG */
-        .bg-animate {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1;
-            opacity: 0.4;
-        }
+<script src="https://unpkg.com/lucide@latest"></script>
 
-        /* 2. حاوية الـ Glassmorphism */
-        .premium-card {
-            position: relative;
-            width: 100%;
-            max-width: 480px;
-            background: var(--glass);
-            backdrop-filter: blur(25px);
-            border: 1px solid var(--border);
-            border-radius: 30px;
-            padding: 40px;
-            box-shadow: 0 40px 100px rgba(0,0,0,0.8);
-            animation: cardEntrance 1s cubic-bezier(0.2, 0.8, 0.2, 1);
-        }
+<style>
+:root{
+    --gold:#d4af37;
+    --gold2:#f5d06f;
+    --black:#080808;
+    --dark:#101010;
+    --card:#151515;
+    --border:#292929;
+    --white:#fff;
+    --muted:#999;
+}
 
-        @keyframes cardEntrance {
-            from { opacity: 0; transform: scale(0.9) translateY(30px); }
-            to { opacity: 1; transform: scale(1) translateY(0); }
-        }
+*{
+    box-sizing:border-box;
+    scroll-behavior:smooth;
+}
 
-        /* 3. الهيدر مع SVG Icon */
-        .header { text-align: center; margin-bottom: 30px; }
-        .gift-icon {
-            width: 60px; height: 60px;
-            fill: var(--accent);
-            filter: drop-shadow(0 0 10px var(--accent-glow));
-            margin-bottom: 15px;
-            animation: float 3s ease-in-out infinite;
-        }
+body{
+    margin:0;
+    background:#080808;
+    color:#fff;
+    font-family:Inter,Cairo,sans-serif;
+}
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
+body.light{
+    background:#f7f7f7;
+    color:#111;
+}
 
-        h2 { font-weight: 800; letter-spacing: -1px; margin-bottom: 5px; font-size: 1.8rem; }
-        .subtitle { color: var(--accent); font-size: 0.9rem; font-weight: 400; opacity: 0.8; }
+button,input,select{
+    font-family:inherit;
+}
 
-        /* 4. قائمة الشروط المطورة */
-        .conditions-container { margin: 25px 0; }
-        .item {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            background: rgba(255,255,255,0.03);
-            margin-bottom: 12px;
-            padding: 15px;
-            border-radius: 18px;
-            border: 1px solid transparent;
-            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            animation: slideIn 0.5s forwards;
-            opacity: 0;
-        }
-        .item:hover {
-            border-color: var(--accent);
-            background: rgba(0, 210, 255, 0.05);
-            transform: scale(1.03);
-        }
+::-webkit-scrollbar{
+    width:7px;
+}
 
-        @keyframes slideIn {
-            to { opacity: 1; transform: translateX(0); }
-            from { opacity: 0; transform: translateX(-20px); }
-        }
+::-webkit-scrollbar-track{
+    background:#0b0b0b;
+}
 
-        .num {
-            width: 32px; height: 32px;
-            background: var(--accent);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 800;
-            font-size: 0.8rem;
-            color: var(--bg-deep);
-        }
+::-webkit-scrollbar-thumb{
+    background:#555;
+    border-radius:20px;
+}
 
-        /* 5. منطقة الرابط الذكية */
-        .link-area {
-            background: #000;
-            padding: 20px;
-            border-radius: 20px;
-            position: relative;
-            margin-bottom: 25px;
-            border: 1px solid var(--border);
-        }
-        .url-text {
-            color: var(--accent);
-            font-family: monospace;
-            font-size: 0.85rem;
-            display: block;
-            margin-bottom: 15px;
-            text-align: center;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
+.gold{
+    color:var(--gold);
+}
 
-        .action-btn {
-            width: 100%;
-            padding: 14px;
-            border-radius: 12px;
-            border: none;
-            cursor: pointer;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            transition: 0.3s;
-        }
+.gold-gradient{
+    background:linear-gradient(135deg,#fff1a8,#d4af37,#9e7b19);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+}
 
-        .copy-btn { background: #fff; color: #000; }
-        .copy-btn:active { transform: scale(0.95); }
+.glass{
+    background:rgba(20,20,20,.78);
+    backdrop-filter:blur(18px);
+    border:1px solid rgba(255,255,255,.08);
+}
 
-        .telegram-btn {
-            background: var(--success);
-            color: #000;
-            margin-top: 10px;
-            text-decoration: none;
-        }
+.light .glass{
+    background:rgba(255,255,255,.85);
+    border-color:#e5e5e5;
+}
 
-        /* 6. التذييل والتحذير */
-        .disclaimer {
-            font-size: 0.7rem;
-            color: #666;
-            text-align: center;
-            line-height: 1.4;
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid var(--border);
-        }
-    </style>
+.product-card{
+    background:linear-gradient(145deg,#151515,#0e0e0e);
+    border:1px solid #252525;
+    transition:.35s ease;
+}
+
+.product-card:hover{
+    transform:translateY(-7px);
+    border-color:#80691f;
+    box-shadow:0 18px 45px rgba(212,175,55,.12);
+}
+
+.product-img{
+    height:250px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:
+        radial-gradient(circle at center,rgba(212,175,55,.13),transparent 58%),
+        #101010;
+    overflow:hidden;
+}
+
+.product-img img{
+    width:80%;
+    height:85%;
+    object-fit:contain;
+    transition:.4s ease;
+}
+
+.product-card:hover .product-img img{
+    transform:scale(1.07);
+}
+
+.btn-gold{
+    background:linear-gradient(135deg,#f5d06f,#d4af37,#a98218);
+    color:#090909;
+    font-weight:800;
+    transition:.25s;
+}
+
+.btn-gold:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 25px rgba(212,175,55,.25);
+}
+
+.hero{
+    min-height:680px;
+    background:
+        linear-gradient(90deg,#080808 0%,rgba(8,8,8,.92) 38%,rgba(8,8,8,.35) 100%),
+        url("https://images.unsplash.com/photo-1593095948071-474c5cc2989d?auto=format&fit=crop&w=2000&q=90")
+        center/cover;
+}
+
+.category-card{
+    transition:.3s;
+    border:1px solid #242424;
+}
+
+.category-card:hover{
+    transform:translateY(-5px);
+    border-color:#d4af37;
+    background:#151515;
+}
+
+.modal{
+    animation:modalIn .25s ease;
+}
+
+@keyframes modalIn{
+    from{opacity:0;transform:scale(.96) translateY(10px)}
+    to{opacity:1;transform:scale(1) translateY(0)}
+}
+
+.toast{
+    animation:toastIn .3s ease;
+}
+
+@keyframes toastIn{
+    from{opacity:0;transform:translateX(30px)}
+    to{opacity:1;transform:translateX(0)}
+}
+
+.mobile-menu{
+    animation:menuIn .25s ease;
+}
+
+@keyframes menuIn{
+    from{transform:translateX(100%)}
+    to{transform:translateX(0)}
+}
+
+.badge{
+    background:#e11d48;
+    color:white;
+}
+
+input:focus,select:focus{
+    outline:none;
+    border-color:#d4af37!important;
+    box-shadow:0 0 0 2px rgba(212,175,55,.1);
+}
+
+.section-title{
+    font-size:clamp(28px,4vw,44px);
+    font-weight:900;
+    letter-spacing:-1px;
+}
+
+.hide{
+    display:none!important;
+}
+
+@media(max-width:768px){
+    .hero{
+        min-height:650px;
+        background:
+            linear-gradient(90deg,#080808 0%,rgba(8,8,8,.85) 100%),
+            url("https://images.unsplash.com/photo-1593095948071-474c5cc2989d?auto=format&fit=crop&w=1200&q=80")
+            center/cover;
+    }
+
+    .product-img{
+        height:210px;
+    }
+}
+</style>
 </head>
+
 <body>
 
-    <svg class="bg-animate" viewBox="0 0 100 100">
-        <circle cx="10" cy="10" r="1" fill="white" opacity="0.2">
-            <animate attributeName="opacity" values="0.2;0.5;0.2" dur="3s" repeatCount="indefinite" />
-        </circle>
-        <circle cx="90" cy="80" r="1" fill="var(--accent)" opacity="0.3">
-            <animate attributeName="r" values="1;2;1" dur="5s" repeatCount="indefinite" />
-        </circle>
-    </svg>
+<!-- TOP BAR -->
+<div class="bg-[#111] border-b border-[#222] text-xs">
+    <div class="max-w-7xl mx-auto px-4 py-2 flex justify-between items-center gap-4">
+        <p class="text-gray-400">
+            🚚 Livraison partout au Maroc
+        </p>
 
-    <div class="premium-card">
-        <div class="header">
-            <svg class="gift-icon" viewBox="0 0 24 24">
-                <path d="M20,6H17.62A3,3,0,0,0,12,4.68,3,3,0,0,0,6.38,6H4A2,2,0,0,0,2,8V10a2,2,0,0,0,1,1.72V19a2,2,0,0,0,2,2H19a2,2,0,0,0,2-2V11.72A2,2,0,0,0,22,10V8A2,2,0,0,0,20,6ZM10,6.5A1.5,1.5,0,1,1,11.5,8,1.5,1.5,0,0,1,10,6.5ZM12.5,8A1.5,1.5,0,1,1,14,6.5,1.5,1.5,0,0,1,12.5,8ZM4,8H11v2H4ZM19,19H5V12H19ZM20,10H13V8h7Z"/>
-            </svg>
-            <h2>LES CONDITIONS POUR LES CADEAUX</h2>
-            <p class="subtitle">EXCLUSIF POUR LA COMMUNAUTÉ GT MAX</p>
+        <div class="flex items-center gap-4">
+            <span class="text-gray-400">Paiement à la livraison</span>
+            <span class="text-[#d4af37] font-bold">24/48H</span>
         </div>
+    </div>
+</div>
 
-        <div class="conditions-container">
-            <div class="item" style="animation-delay: 0.1s">
-                <div class="num">01</div>
-                <p>Être rattaché(e) à nous sur <b>Vt</b></p>
+<!-- NAVBAR -->
+<header class="sticky top-0 z-50 bg-[#080808]/95 backdrop-blur-xl border-b border-[#222]">
+
+    <div class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between gap-6">
+
+        <a href="#home" class="flex items-center gap-3">
+            <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-[#f5d06f] to-[#9e7818] flex items-center justify-center text-black font-black text-xl">
+                N
             </div>
-            <div class="item" style="animation-delay: 0.2s">
-                <div class="num">02</div>
-                <p>Envoie ton témoignage/ expérience</p>
+
+            <div>
+                <div class="font-black text-xl tracking-wider">
+                    NUTRIX
+                </div>
+                <div class="text-[9px] text-gray-500 tracking-[4px]">
+                    SPORTS NUTRITION
+                </div>
             </div>
-            <div class="item" style="animation-delay: 0.3s">
-                <div class="num">03</div>
-                <p>Partagez le lien du canal sur tous tes réseaux</p>
-            </div>
+        </a>
+
+        <nav class="hidden lg:flex items-center gap-7 text-sm font-semibold">
+            <a href="#home" class="hover:text-[#d4af37] transition">Accueil</a>
+            <a href="#products" class="hover:text-[#d4af37] transition">Produits</a>
+            <a href="#categories" class="hover:text-[#d4af37] transition">Catégories</a>
+            <a href="#offers" class="hover:text-[#d4af37] transition">Promotions</a>
+            <a href="#about" class="hover:text-[#d4af37] transition">À propos</a>
+            <a href="#contact" class="hover:text-[#d4af37] transition">Contact</a>
+        </nav>
+
+        <div class="flex items-center gap-2">
+
+            <button onclick="toggleTheme()" class="hidden md:flex w-10 h-10 rounded-xl border border-[#292929] items-center justify-center hover:border-[#d4af37]">
+                <i data-lucide="sun" class="w-4 h-4"></i>
+            </button>
+
+            <button onclick="openSearch()" class="w-10 h-10 rounded-xl border border-[#292929] flex items-center justify-center hover:border-[#d4af37]">
+                <i data-lucide="search" class="w-4 h-4"></i>
+            </button>
+
+            <button onclick="openFavorites()" class="hidden md:flex relative w-10 h-10 rounded-xl border border-[#292929] items-center justify-center">
+                <i data-lucide="heart" class="w-4 h-4"></i>
+                <span id="favCount" class="absolute -top-1 -right-1 w-4 h-4 text-[9px] rounded-full badge flex items-center justify-center">0</span>
+            </button>
+
+            <button onclick="openCart()" class="relative w-11 h-11 rounded-xl btn-gold flex items-center justify-center">
+                <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+                <span id="cartCount" class="absolute -top-2 -right-2 w-5 h-5 bg-white text-black text-[10px] font-black rounded-full flex items-center justify-center">0</span>
+            </button>
+
+            <button onclick="openMobileMenu()" class="lg:hidden w-10 h-10 border border-[#292929] rounded-xl flex items-center justify-center">
+                <i data-lucide="menu"></i>
+            </button>
+
         </div>
+    </div>
+</header>
 
-        <div class="link-area">
-            <span class="url-text" id="linkVal">https://t.me/+5xmUZbYyH_UzMjJk</span>
-            <button class="action-btn copy-btn" onclick="smartCopy()">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                <span id="copyTxt">Copier le Lien</span>
+<!-- MOBILE MENU -->
+<div id="mobileMenu" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-black/80" onclick="closeMobileMenu()"></div>
+
+    <div class="mobile-menu absolute right-0 top-0 h-full w-[320px] bg-[#101010] border-l border-[#292929] p-6">
+
+        <div class="flex justify-between items-center mb-10">
+            <span class="font-black text-xl">NUTRIX</span>
+            <button onclick="closeMobileMenu()">
+                <i data-lucide="x"></i>
             </button>
         </div>
 
-        <div class="btn-group">
-            <a href="https://t.me/GT_contact" class="action-btn telegram-btn">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2s-.21-.05-.3-.03c-.11.02-1.93 1.23-5.46 3.62-.51.35-.98.52-1.4.51-.46-.01-1.35-.26-2.01-.48-.81-.27-1.45-.42-1.39-.89.03-.24.37-.48 1.02-.73 4-1.74 6.67-2.88 8-3.43 3.82-1.58 4.61-1.85 5.13-1.86.11 0 .37.03.54.17.14.11.18.27.2.37.02.09.03.26.02.43z"/></svg>
-                Envoies les preuves à @GT_contact
-            </a>
+        <div class="space-y-2">
+            <a onclick="closeMobileMenu()" href="#home" class="block p-4 rounded-xl hover:bg-[#191919]">Accueil</a>
+            <a onclick="closeMobileMenu()" href="#products" class="block p-4 rounded-xl hover:bg-[#191919]">Produits</a>
+            <a onclick="closeMobileMenu()" href="#categories" class="block p-4 rounded-xl hover:bg-[#191919]">Catégories</a>
+            <a onclick="closeMobileMenu()" href="#offers" class="block p-4 rounded-xl hover:bg-[#191919]">Promotions</a>
+            <a onclick="closeMobileMenu()" href="#about" class="block p-4 rounded-xl hover:bg-[#191919]">À propos</a>
+            <a onclick="closeMobileMenu()" href="#contact" class="block p-4 rounded-xl hover:bg-[#191919]">Contact</a>
         </div>
 
-        <p class="disclaimer">
-            Ce contenu ne constitue pas un conseil financier. Le trading comporte des risques, incluant la perte totale de votre capital.
-        </p>
     </div>
+</div>
 
-    <script>
-        function smartCopy() {
-            const link = document.getElementById('linkVal').innerText;
-            const btn = document.getElementById('copyTxt');
-            
-            navigator.clipboard.writeText(link).then(() => {
-                btn.innerText = "Copié avec succès !";
-                btn.parentElement.style.background = "#00ff87";
-                
-                setTimeout(() => {
-                    btn.innerText = "Copier le Lien";
-                    btn.parentElement.style.background = "#fff";
-                }, 2500);
-            });
-        }
-    </script>
+<!-- HERO -->
+<section id="home" class="hero relative">
+
+    <div class="max-w-7xl mx-auto px-4 min-h-[680px] flex items-center">
+
+        <div class="max-w-2xl">
+
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#705d23] bg-[#17140b] text-[#e7c85b] text-xs font-bold mb-7">
+                <span class="w-2 h-2 bg-[#d4af37] rounded-full animate-pulse"></span>
+                NUTRITION SPORTIVE PREMIUM
+            </div>
+
+            <h1 class="text-5xl md:text-7xl font-black leading-[.95] mb-7">
+                Dépasse tes
+                <span class="gold-gradient">limites.</span>
+            </h1>
+
+            <p class="text-gray-300 text-base md:text-lg leading-8 max-w-xl mb-9">
+                Whey, créatine, mass gainers, vitamines et nutrition sportive.
+                Sélection premium pour accompagner tes objectifs sportifs.
+            </p>
+
+            <div class="flex flex-wrap gap-3">
+
+                <a href="#products" class="btn-gold px-7 py-4 rounded-xl flex items-center gap-3">
+                    Découvrir la boutique
+                    <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                </a>
+
+                <a href="#offers" class="px-7 py-4 rounded-xl border border-white/20 hover:border-[#d4af37] transition flex items-center gap-3">
+                    Voir les offres
+                </a>
+
+            </div>
+
+            <div class="grid grid-cols-3 gap-5 mt-12 max-w-lg">
+
+                <div>
+                    <div class="text-2xl font-black">500+</div>
+                    <div class="text-xs text-gray-500 mt-1">Produits</div>
+                </div>
+
+                <div>
+                    <div class="text-2xl font-black">10K+</div>
+                    <div class="text-xs text-gray-500 mt-1">Clients</div>
+                </div>
+
+                <div>
+                    <div class="text-2xl font-black">24/48H</div>
+                    <div class="text-xs text-gray-500 mt-1">Livraison</div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- TRUST -->
+<section class="border-y border-[#222] bg-[#0d0d0d]">
+    <div class="max-w-7xl mx-auto px-4 py-8 grid grid-cols-2 md:grid-cols-4 gap-6">
+
+        <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-xl bg-[#181818] flex items-center justify-center text-[#d4af37]">
+                <i data-lucide="shield-check"></i>
+            </div>
+            <div>
+                <b class="text-sm">Produits authentiques</b>
+                <p class="text-xs text-gray-500">Qualité contrôlée</p>
+            </div>
+        </div>
+
+        <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-xl bg-[#181818] flex items-center justify-center text-[#d4af37]">
+                <i data-lucide="truck"></i>
+            </div>
+            <div>
+                <b class="text-sm">Livraison rapide</b>
+                <p class="text-xs text-gray-500">Partout au Maroc</p>
+            </div>
+        </div>
+
+        <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-xl bg-[#181818] flex items-center justify-center text-[#d4af37]">
+                <i data-lucide="credit-card"></i>
+            </div>
+            <div>
+                <b class="text-sm">Paiement flexible</b>
+                <p class="text-xs text-gray-500">À la livraison</p>
+            </div>
+        </div>
+
+        <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-xl bg-[#181818] flex items-center justify-center text-[#d4af37]">
+                <i data-lucide="headphones"></i>
+            </div>
+            <div>
+                <b class="text-sm">Support client</b>
+                <p class="text-xs text-gray-500">7j/7</p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- CATEGORIES -->
+<section id="categories" class="py-24">
+
+    <div class="max-w-7xl mx-auto px-4">
+
+        <div class="text-center mb-12">
+            <span class="text-[#d4af37] text-sm font-bold uppercase tracking-[3px]">
+                SHOP BY CATEGORY
+            </span>
+
+            <h2 class="section-title mt-3">
+                Trouve ton <span class="gold-gradient">essentiel</span>
+            </h2>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+
+            <button onclick="filterCategory('Whey')" class="category-card rounded-2xl p-6 text-center bg-[#111]">
+                <div class="text-4xl mb-4">🥛</div>
+                <h3 class="font-bold">Whey</h3>
+                <p class="text-xs text-gray-500 mt-1">Protéines</p>
+            </button>
+
+            <button onclick="filterCategory('Creatine')" class="category-card rounded-2xl p-6 text-center bg-[#111]">
+                <div class="text-4xl mb-4">⚡</div>
+                <h3 class="font-bold">Créatine</h3>
+                <p class="text-xs text-gray-500 mt-1">Performance</p>
+            </button>
+
+            <button onclick="filterCategory('Gainer')" class="category-card rounded-2xl p-6 text-center bg-[#111]">
+                <div class="text-4xl mb-4">💪</div>
+                <h3 class="font-bold">Gainer</h3>
+                <p class="text-xs text-gray-500 mt-1">Prise de masse</p>
+            </button>
+
+            <button onclick="filterCategory('Pre-Workout')" class="category-card rounded-2xl p-6 text-center bg-[#111]">
+                <div class="text-4xl mb-4">🔥</div>
+                <h3 class="font-bold">Pre-Workout</h3>
+                <p class="text-xs text-gray-500 mt-1">Énergie</p>
+            </button>
+
+            <button onclick="filterCategory('Vitamins')" class="category-card rounded-2xl p-6 text-center bg-[#111]">
+                <div class="text-4xl mb-4">💊</div>
+                <h3 class="font-bold">Vitamines</h3>
+                <p class="text-xs text-gray-500 mt-1">Bien-être</p>
+            </button>
+
+            <button onclick="filterCategory('Accessories')" class="category-card rounded-2xl p-6 text-center bg-[#111]">
+                <div class="text-4xl mb-4">🎒</div>
+                <h3 class="font-bold">Accessoires</h3>
+                <p class="text-xs text-gray-500 mt-1">Gym</p>
+            </button>
+
+        </div>
+    </div>
+</section>
+
+<!-- PRODUCTS -->
+<section id="products" class="py-24 bg-[#0d0d0d]">
+
+    <div class="max-w-7xl mx-auto px-4">
+
+        <div class="flex flex-col md:flex-row justify-between md:items-end gap-6 mb-10">
+
+            <div>
+                <span class="text-[#d4af37] text-sm font-bold tracking-[3px]">
+                    COLLECTION
+                </span>
+
+                <h2 class="section-title mt-2">
+                    Produits <span class="gold-gradient">populaires</span>
+                </h2>
+            </div>
+
+            <div class="flex flex-wrap gap-3">
+
+                <select id="sortSelect" onchange="renderProducts()" class="bg-[#151515] border border-[#292929] rounded-xl px-4 py-3 text-sm">
+                    <option value="default">Trier par</option>
+                    <option value="priceAsc">Prix croissant</option>
+                    <option value="priceDesc">Prix décroissant</option>
+                    <option value="rating">Mieux notés</option>
+                </select>
+
+                <button onclick="filterCategory('all')" class="px-5 py-3 rounded-xl border border-[#292929] hover:border-[#d4af37] text-sm">
+                    Tout
+                </button>
+
+            </div>
+        </div>
+
+        <div id="productsGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6"></div>
+
+        <div id="emptyProducts" class="hidden text-center py-20">
+            <div class="text-5xl mb-5">🔍</div>
+            <h3 class="text-xl font-bold">Aucun produit trouvé</h3>
+            <p class="text-gray-500 mt-2">Essaie une autre recherche.</p>
+        </div>
+
+    </div>
+</section>
+
+<!-- OFFERS -->
+<section id="offers" class="py-24">
+
+    <div class="max-w-7xl mx-auto px-4">
+
+        <div class="rounded-3xl overflow-hidden relative border border-[#332b14] bg-gradient-to-br from-[#17130a] to-[#0d0d0d]">
+
+            <div class="absolute right-0 top-0 w-96 h-96 bg-[#d4af37]/10 blur-[100px] rounded-full"></div>
+
+            <div class="relative p-8 md:p-16 flex flex-col md:flex-row items-center justify-between gap-10">
+
+                <div>
+                    <span class="text-[#d4af37] font-bold text-sm tracking-[3px]">
+                        OFFRE LIMITÉE
+                    </span>
+
+                    <h2 class="text-4xl md:text-6xl font-black mt-4">
+                        Jusqu'à <span class="gold-gradient">-25%</span>
+                    </h2>
+
+                    <p class="text-gray-400 mt-5 max-w-xl">
+                        Profite de nos offres spéciales sur une sélection de produits
+                        de nutrition sportive.
+                    </p>
+
+                    <a href="#products" class="inline-flex btn-gold px-7 py-4 rounded-xl mt-7">
+                        Acheter maintenant
+                    </a>
+                </div>
+
+                <div class="text-center">
+                    <div class="text-7xl">🔥</div>
+                    <p class="text-[#d4af37] font-black mt-4">FLASH SALE</p>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- WHY US -->
+<section id="about" class="py-24 bg-[#0d0d0d]">
+
+    <div class="max-w-7xl mx-auto px-4">
+
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+            <div>
+
+                <span class="text-[#d4af37] text-sm font-bold tracking-[3px]">
+                    POURQUOI NUTRIX
+                </span>
+
+                <h2 class="section-title mt-4">
+                    Plus qu'une boutique.<br>
+                    <span class="gold-gradient">Un lifestyle.</span>
+                </h2>
+
+                <p class="text-gray-400 leading-8 mt-6">
+                    Notre objectif est simple : proposer une expérience premium
+                    aux passionnés de sport et de fitness au Maroc.
+                </p>
+
+                <div class="space-y-5 mt-8">
+
+                    <div class="flex gap-4">
+                        <div class="w-12 h-12 shrink-0 rounded-xl bg-[#19160d] text-[#d4af37] flex items-center justify-center">
+                            <i data-lucide="badge-check"></i>
+                        </div>
+
+                        <div>
+                            <h3 class="font-bold">Sélection soigneuse</h3>
+                            <p class="text-sm text-gray-500 mt-1">
+                                Une gamme pensée pour différents objectifs sportifs.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4">
+                        <div class="w-12 h-12 shrink-0 rounded-xl bg-[#19160d] text-[#d4af37] flex items-center justify-center">
+                            <i data-lucide="package-check"></i>
+                        </div>
+
+                        <div>
+                            <h3 class="font-bold">Commande simple</h3>
+                            <p class="text-sm text-gray-500 mt-1">
+                                Ajoute tes produits, renseigne tes coordonnées et commande.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4">
+                        <div class="w-12 h-12 shrink-0 rounded-xl bg-[#19160d] text-[#d4af37] flex items-center justify-center">
+                            <i data-lucide="message-circle"></i>
+                        </div>
+
+                        <div>
+                            <h3 class="font-bold">Support rapide</h3>
+                            <p class="text-sm text-gray-500 mt-1">
+                                Notre équipe est disponible pour t'aider.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+
+                <div class="rounded-3xl bg-[#151515] border border-[#252525] p-7 min-h-[190px] flex flex-col justify-between">
+                    <i data-lucide="users" class="text-[#d4af37] w-8 h-8"></i>
+                    <div>
+                        <div class="text-4xl font-black">10K+</div>
+                        <p class="text-gray-500 text-sm">Clients satisfaits</p>
+                    </div>
+                </div>
+
+                <div class="rounded-3xl bg-[#151515] border border-[#252525] p-7 min-h-[190px] flex flex-col justify-between mt-8">
+                    <i data-lucide="boxes" class="text-[#d4af37] w-8 h-8"></i>
+                    <div>
+                        <div class="text-4xl font-black">500+</div>
+                        <p class="text-gray-500 text-sm">Références</p>
+                    </div>
+                </div>
+
+                <div class="rounded-3xl bg-[#151515] border border-[#252525] p-7 min-h-[190px] flex flex-col justify-between">
+                    <i data-lucide="map-pin" class="text-[#d4af37] w-8 h-8"></i>
+                    <div>
+                        <div class="text-4xl font-black">24/48H</div>
+                        <p class="text-gray-500 text-sm">Livraison</p>
+                    </div>
+                </div>
+
+                <div class="rounded-3xl bg-[#151515] border border-[#252525] p-7 min-h-[190px] flex flex-col justify-between mt-8">
+                    <i data-lucide="star" class="text-[#d4af37] w-8 h-8"></i>
+                    <div>
+                        <div class="text-4xl font-black">4.9/5</div>
+                        <p class="text-gray-500 text-sm">Satisfaction</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="py-24">
+
+    <div class="max-w-7xl mx-auto px-4">
+
+        <div class="text-center mb-12">
+
+            <span class="text-[#d4af37] text-sm font-bold tracking-[3px]">
+                AVIS CLIENTS
+            </span>
+
+            <h2 class="section-title mt-3">
+                Ils parlent de <span class="gold-gradient">NUTRIX</span>
+            </h2>
+
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-5">
+
+            <div class="bg-[#121212] border border-[#252525] rounded-2xl p-7">
+                <div class="text-[#d4af37]">★★★★★</div>
+                <p class="text-gray-400 leading-7 mt-5">
+                    "Commande rapide, produit bien emballé et livraison parfaite."
+                </p>
+
+                <div class="flex items-center gap-3 mt-7">
+                    <div class="w-10 h-10 rounded-full bg-[#242424] flex items-center justify-center font-bold">Y</div>
+                    <div>
+                        <b>Youssef</b>
+                        <p class="text-xs text-gray-500">Casablanca</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-[#121212] border border-[#252525] rounded-2xl p-7">
+                <div class="text-[#d4af37]">★★★★★</div>
+                <p class="text-gray-400 leading-7 mt-5">
+                    "Le site est simple et j'ai pu commander facilement via WhatsApp."
+                </p>
+
+                <div class="flex items-center gap-3 mt-7">
+                    <div class="w-10 h-10 rounded-full bg-[#242424] flex items-center justify-center font-bold">A</div>
+                    <div>
+                        <b>Amine</b>
+                        <p class="text-xs text-gray-500">Rabat</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-[#121212] border border-[#252525] rounded-2xl p-7">
+                <div class="text-[#d4af37]">★★★★★</div>
+                <p class="text-gray-400 leading-7 mt-5">
+                    "Très bonne expérience, je recommande pour les commandes sportives."
+                </p>
+
+                <div class="flex items-center gap-3 mt-7">
+                    <div class="w-10 h-10 rounded-full bg-[#242424] flex items-center justify-center font-bold">M</div>
+                    <div>
+                        <b>Mehdi</b>
+                        <p class="text-xs text-gray-500">Tanger</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="py-20 bg-[#0d0d0d]">
+
+    <div class="max-w-4xl mx-auto px-4 text-center">
+
+        <div class="w-16 h-16 mx-auto rounded-2xl bg-[#19160d] text-[#d4af37] flex items-center justify-center">
+            <i data-lucide="mail" class="w-7 h-7"></i>
+        </div>
+
+        <h2 class="text-3xl md:text-4xl font-black mt-6">
+            Reçois nos <span class="gold-gradient">offres</span>
+        </h2>
+
+        <p class="text-gray-500 mt-3">
+            Nouveautés, promotions et offres exclusives.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-3 mt-8 max-w-xl mx-auto">
+            <input id="newsletterEmail"
+                   type="email"
+                   placeholder="Ton adresse email"
+                   class="flex-1 bg-[#151515] border border-[#292929] rounded-xl px-5 py-4">
+            <button onclick="subscribe()" class="btn-gold rounded-xl px-7 py-4">
+                S'inscrire
+            </button>
+        </div>
+
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="py-24">
+
+    <div class="max-w-7xl mx-auto px-4">
+
+        <div class="grid lg:grid-cols-2 gap-12">
+
+            <div>
+                <span class="text-[#d4af37] text-sm font-bold tracking-[3px]">
+                    CONTACT
+                </span>
+
+                <h2 class="section-title mt-4">
+                    Besoin d'aide ?
+                </h2>
+
+                <p class="text-gray-500 mt-5 leading-8">
+                    Une question sur un produit, une commande ou la livraison ?
+                    Contacte-nous directement.
+                </p>
+
+                <div class="space-y-4 mt-8">
+
+                    <a href="https://wa.me/212600000000" target="_blank"
+                       class="flex items-center gap-4 p-5 rounded-2xl bg-[#151515] border border-[#252525] hover:border-[#d4af37]">
+                        <div class="w-12 h-12 rounded-xl bg-[#153d28] text-green-400 flex items-center justify-center">
+                            <i data-lucide="message-circle"></i>
+                        </div>
+
+                        <div>
+                            <b>WhatsApp</b>
+                            <p class="text-sm text-gray-500">Réponse rapide</p>
+                        </div>
+                    </a>
+
+                    <div class="flex items-center gap-4 p-5 rounded-2xl bg-[#151515] border border-[#252525]">
+                        <div class="w-12 h-12 rounded-xl bg-[#19160d] text-[#d4af37] flex items-center justify-center">
+                            <i data-lucide="clock"></i>
+                        </div>
+
+                        <div>
+                            <b>Horaires</b>
+                            <p class="text-sm text-gray-500">Lun - Sam : 09:00 - 20:00</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <form onsubmit="sendContact(event)" class="bg-[#121212] border border-[#252525] rounded-3xl p-7 md:p-9">
+
+                <h3 class="text-xl font-black mb-6">
+                    Envoyer un message
+                </h3>
+
+                <div class="space-y-4">
+
+                    <input id="contactName"
+                           required
+                           placeholder="Nom complet"
+                           class="w-full bg-[#181818] border border-[#292929] rounded-xl px-5 py-4">
+
+                    <input id="contactPhone"
+                           required
+                           placeholder="Téléphone"
+                           class="w-full bg-[#181818] border border-[#292929] rounded-xl px-5 py-4">
+
+                    <textarea id="contactMessage"
+                              required
+                              rows="5"
+                              placeholder="Votre message..."
+                              class="w-full bg-[#181818] border border-[#292929] rounded-xl px-5 py-4"></textarea>
+
+                    <button class="w-full btn-gold py-4 rounded-xl">
+                        Envoyer sur WhatsApp
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="border-t border-[#222] bg-[#080808]">
+
+    <div class="max-w-7xl mx-auto px-4 py-14">
+
+        <div class="grid md:grid-cols-4 gap-10">
+
+            <div class="md:col-span-2">
+
+                <div class="flex items-center gap-3">
+                    <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-[#f5d06f] to-[#9e7818] flex items-center justify-center text-black font-black text-xl">
+                        N
+                    </div>
+
+                    <div>
+                        <div class="font-black text-xl">NUTRIX</div>
+                        <div class="text-[9px] text-gray-500 tracking-[4px]">SPORTS NUTRITION</div>
+                    </div>
+                </div>
+
+                <p class="text-gray-500 max-w-md mt-5 leading-7">
+                    Votre boutique de nutrition sportive au Maroc.
+                    Whey, créatine, gainer et plus.
+                </p>
+
+                <div class="flex gap-3 mt-6">
+
+                    <a href="#" class="w-10 h-10 rounded-xl bg-[#151515] border border-[#252525] flex items-center justify-center">
+                        <i data-lucide="instagram" class="w-4 h-4"></i>
+                    </a>
+
+                    <a href="#" class="w-10 h-10 rounded-xl bg-[#151515] border border-[#252525] flex items-center justify-center">
+                        <i data-lucide="facebook" class="w-4 h-4"></i>
+                    </a>
+
+                    <a href="https://wa.me/212600000000" class="w-10 h-10 rounded-xl bg-[#151515] border border-[#252525] flex items-center justify-center">
+                        <i data-lucide="message-circle" class="w-4 h-4"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div>
+                <h4 class="font-bold mb-5">Boutique</h4>
+
+                <div class="space-y-3 text-sm text-gray-500">
+                    <a href="#products" class="block hover:text-white">Tous les produits</a>
+                    <a href="#categories" class="block hover:text-white">Whey</a>
+                    <a href="#categories" class="block hover:text-white">Créatine</a>
+                    <a href="#categories" class="block hover:text-white">Gainers</a>
+                    <a href="#offers" class="block hover:text-white">Promotions</a>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="font-bold mb-5">Informations</h4>
+
+                <div class="space-y-3 text-sm text-gray-500">
+                    <a href="#" class="block hover:text-white">Livraison</a>
+                    <a href="#" class="block hover:text-white">Conditions de vente</a>
+                    <a href="#" class="block hover:text-white">Politique de confidentialité</a>
+                    <a href="#contact" class="block hover:text-white">Contact</a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="border-t border-[#222] mt-12 pt-7 flex flex-col md:flex-row justify-between gap-4 text-xs text-gray-600">
+            <p>© 2026 NUTRIX. Tous droits réservés.</p>
+            <p>Made for athletes • Morocco 🇲🇦</p>
+        </div>
+
+    </div>
+</footer>
+
+<!-- SEARCH MODAL -->
+<div id="searchModal" class="fixed inset-0 z-[200] hidden">
+
+    <div class="absolute inset-0 bg-black/80" onclick="closeSearch()"></div>
+
+    <div class="relative max-w-2xl mx-auto mt-24 px-4">
+
+        <div class="bg-[#111] border border-[#292929] rounded-2xl p-5">
+
+            <div class="flex items-center gap-3">
+                <i data-lucide="search" class="text-gray-500"></i>
+
+                <input id="searchInput"
+                       oninput="searchProducts()"
+                       autofocus
+                       placeholder="Rechercher whey, créatine..."
+                       class="flex-1 bg-transparent outline-none text-lg">
+
+                <button onclick="closeSearch()">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+
+            <div id="searchResults" class="mt-5 max-h-[500px] overflow-y-auto"></div>
+
+        </div>
+
+    </div>
+</div>
+
+<!-- CART DRAWER -->
+<div id="cartModal" class="fixed inset-0 z-[150] hidden">
+
+    <div class="absolute inset-0 bg-black/70" onclick="closeCart()"></div>
+
+    <div class="absolute right-0 top-0 h-full w-full sm:w-[470px] bg-[#101010] border-l border-[#292929] flex flex-col">
+
+        <div class="p-6 border-b border-[#252525] flex items-center justify-between">
+
+            <div>
+                <h2 class="text-xl font-black">Votre panier</h2>
+                <p id="cartSubtitle" class="text-xs text-gray-500 mt-1">0 produit</p>
+            </div>
+
+            <button onclick="closeCart()" class="w-10 h-10 rounded-xl border border-[#292929] flex items-center justify-center">
+                <i data-lucide="x"></i>
+            </button>
+
+        </div>
+
+        <div id="cartItems" class="flex-1 overflow-y-auto p-5"></div>
+
+        <div class="border-t border-[#252525] p-6">
+
+            <div class="flex justify-between mb-5">
+                <span class="text-gray-500">Sous-total</span>
+                <strong id="cartTotal" class="text-xl">0 DH</strong>
+            </div>
+
+            <button onclick="openCheckout()" class="w-full btn-gold py-4 rounded-xl font-black">
+                Passer la commande
+            </button>
+
+        </div>
+
+    </div>
+</div>
+
+<!-- PRODUCT MODAL -->
+<div id="productModal" class="fixed inset-0 z-[180] hidden">
+
+    <div class="absolute inset-0 bg-black/80" onclick="closeProduct()"></div>
+
+    <div class="relative max-w-4xl mx-auto mt-10 md:mt-20 px-4">
+
+        <div class="modal bg-[#111] border border-[#292929] rounded-3xl overflow-hidden">
+
+            <div id="productDetails"></div>
+
+        </div>
+
+    </div>
+</div>
+
+<!-- CHECKOUT -->
+<div id="checkoutModal" class="fixed inset-0 z-[220] hidden overflow-y-auto">
+
+    <div class="absolute inset-0 bg-black/80" onclick="closeCheckout()"></div>
+
+    <div class="relative max-w-xl mx-auto my-10 px-4">
+
+        <div class="bg-[#111] border border-[#292929] rounded-3xl p-7">
+
+            <div class="flex justify-between items-center mb-7">
+
+                <div>
+                    <h2 class="text-2xl font-black">Finaliser la commande</h2>
+                    <p class="text-sm text-gray-500 mt-1">Remplis tes informations</p>
+                </div>
+
+                <button onclick="closeCheckout()">
+                    <i data-lucide="x"></i>
+                </button>
+
+            </div>
+
+            <form onsubmit="submitOrder(event)" class="space-y-4">
+
+                <input id="customerName"
+                       required
+                       placeholder="Nom complet"
+                       class="w-full bg-[#181818] border border-[#292929] rounded-xl px-5 py-4">
+
+                <input id="customerPhone"
+                       required
+                       placeholder="Téléphone"
+                       class="w-full bg-[#181818] border border-[#292929] rounded-xl px-5 py-4">
+
+                <input id="customerCity"
+                       required
+                       placeholder="Ville"
+                       class="w-full bg-[#181818] border border-[#292929] rounded-xl px-5 py-4">
+
+                <input id="customerAddress"
+                       required
+                       placeholder="Adresse de livraison"
+                       class="w-full bg-[#181818] border border-[#292929] rounded-xl px-5 py-4">
+
+                <select id="paymentMethod"
+                        class="w-full bg-[#181818] border border-[#292929] rounded-xl px-5 py-4">
+                    <option>Paiement à la livraison</option>
+                    <option>Virement bancaire</option>
+                </select>
+
+                <textarea id="customerNote"
+                          rows="3"
+                          placeholder="Note de commande (optionnel)"
+                          class="w-full bg-[#181818] border border-[#292929] rounded-xl px-5 py-4"></textarea>
+
+                <div class="rounded-2xl bg-[#181818] border border-[#292929] p-5">
+                    <div class="flex justify-between">
+                        <span class="text-gray-500">Total</span>
+                        <strong id="checkoutTotal" class="text-[#d4af37] text-xl">0 DH</strong>
+                    </div>
+                </div>
+
+                <button type="submit" class="w-full btn-gold py-4 rounded-xl font-black flex items-center justify-center gap-2">
+                    <i data-lucide="message-circle"></i>
+                    Confirmer via WhatsApp
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+</div>
+
+<!-- FAVORITES -->
+<div id="favoritesModal" class="fixed inset-0 z-[170] hidden">
+
+    <div class="absolute inset-0 bg-black/80" onclick="closeFavorites()"></div>
+
+    <div class="relative max-w-5xl mx-auto mt-10 px-4">
+
+        <div class="bg-[#111] border border-[#292929] rounded-3xl p-7">
+
+            <div class="flex justify-between mb-7">
+                <h2 class="text-2xl font-black">Mes favoris ❤️</h2>
+
+                <button onclick="closeFavorites()">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+
+            <div id="favoritesGrid" class="grid grid-cols-2 md:grid-cols-4 gap-5"></div>
+
+        </div>
+
+    </div>
+</div>
+
+<!-- TOAST -->
+<div id="toastContainer" class="fixed bottom-5 right-5 z-[500] space-y-3"></div>
+
+<script>
+
+/* =========================================================
+   CONFIGURATION
+========================================================= */
+
+const WHATSAPP_NUMBER = "212600000000";
+
+/*
+   IMPORTANT:
+   Remplace 212600000000 par ton vrai numéro WhatsApp.
+*/
+
+const products = [
+
+{
+    id:1,
+    name:"Gold Whey Premium",
+    category:"Whey",
+    price:449,
+    oldPrice:499,
+    rating:4.9,
+    reviews:128,
+    badge:"BEST SELLER",
+    image:"https://images.unsplash.com/photo-1593095948071-474c5cc2989d?auto=format&fit=crop&w=800&q=80",
+    description:"Protéine whey premium pour compléter facilement ton apport quotidien en protéines.",
+    flavors:["Vanille","Chocolat","Fraise"],
+    size:"2 KG"
+},
+
+{
+    id:2,
+    name:"100% Whey Isolate",
+    category:"Whey",
+    price:529,
+    oldPrice:599,
+    rating:4.8,
+    reviews:96,
+    badge:"PREMIUM",
+    image:"https://images.unsplash.com/photo-1593095948071-474c5cc2989d?auto=format&fit=crop&w=800&q=80",
+    description:"Isolat de whey avec une formule simple et pratique pour les sportifs.",
+    flavors:["Chocolat","Vanille"],
+    size:"1.8 KG"
+},
+
+{
+    id:3,
+    name:"Creatine Monohydrate",
+    category:"Creatine",
+    price:249,
+    oldPrice:299,
+    rating:4.9,
+    reviews:215,
+    badge:"TOP",
+    image:"https://images.unsplash.com/photo-1579722821273-0f6c1d443b9f?auto=format&fit=crop&w=800&q=80",
+    description:"Créatine monohydrate en poudre destinée aux personnes pratiquant une activité sportive.",
+    flavors:["Sans saveur"],
+    size:"300 G"
+},
+
+{
+    id:4,
+    name:"Mass Gainer Pro",
+    category:"Gainer",
+    price:399,
+    oldPrice:449,
+    rating:4.7,
+    reviews:84,
+    badge:"PROMO",
+    image:"https://images.unsplash.com/photo-1579722821273-0f6c1d443b9f?auto=format&fit=crop&w=800&q=80",
+    description:"Gainer destiné à compléter l'alimentation des personnes recherchant un apport calorique supplémentaire.",
+    flavors:["Chocolat","Vanille"],
+    size:"3 KG"
+},
+
+{
+    id:5,
+    name:"Pre Workout Energy",
+    category:"Pre-Workout",
+    price:289,
+    oldPrice:329,
+    rating:4.8,
+    reviews:72,
+    badge:"NEW",
+    image:"https://images.unsplash.com/photo-1579758629938-03607ccdbaba?auto=format&fit=crop&w=800&q=80",
+    description:"Formule pré-entraînement conçue pour accompagner les séances intenses.",
+    flavors:["Fruit Rouge","Cola"],
+    size:"300 G"
+},
+
+{
+    id:6,
+    name:"BCAA Recovery",
+    category:"Accessories",
+    price:229,
+    oldPrice:259,
+    rating:4.6,
+    reviews:61,
+    badge:"",
+    image:"https://images.unsplash.com/photo-1579758629938-03607ccdbaba?auto=format&fit=crop&w=800&q=80",
+    description:"Complément destiné à accompagner la récupération et l'hydratation pendant les entraînements.",
+    flavors:["Pastèque","Citron"],
+    size:"400 G"
+},
+
+{
+    id:7,
+    name:"Omega 3 Sport",
+    category:"Vitamins",
+    price:179,
+    oldPrice:199,
+    rating:4.8,
+    reviews:54,
+    badge:"",
+    image:"https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=800&q=80",
+    description:"Complément alimentaire à base d'oméga 3.",
+    flavors:["Capsules"],
+    size:"100 CAPS"
+},
+
+{
+    id:8,
+    name:"Multivitamin Daily",
+    category:"Vitamins",
+    price:159,
+    oldPrice:189,
+    rating:4.7,
+    reviews:48,
+    badge:"NEW",
+    image:"https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=800&q=80",
+    description:"Complexe de vitamines et minéraux destiné à compléter une alimentation équilibrée.",
+    flavors:["Comprimés"],
+    size:"90 TABS"
+},
+
+{
+    id:9,
+    name:"Whey Concentrate 80%",
+    category:"Whey",
+    price:329,
+    oldPrice:379,
+    rating:4.7,
+    reviews:102,
+    badge:"",
+    image:"https://images.unsplash.com/photo-1593095948071-474c5cc2989d?auto=format&fit=crop&w=800&q=80",
+    description:"Whey concentrée pratique pour compléter les apports en protéines.",
+    flavors:["Chocolat","Vanille"],
+    size:"2 KG"
+},
+
+{
+    id:10,
+    name:"Creatine Premium 500G",
+    category:"Creatine",
+    price:349,
+    oldPrice:399,
+    rating:4.9,
+    reviews:151,
+    badge:"BEST",
+    image:"https://images.unsplash.com/photo-1579722821273-0f6c1d443b9f?auto=format&fit=crop&w=800&q=80",
+    description:"Créatine monohydrate premium en grand format.",
+    flavors:["Sans saveur"],
+    size:"500 G"
+},
+
+{
+    id:11,
+    name:"Hard Gainer XXL",
+    category:"Gainer",
+    price:549,
+    oldPrice:649,
+    rating:4.6,
+    reviews:45,
+    badge:"-15%",
+    image:"https://images.unsplash.com/photo-1579722821273-0f6c1d443b9f?auto=format&fit=crop&w=800&q=80",
+    description:"Formule gainer haute calorie destinée aux personnes ayant besoin de compléter leur apport énergétique.",
+    flavors:["Chocolat","Cookies"],
+    size:"5 KG"
+},
+
+{
+    id:12,
+    name:"Shaker Premium Black",
+    category:"Accessories",
+    price:89,
+    oldPrice:109,
+    rating:4.9,
+    reviews:190,
+    badge:"HOT",
+    image:"https://images.unsplash.com/photo-1593095948071-474c5cc2989d?auto=format&fit=crop&w=800&q=80",
+    description:"Shaker pratique pour préparer tes boissons sportives.",
+    flavors:["Black"],
+    size:"700 ML"
+}
+
+];
+
+/* =========================================================
+   STATE
+========================================================= */
+
+let cart = JSON.parse(localStorage.getItem("nutrix_cart") || "[]");
+let favorites = JSON.parse(localStorage.getItem("nutrix_favorites") || "[]");
+let activeCategory = "all";
+
+/* =========================================================
+   INIT
+========================================================= */
+
+document.addEventListener("DOMContentLoaded",()=>{
+
+    renderProducts();
+    updateCart();
+    updateFavorites();
+
+    lucide.createIcons();
+
+});
+
+/* =========================================================
+   PRODUCTS
+========================================================= */
+
+function renderProducts(){
+
+    const grid = document.getElementById("productsGrid");
+    const empty = document.getElementById("emptyProducts");
+
+    let list = [...products];
+
+    if(activeCategory !== "all"){
+        list = list.filter(p=>p.category === activeCategory);
+    }
+
+    const sort = document.getElementById("sortSelect").value;
+
+    if(sort === "priceAsc"){
+        list.sort((a,b)=>a.price-b.price);
+    }
+
+    if(sort === "priceDesc"){
+        list.sort((a,b)=>b.price-a.price);
+    }
+
+    if(sort === "rating"){
+        list.sort((a,b)=>b.rating-a.rating);
+    }
+
+    if(!list.length){
+        grid.innerHTML="";
+        empty.classList.remove("hidden");
+        return;
+    }
+
+    empty.classList.add("hidden");
+
+    grid.innerHTML = list.map(productCard).join("");
+
+    lucide.createIcons();
+
+}
+
+function productCard(p){
+
+    const isFav = favorites.includes(p.id);
+
+    return `
+    <article class="product-card rounded-2xl overflow-hidden">
+
+        <div class="relative product-img cursor-pointer" onclick="openProduct(${p.id})">
+
+            ${p.badge ? `
+                <span class="absolute top-3 left-3 z-10 bg-[#d4af37] text-black text-[10px] font-black px-3 py-1.5 rounded-full">
+                    ${p.badge}
+                </span>
+            `:""}
+
+            <button onclick="event.stopPropagation();toggleFavorite(${p.id})"
+                    class="absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-black/70 border border-white/10 flex items-center justify-center">
+                <i data-lucide="heart" class="w-4 h-4 ${isFav?'fill-red-500 text-red-500':''}"></i>
+            </button>
+
+            <img src="${p.image}" alt="${p.name}">
+        </div>
+
+        <div class="p-4 md:p-5">
+
+            <div class="text-[10px] uppercase tracking-widest text-[#d4af37] font-bold">
+                ${p.category}
+            </div>
+
+            <h3 onclick="openProduct(${p.id})"
+                class="font-bold mt-2 cursor-pointer hover:text-[#d4af37] transition line-clamp-2">
+                ${p.name}
+            </h3>
+
+            <div class="flex items-center gap-2 mt-2">
+                <span class="text-[#f5c84c] text-xs">★★★★★</span>
+                <span class="text-[10px] text-gray-500">
+                    ${p.rating} (${p.reviews})
+                </span>
+            </div>
+
+            <div class="flex items-end justify-between mt-4 gap-2">
+
+                <div>
+                    <span class="text-lg md:text-xl font-black">
+                        ${p.price} DH
+                    </span>
+
+                    <span class="text-xs text-gray-600 line-through ml-1">
+                        ${p.oldPrice} DH
+                    </span>
+                </div>
+
+                <button onclick="addToCart(${p.id})"
+                        class="w-10 h-10 shrink-0 rounded-xl btn-gold flex items-center justify-center">
+                    <i data-lucide="plus" class="w-5 h-5"></i>
+                </button>
+
+            </div>
+
+        </div>
+
+    </article>
+    `;
+}
+
+function filterCategory(category){
+
+    activeCategory = category;
+
+    document.getElementById("products").scrollIntoView({
+        behavior:"smooth"
+    });
+
+    renderProducts();
+}
+
+/* =========================================================
+   PRODUCT DETAILS
+========================================================= */
+
+function openProduct(id){
+
+    const p = products.find(x=>x.id===id);
+
+    if(!p)return;
+
+    document.getElementById("productDetails").innerHTML=`
+
+        <div class="grid md:grid-cols-2">
+
+            <div class="product-img min-h-[350px] md:min-h-[500px]">
+                <img src="${p.image}" alt="${p.name}">
+            </div>
+
+            <div class="p-7 md:p-10">
+
+                <div class="flex justify-between items-start">
+
+                    <div>
+                        <span class="text-[#d4af37] text-xs uppercase tracking-[3px] font-bold">
+                            ${p.category}
+                        </span>
+
+                        <h2 class="text-3xl font-black mt-3">
+                            ${p.name}
+                        </h2>
+                    </div>
+
+                    <button onclick="closeProduct()">
+                        <i data-lucide="x"></i>
+                    </button>
+
+                </div>
+
+                <div class="flex items-center gap-3 mt-5">
+                    <span class="text-[#f5c84c]">★★★★★</span>
+                    <span class="text-gray-500 text-sm">
+                        ${p.rating} · ${p.reviews} avis
+                    </span>
+                </div>
+
+                <p class="text-gray-400 leading-8 mt-7">
+                    ${p.description}
+                </p>
+
+                <div class="mt-7">
+                    <span class="text-gray-500 text-sm">Format</span>
+
+                    <div class="mt-2 px-4 py-3 rounded-xl bg-[#181818] border border-[#292929] inline-block">
+                        ${p.size}
+                    </div>
+                </div>
+
+                <div class="mt-7">
+
+                    <div class="text-gray-500 text-sm mb-2">
+                        Saveur
+                    </div>
+
+                    <div class="flex flex-wrap gap-2">
+                        ${p.flavors.map(f=>`
+                            <button class="px-4 py-2 rounded-lg bg-[#181818] border border-[#292929] text-sm hover:border-[#d4af37]">
+                                ${f}
+                            </button>
+                        `).join("")}
+                    </div>
+
+                </div>
+
+                <div class="flex items-end gap-3 mt-8">
+
+                    <span class="text-3xl font-black">
+                        ${p.price} DH
+                    </span>
+
+                    <span class="text-gray-600 line-through">
+                        ${p.oldPrice} DH
+                    </span>
+
+                </div>
+
+                <button onclick="addToCart(${p.id});closeProduct()"
+                        class="w-full btn-gold py-4 rounded-xl mt-7 font-black flex items-center justify-center gap-2">
+                    <i data-lucide="shopping-bag"></i>
+                    Ajouter au panier
+                </button>
+
+            </div>
+
+        </div>
+    `;
+
+    document.getElementById("productModal").classList.remove("hidden");
+
+    lucide.createIcons();
+
+}
+
+function closeProduct(){
+    document.getElementById("productModal").classList.add("hidden");
+}
+
+/* =========================================================
+   CART
+========================================================= */
+
+function addToCart(id){
+
+    const existing = cart.find(item=>item.id===id);
+
+    if(existing){
+        existing.qty++;
+    }else{
+        cart.push({
+            id,
+            qty:1
+        });
+    }
+
+    saveCart();
+    updateCart();
+
+    const p = products.find(x=>x.id===id);
+
+    showToast(`${p.name} ajouté au panier`);
+
+}
+
+function removeFromCart(id){
+
+    cart = cart.filter(item=>item.id!==id);
+
+    saveCart();
+    updateCart();
+
+}
+
+function changeQty(id,amount){
+
+    const item = cart.find(x=>x.id===id);
+
+    if(!item)return;
+
+    item.qty += amount;
+
+    if(item.qty<=0){
+        removeFromCart(id);
+        return;
+    }
+
+    saveCart();
+    updateCart();
+
+}
+
+function cartTotal(){
+
+    return cart.reduce((total,item)=>{
+
+        const p = products.find(x=>x.id===item.id);
+
+        return total + (p.price * item.qty);
+
+    },0);
+
+}
+
+function cartCount(){
+
+    return cart.reduce((total,item)=>total+item.qty,0);
+
+}
+
+function updateCart(){
+
+    localStorage.setItem("nutrix_cart",JSON.stringify(cart));
+
+    document.getElementById("cartCount").textContent=cartCount();
+
+    document.getElementById("cartSubtitle").textContent=
+        `${cartCount()} produit${cartCount()>1?"s":""}`;
+
+    document.getElementById("cartTotal").textContent=
+        `${cartTotal()} DH`;
+
+    document.getElementById("checkoutTotal").textContent=
+        `${cartTotal()} DH`;
+
+    const container=document.getElementById("cartItems");
+
+    if(!cart.length){
+
+        container.innerHTML=`
+            <div class="h-full flex flex-col items-center justify-center text-center py-20">
+                <div class="w-20 h-20 rounded-full bg-[#181818] flex items-center justify-center mb-5">
+                    <i data-lucide="shopping-bag" class="w-8 h-8 text-gray-600"></i>
+                </div>
+                <h3 class="font-bold text-lg">Votre panier est vide</h3>
+                <p class="text-gray-500 text-sm mt-2">Ajoute quelques produits pour commencer.</p>
+                <button onclick="closeCart();document.getElementById('products').scrollIntoView({behavior:'smooth'})"
+                        class="btn-gold px-6 py-3 rounded-xl mt-6">
+                    Voir les produits
+                </button>
+            </div>
+        `;
+
+        lucide.createIcons();
+
+        return;
+    }
+
+    container.innerHTML=cart.map(item=>{
+
+        const p=products.find(x=>x.id===item.id);
+
+        return `
+        <div class="flex gap-4 py-5 border-b border-[#222]">
+
+            <div class="w-20 h-20 rounded-xl bg-[#171717] shrink-0 flex items-center justify-center">
+                <img src="${p.image}" class="w-full h-full object-contain rounded-xl">
+            </div>
+
+            <div class="flex-1 min-w-0">
+
+                <div class="flex justify-between gap-2">
+                    <h4 class="font-bold text-sm line-clamp-2">
+                        ${p.name}
+                    </h4>
+
+                    <button onclick="removeFromCart(${p.id})" class="text-gray-600 hover:text-red-400">
+                        <i data-lucide="trash-2" class="w-4 h-4"></i>
+                    </button>
+                </div>
+
+                <p class="text-[#d4af37] font-bold mt-2">
+                    ${p.price} DH
+                </p>
+
+                <div class="flex items-center justify-between mt-3">
+
+                    <div class="flex items-center bg-[#181818] rounded-lg border border-[#292929]">
+                        <button onclick="changeQty(${p.id},-1)" class="w-8 h-8">−</button>
+                        <span class="w-8 text-center text-sm">${item.qty}</span>
+                        <button onclick="changeQty(${p.id},1)" class="w-8 h-8">+</button>
+                    </div>
+
+                    <strong class="text-sm">
+                        ${p.price*item.qty} DH
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+        `;
+
+    }).join("");
+
+    lucide.createIcons();
+
+}
+
+function saveCart(){
+    localStorage.setItem("nutrix_cart",JSON.stringify(cart));
+}
+
+function openCart(){
+    document.getElementById("cartModal").classList.remove("hidden");
+    updateCart();
+}
+
+function closeCart(){
+    document.getElementById("cartModal").classList.add("hidden");
+}
+
+/* =========================================================
+   FAVORITES
+========================================================= */
+
+function toggleFavorite(id){
+
+    if(favorites.includes(id)){
+        favorites=favorites.filter(x=>x!==id);
+        showToast("Supprimé des favoris");
+    }else{
+        favorites.push(id);
+        showToast("Ajouté aux favoris ❤️");
+    }
+
+    localStorage.setItem("nutrix_favorites",JSON.stringify(favorites));
+
+    updateFavorites();
+    renderProducts();
+
+}
+
+function updateFavorites(){
+
+    document.getElementById("favCount").textContent=favorites.length;
+
+}
+
+function openFavorites(){
+
+    const grid=document.getElementById("favoritesGrid");
+
+    const favProducts=products.filter(p=>favorites.includes(p.id));
+
+    if(!favProducts.length){
+
+        grid.innerHTML=`
+            <div class="col-span-full text-center py-16">
+                <div class="text-5xl mb-4">❤️</div>
+                <h3 class="font-bold">Aucun favori</h3>
+                <p class="text-gray-500 text-sm mt-2">
+                    Ajoute des produits à tes favoris.
+                </p>
+            </div>
+        `;
+
+    }else{
+
+        grid.innerHTML=favProducts.map(productCard).join("");
+
+    }
+
+    document.getElementById("favoritesModal").classList.remove("hidden");
+
+    lucide.createIcons();
+
+}
+
+function closeFavorites(){
+    document.getElementById("favoritesModal").classList.add("hidden");
+}
+
+/* =========================================================
+   CHECKOUT
+========================================================= */
+
+function openCheckout(){
+
+    if(!cart.length){
+        showToast("Votre panier est vide");
+        return;
+    }
+
+    closeCart();
+
+    document.getElementById("checkoutTotal").textContent=
+        `${cartTotal()} DH`;
+
+    document.getElementById("checkoutModal").classList.remove("hidden");
+
+}
+
+function closeCheckout(){
+    document.getElementById("checkoutModal").classList.add("hidden");
+}
+
+function submitOrder(e){
+
+    e.preventDefault();
+
+    const name=document.getElementById("customerName").value;
+    const phone=document.getElementById("customerPhone").value;
+    const city=document.getElementById("customerCity").value;
+    const address=document.getElementById("customerAddress").value;
+    const payment=document.getElementById("paymentMethod").value;
+    const note=document.getElementById("customerNote").value;
+
+    let message=`*NOUVELLE COMMANDE NUTRIX*%0A%0A`;
+
+    message+=`👤 *Client:* ${encodeURIComponent(name)}%0A`;
+    message+=`📱 *Téléphone:* ${encodeURIComponent(phone)}%0A`;
+    message+=`📍 *Ville:* ${encodeURIComponent(city)}%0A`;
+    message+=`🏠 *Adresse:* ${encodeURIComponent(address)}%0A`;
+    message+=`💳 *Paiement:* ${encodeURIComponent(payment)}%0A%0A`;
+
+    message+=`*PRODUITS:*%0A`;
+
+    cart.forEach(item=>{
+
+        const p=products.find(x=>x.id===item.id);
+
+        message+=`• ${encodeURIComponent(p.name)} × ${item.qty} = ${p.price*item.qty} DH%0A`;
+
+    });
+
+    message+=`%0A💰 *TOTAL: ${cartTotal()} DH*%0A`;
+
+    if(note){
+        message+=`%0A📝 *Note:* ${encodeURIComponent(note)}`;
+    }
+
+    const url=`https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
+
+    window.open(url,"_blank");
+
+    showToast("Commande préparée sur WhatsApp");
+
+}
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+function openSearch(){
+
+    document.getElementById("searchModal").classList.remove("hidden");
+
+    setTimeout(()=>{
+        document.getElementById("searchInput").focus();
+    },100);
+
+}
+
+function closeSearch(){
+
+    document.getElementById("searchModal").classList.add("hidden");
+
+}
+
+function searchProducts(){
+
+    const value=document.getElementById("searchInput").value.toLowerCase().trim();
+
+    const results=document.getElementById("searchResults");
+
+    if(!value){
+
+        results.innerHTML=`
+            <div class="text-center py-10 text-gray-500">
+                <i data-lucide="search" class="w-8 h-8 mx-auto mb-3"></i>
+                <p>Recherche un produit...</p>
+            </div>
+        `;
+
+        lucide.createIcons();
+
+        return;
+    }
+
+    const list=products.filter(p=>
+        p.name.toLowerCase().includes(value) ||
+        p.category.toLowerCase().includes(value)
+    );
+
+    if(!list.length){
+
+        results.innerHTML=`
+            <div class="text-center py-10 text-gray-500">
+                Aucun résultat.
+            </div>
+        `;
+
+        return;
+    }
+
+    results.innerHTML=list.map(p=>`
+
+        <button onclick="closeSearch();openProduct(${p.id})"
+                class="w-full flex items-center gap-4 p-3 rounded-xl hover:bg-[#191919] text-left">
+
+            <img src="${p.image}" class="w-16 h-16 rounded-xl bg-[#181818] object-contain">
+
+            <div class="flex-1">
+                <div class="font-bold text-sm">${p.name}</div>
+                <div class="text-xs text-gray-500 mt-1">${p.category}</div>
+                <div class="text-[#d4af37] font-bold text-sm mt-1">${p.price} DH</div>
+            </div>
+
+        </button>
+
+    `).join("");
+
+}
+
+/* =========================================================
+   CONTACT
+========================================================= */
+
+function sendContact(e){
+
+    e.preventDefault();
+
+    const name=document.getElementById("contactName").value;
+    const phone=document.getElementById("contactPhone").value;
+    const message=document.getElementById("contactMessage").value;
+
+    const text=
+        `Bonjour NUTRIX.%0A%0A`+
+        `👤 Nom: ${encodeURIComponent(name)}%0A`+
+        `📱 Téléphone: ${encodeURIComponent(phone)}%0A%0A`+
+        `💬 Message:%0A${encodeURIComponent(message)}`;
+
+    window.open(
+        `https://wa.me/${WHATSAPP_NUMBER}?text=${text}`,
+        "_blank"
+    );
+
+}
+
+/* =========================================================
+   NEWSLETTER
+========================================================= */
+
+function subscribe(){
+
+    const email=document.getElementById("newsletterEmail").value;
+
+    if(!email || !email.includes("@")){
+        showToast("Entre une adresse email valide");
+        return;
+    }
+
+    localStorage.setItem("nutrix_newsletter",email);
+
+    document.getElementById("newsletterEmail").value="";
+
+    showToast("Merci ! Tu es inscrit 🎉");
+
+}
+
+/* =========================================================
+   THEME
+========================================================= */
+
+function toggleTheme(){
+
+    document.body.classList.toggle("light");
+
+    localStorage.setItem(
+        "nutrix_theme",
+        document.body.classList.contains("light")?"light":"dark"
+    );
+
+}
+
+if(localStorage.getItem("nutrix_theme")==="light"){
+    document.body.classList.add("light");
+}
+
+/* =========================================================
+   MOBILE MENU
+========================================================= */
+
+function openMobileMenu(){
+    document.getElementById("mobileMenu").classList.remove("hidden");
+}
+
+function closeMobileMenu(){
+    document.getElementById("mobileMenu").classList.add("hidden");
+}
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+function showToast(message){
+
+    const container=document.getElementById("toastContainer");
+
+    const toast=document.createElement("div");
+
+    toast.className=
+        "toast glass rounded-xl px-5 py-4 flex items-center gap-3 shadow-2xl";
+
+    toast.innerHTML=`
+        <div class="w-8 h-8 rounded-full bg-[#d4af37] text-black flex items-center justify-center">
+            ✓
+        </div>
+
+        <span class="text-sm font-semibold">${message}</span>
+    `;
+
+    container.appendChild(toast);
+
+    setTimeout(()=>{
+        toast.remove();
+    },3000);
+
+}
+
+</script>
+
 </body>
 </html>
+```
