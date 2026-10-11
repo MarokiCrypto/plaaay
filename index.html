@@ -1,2044 +1,708 @@
-```html
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" dir="ltr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="NUTRIX - Boutique premium de nutrition sportive au Maroc">
-<title>NUTRIX | Nutrition Sportive Premium</title>
-
-<script src="https://cdn.tailwindcss.com"></script>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-
-<script src="https://unpkg.com/lucide@latest"></script>
-
+<meta name="description" content="Atelier QHSE interactif pédagogique — Youssef Ouayade, OFPPT">
+<title>QHSE Interactive Workshop — Youssef Ouayade</title>
 <style>
-:root{
-    --gold:#d4af37;
-    --gold2:#f5d06f;
-    --black:#080808;
-    --dark:#101010;
-    --card:#151515;
-    --border:#292929;
-    --white:#fff;
-    --muted:#999;
-}
+:root{--green:#075e43;--green2:#0c8058;--ink:#172321;--muted:#60716c;--paper:#f3f7f5;--yellow:#ffd928;--red:#e32932;--blue:#1769e0;--line:#dbe5e0;--shadow:0 12px 32px #092b2012}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;line-height:1.55}button,input{font:inherit}button{cursor:pointer}
+@keyframes fadeInSlide{0%{opacity:0;transform:translateY(15px)}100%{opacity:1;transform:translateY(0)}}
+@keyframes pulseGlow{0%,100%{filter:drop-shadow(0 0 5px rgba(12,128,88,0.4))}50%{filter:drop-shadow(0 0 15px rgba(12,128,88,0.8))}}
+@keyframes svgPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.03); } }
+@keyframes dashRotate { 0% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: -40; } }
+@keyframes floatIcon { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+.animated-svg-element { animation: svgPulse 4s ease-in-out infinite; transform-origin: center; }
+.animated-dash { stroke-dasharray: 8, 8; animation: dashRotate 3s linear infinite; }
+.topbar{background:linear-gradient(135deg,#064b37,#0c8058,#1769e0);background-size:200% 200%;animation:gradientBG 8s ease infinite;color:#fff;padding:24px clamp(16px,4vw,54px);display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;box-shadow:0 4px 20px rgba(0,0,0,0.15)}
+@keyframes gradientBG{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+.brand{display:flex;align-items:center;gap:13px}.brand-mark{width:54px;height:54px;border:2px solid #d9ffeb;border-radius:16px;display:grid;place-items:center;font-weight:900;font-size:22px;background:rgba(255,255,255,0.1);animation:pulseGlow 3s ease-in-out infinite}
+.brand h1{font-size:clamp(20px,3vw,29px);margin:0;letter-spacing:.3px;text-shadow:0 2px 4px rgba(0,0,0,0.2)}.brand p{margin:2px 0 0;color:#d4f2e4;font-size:13px}
+.top-actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+#authorLabel{background:linear-gradient(135deg,#ffda24,#ffd928);color:#172321;padding:6px 14px;border-radius:20px;font-weight:800;font-size:13px;box-shadow:0 4px 12px rgba(0,0,0,0.15);animation:fadeInSlide 1s ease}
+.lang-btn,.nav a{border:1px solid #ffffff60;background:#ffffff12;color:#fff;border-radius:10px;padding:9px 13px;text-decoration:none;transition:all .3s ease}.lang-btn:hover,.nav a:hover{background:#ffffff25;transform:translateY(-2px)}
+.hero{padding:34px clamp(16px,4vw,54px) 20px;max-width:1600px;margin:auto;animation:fadeInSlide .8s ease}
+.eyebrow{color:var(--green2);font-weight:800;text-transform:uppercase;letter-spacing:1.6px;font-size:12px}
+.hero h2{font-size:clamp(27px,4vw,44px);line-height:1.13;max-width:850px;margin:7px 0 12px;color:#064b37}
+.hero p{max-width:800px;color:var(--muted);margin:0}
+.nav{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}
+.nav a{color:var(--green);border-color:#cbded4;background:#fff;font-size:13px;font-weight:700;box-shadow:0 2px 8px rgba(0,0,0,0.04)}
+.wrap{max-width:1600px;margin:auto;padding:0 clamp(12px,3vw,42px) 46px}
+.section-head{display:flex;justify-content:space-between;gap:15px;align-items:end;flex-wrap:wrap;margin:26px 0 14px}
+.section-head h2{margin:0;font-size:clamp(22px,3vw,30px);color:#064b37}
+.section-head p{margin:4px 0 0;color:var(--muted);font-size:14px}
+.btn{border:0;border-radius:10px;padding:10px 15px;font-weight:750;background:linear-gradient(135deg,var(--green),var(--green2));color:white;box-shadow:0 4px 12px rgba(7,94,67,0.2);transition:all .3s ease}
+.btn.secondary{background:#e3eee8;color:var(--green);box-shadow:none}
+.btn:hover{filter:brightness(1.05);transform:translateY(-2px)}
+.workshop-card,.panel{background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);overflow:hidden;transition:transform .3s ease,box-shadow .3s ease}
+.workshop-card:hover,.panel:hover{box-shadow:0 16px 40px rgba(9,43,32,0.1)}
+.workshop-toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:13px 16px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.toolbar-left{display:flex;gap:8px;flex-wrap:wrap}
+.tag{font-size:12px;border-radius:999px;padding:6px 10px;background:#eef5f1;color:#275b47;font-weight:700}
+.hint{font-size:13px;color:var(--muted)}
+.scene-wrap{position:relative;background:linear-gradient(135deg,#e7eeea,#d4e2dc);padding:12px;overflow:hidden}
+.scene{width:100%;display:block;border-radius:12px;background:#e8edeb;box-shadow:inset 0 2px 10px rgba(0,0,0,0.05)}
+.scene text{font-family:Inter,Arial,sans-serif}
+.hotspot{cursor:pointer;outline:none;transition:transform .3s cubic-bezier(0.175,0.885,0.32,1.275)}
+.hotspot circle{fill:#fff;stroke:#08774f;stroke-width:4;filter:drop-shadow(0 4px 6px rgba(0,0,0,0.2));transition:all .3s ease}
+.hotspot text{fill:#075e43;font-size:17px;font-weight:900;text-anchor:middle;dominant-baseline:central}
+.hotspot:hover,.hotspot:focus{transform:scale(1.15)}
+.hotspot:hover circle,.hotspot:focus circle{fill:#ffdf36;stroke:#172321;stroke-width:5}
+.floor-line{transition:opacity .3s}.floor-hidden .floor-line{opacity:0}
+.scene-legend{display:flex;gap:9px;flex-wrap:wrap;padding:14px 16px;background:#fafcfb;border-top:1px solid var(--line)}
+.legend-item{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700;color:#44534e}
+.swatch{width:24px;height:14px;border-radius:4px;border:1px solid #0002}
+.sw-yellow{background:#ffda24}.sw-blue{background:#1769e0}.sw-red{background:#e32932}.sw-hazard{background:repeating-linear-gradient(135deg,#171717 0 6px,#ffda24 6px 12px)}.sw-green{background:#0b875a}
+.info-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(280px,.75fr);gap:18px;margin-top:18px}
+.detail-panel{padding:22px}
+.detail-title{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.detail-title h3{margin:0;font-size:24px;color:#064b37}
+.detail-title p{margin:5px 0;color:var(--muted)}
+.pill{font-size:11px;background:#fff4ce;color:#795a00;border-radius:999px;padding:6px 9px;font-weight:800;white-space:nowrap}
+.detail-content{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
+.mini-card{background:linear-gradient(135deg,#f7faf8,#edf4f0);border:1px solid #e4ece7;border-radius:12px;padding:13px;transition:transform .2s ease}
+.mini-card:hover{transform:translateY(-2px)}
+.mini-card h4{font-size:13px;margin:0 0 6px;color:var(--green)}
+.mini-card p,.mini-card ul{margin:0;font-size:13px;color:#42514b}
+.mini-card ul{padding-left:18px}
+.refs{margin-top:14px;padding:13px;border-left:4px solid var(--green2);background:#eef7f2;border-radius:8px;font-size:13px}
+.machine-list{padding:18px}
+.machine-list h3{margin:0 0 12px;color:#064b37}
+.search{width:100%;padding:11px 12px;border:1px solid #d6e2dc;border-radius:10px;margin-bottom:12px;outline-color:var(--green2);background:#fafcfb}
+.machine-buttons{display:grid;gap:7px;max-height:430px;overflow:auto}
+.machine-btn{display:flex;justify-content:space-between;gap:10px;align-items:center;text-align:left;background:white;border:1px solid #e0e9e4;border-radius:10px;padding:10px 12px;color:#24352e;transition:all .2s ease}
+.machine-btn:hover,.machine-btn.active{border-color:var(--green2);background:#eef8f2;transform:translateX(4px)}
+.machine-btn small{display:block;color:#73817b}
+.machine-btn .arrow{color:var(--green);font-weight:900}
+.content-section{margin-top:34px}
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.info-card{background:white;border:1px solid var(--line);border-radius:15px;padding:18px;box-shadow:0 5px 20px #092b2008;transition:transform .3s ease,box-shadow .3s ease}
+.info-card:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(9,43,32,0.12)}
+.info-card .icon{width:40px;height:40px;border-radius:12px;background:#e5f3eb;display:grid;place-items:center;font-size:20px;margin-bottom:10px}
+.info-card h3{margin:0 0 7px;font-size:17px;color:#064b37}
+.info-card p{margin:0;color:var(--muted);font-size:13px}
+.color-chip{height:8px;border-radius:99px;margin:12px 0}
+.standard-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.standard{border:1px solid var(--line);border-radius:13px;padding:16px;background:#fff;transition:transform .3s ease}
+.standard:hover{transform:translateY(-3px)}
+.standard strong{color:var(--green);font-size:16px}
+.standard p{font-size:13px;color:var(--muted);margin:6px 0 10px}
+.standard a{color:#075e43;font-weight:750;font-size:13px;text-decoration:none}
+.standard a:hover{text-decoration:underline}
+.notice{background:linear-gradient(135deg,#fffbf0,#fff7df);border:1px solid #f0d98a;padding:14px 16px;border-radius:12px;color:#6c5513;font-size:13px;margin-top:14px;box-shadow:0 4px 12px rgba(0,0,0,0.03)}
+.quiz-box{padding:22px}
+.quiz-box h3{margin:0 0 5px;color:#064b37}
+.quiz-question{font-weight:750;margin:18px 0 12px;color:#172321}
+.answers{display:grid;gap:8px}
+.answer{border:1px solid var(--line);border-radius:10px;padding:11px 13px;background:white;text-align:left;transition:all .2s ease}
+.answer:hover{border-color:var(--green);background:#f2faf6}
+.answer.correct{background:#e4f8eb;border-color:#35a866}
+.answer.wrong{background:#fff0ef;border-color:#e45e57}
+.feedback{margin-top:12px;font-weight:700;font-size:14px;min-height:22px}
+.footer{background:linear-gradient(135deg,#052e22,#073f30);color:#e6f4ed;padding:26px clamp(16px,4vw,54px);display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap;font-size:13px;border-top:2px solid var(--green2)}
+.footer strong{font-size:15px;color:#ffd928}
+.small{font-size:12px;color:var(--muted)}
+[dir="rtl"] body,[dir="rtl"]{font-family:Tahoma,Arial,sans-serif}
+[dir="rtl"] .detail-content,[dir="rtl"] .cards,[dir="rtl"] .standard-grid{text-align:right}
+[dir="rtl"] .refs{border-left:0;border-right:4px solid var(--green2)}
+[dir="rtl"] .mini-card ul{padding-left:0;padding-right:18px}
+[dir="rtl"] .machine-btn{text-align:right}
+@media(max-width:900px){.info-grid{grid-template-columns:1fr}.cards,.standard-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.detail-content{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.cards,.standard-grid,.detail-content{grid-template-columns:1fr}.hero{padding-top:25px}.scene-wrap{padding:5px}.workshop-toolbar{align-items:flex-start}.hint{width:100%}.detail-panel{padding:16px}.scene-legend{padding:12px}.brand-mark{width:44px;height:44px}.hero h2{font-size:29px}}
+</style>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+<style>
+        :root {
+            --primary-color: #0d47a1;
+            --secondary-color: #1976d2;
+            --accent-color: #d32f2f;
+            --bg-color: #f4f6f9;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
 
-*{
-    box-sizing:border-box;
-    scroll-behavior:smooth;
-}
+        .qhse-fiches-section {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 40px 0;
+            padding: 20px 0;
+            border-top: 2px solid var(--line);
+        }
 
-body{
-    margin:0;
-    background:#080808;
-    color:#fff;
-    font-family:Inter,Cairo,sans-serif;
-}
+        .qhse-fiches-section header.fiches-header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 25px 0;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
 
-body.light{
-    background:#f7f7f7;
-    color:#111;
-}
+        .qhse-fiches-section header.fiches-header h1 {
+            margin: 0;
+            font-size: 2.2em;
+        }
 
-button,input,select{
-    font-family:inherit;
-}
+        .qhse-fiches-section header.fiches-header p {
+            margin: 5px 0 0 0;
+            opacity: 0.9;
+            font-size: 1.1em;
+        }
 
-::-webkit-scrollbar{
-    width:7px;
-}
+        .qhse-fiches-section .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-::-webkit-scrollbar-track{
-    background:#0b0b0b;
-}
+        .qhse-fiches-section .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+        }
 
-::-webkit-scrollbar-thumb{
-    background:#555;
-    border-radius:20px;
-}
+        .qhse-fiches-section .card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #e0e0e0;
+        }
 
-.gold{
-    color:var(--gold);
-}
+        .qhse-fiches-section .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
 
-.gold-gradient{
-    background:linear-gradient(135deg,#fff1a8,#d4af37,#9e7b19);
-    -webkit-background-clip:text;
-    background-clip:text;
-    color:transparent;
-}
+        .qhse-fiches-section .card-header {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 15px;
+            font-weight: bold;
+            font-size: 1.1em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-.glass{
-    background:rgba(20,20,20,.78);
-    backdrop-filter:blur(18px);
-    border:1px solid rgba(255,255,255,.08);
-}
+        .qhse-fiches-section .machine-img-container {
+            width: 100%;
+            height: 220px;
+            background-color: #eaeaea;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border-bottom: 1px solid #eee;
+        }
 
-.light .glass{
-    background:rgba(255,255,255,.85);
-    border-color:#e5e5e5;
-}
+        .qhse-fiches-section .machine-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
 
-.product-card{
-    background:linear-gradient(145deg,#151515,#0e0e0e);
-    border:1px solid #252525;
-    transition:.35s ease;
-}
+        .qhse-fiches-section .card-body {
+            padding: 20px;
+            flex-grow: 1;
+        }
 
-.product-card:hover{
-    transform:translateY(-7px);
-    border-color:#80691f;
-    box-shadow:0 18px 45px rgba(212,175,55,.12);
-}
+        .qhse-fiches-section .section-title {
+            font-weight: bold;
+            font-size: 0.88em;
+            text-transform: uppercase;
+            margin-top: 15px;
+            margin-bottom: 8px;
+            padding-bottom: 4px;
+            border-bottom: 2px solid #eee;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
 
-.product-img{
-    height:250px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:
-        radial-gradient(circle at center,rgba(212,175,55,.13),transparent 58%),
-        #101010;
-    overflow:hidden;
-}
+        .qhse-fiches-section .danger { color: var(--accent-color); border-color: var(--accent-color); }
+        .qhse-fiches-section .epc { color: #2e7d32; border-color: #2e7d32; }
+        .qhse-fiches-section .epi { color: #ef6c00; border-color: #ef6c00; }
 
-.product-img img{
-    width:80%;
-    height:85%;
-    object-fit:contain;
-    transition:.4s ease;
-}
+        .qhse-fiches-section ul {
+            margin: 0;
+            padding-left: 20px;
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
 
-.product-card:hover .product-img img{
-    transform:scale(1.07);
-}
-
-.btn-gold{
-    background:linear-gradient(135deg,#f5d06f,#d4af37,#a98218);
-    color:#090909;
-    font-weight:800;
-    transition:.25s;
-}
-
-.btn-gold:hover{
-    transform:translateY(-2px);
-    box-shadow:0 10px 25px rgba(212,175,55,.25);
-}
-
-.hero{
-    min-height:680px;
-    background:
-        linear-gradient(90deg,#080808 0%,rgba(8,8,8,.92) 38%,rgba(8,8,8,.35) 100%),
-        url("https://images.unsplash.com/photo-1593095948071-474c5cc2989d?auto=format&fit=crop&w=2000&q=90")
-        center/cover;
-}
-
-.category-card{
-    transition:.3s;
-    border:1px solid #242424;
-}
-
-.category-card:hover{
-    transform:translateY(-5px);
-    border-color:#d4af37;
-    background:#151515;
-}
-
-.modal{
-    animation:modalIn .25s ease;
-}
-
-@keyframes modalIn{
-    from{opacity:0;transform:scale(.96) translateY(10px)}
-    to{opacity:1;transform:scale(1) translateY(0)}
-}
-
-.toast{
-    animation:toastIn .3s ease;
-}
-
-@keyframes toastIn{
-    from{opacity:0;transform:translateX(30px)}
-    to{opacity:1;transform:translateX(0)}
-}
-
-.mobile-menu{
-    animation:menuIn .25s ease;
-}
-
-@keyframes menuIn{
-    from{transform:translateX(100%)}
-    to{transform:translateX(0)}
-}
-
-.badge{
-    background:#e11d48;
-    color:white;
-}
-
-input:focus,select:focus{
-    outline:none;
-    border-color:#d4af37!important;
-    box-shadow:0 0 0 2px rgba(212,175,55,.1);
-}
-
-.section-title{
-    font-size:clamp(28px,4vw,44px);
-    font-weight:900;
-    letter-spacing:-1px;
-}
-
-.hide{
-    display:none!important;
-}
-
-@media(max-width:768px){
-    .hero{
-        min-height:650px;
-        background:
-            linear-gradient(90deg,#080808 0%,rgba(8,8,8,.85) 100%),
-            url("https://images.unsplash.com/photo-1593095948071-474c5cc2989d?auto=format&fit=crop&w=1200&q=80")
-            center/cover;
-    }
-
-    .product-img{
-        height:210px;
-    }
-}
+        .qhse-fiches-section .card-footer {
+            background-color: #f8f9fa;
+            padding: 12px 20px;
+            border-top: 1px solid #eee;
+            font-size: 0.8em;
+            color: #666;
+            display: flex;
+            justify-content: space-between;
+        }
 </style>
 </head>
-
 <body>
-
-<!-- TOP BAR -->
-<div class="bg-[#111] border-b border-[#222] text-xs">
-    <div class="max-w-7xl mx-auto px-4 py-2 flex justify-between items-center gap-4">
-        <p class="text-gray-400">
-            🚚 Livraison partout au Maroc
-        </p>
-
-        <div class="flex items-center gap-4">
-            <span class="text-gray-400">Paiement à la livraison</span>
-            <span class="text-[#d4af37] font-bold">24/48H</span>
-        </div>
-    </div>
-</div>
-
-<!-- NAVBAR -->
-<header class="sticky top-0 z-50 bg-[#080808]/95 backdrop-blur-xl border-b border-[#222]">
-
-    <div class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between gap-6">
-
-        <a href="#home" class="flex items-center gap-3">
-            <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-[#f5d06f] to-[#9e7818] flex items-center justify-center text-black font-black text-xl">
-                N
-            </div>
-
-            <div>
-                <div class="font-black text-xl tracking-wider">
-                    NUTRIX
-                </div>
-                <div class="text-[9px] text-gray-500 tracking-[4px]">
-                    SPORTS NUTRITION
-                </div>
-            </div>
-        </a>
-
-        <nav class="hidden lg:flex items-center gap-7 text-sm font-semibold">
-            <a href="#home" class="hover:text-[#d4af37] transition">Accueil</a>
-            <a href="#products" class="hover:text-[#d4af37] transition">Produits</a>
-            <a href="#categories" class="hover:text-[#d4af37] transition">Catégories</a>
-            <a href="#offers" class="hover:text-[#d4af37] transition">Promotions</a>
-            <a href="#about" class="hover:text-[#d4af37] transition">À propos</a>
-            <a href="#contact" class="hover:text-[#d4af37] transition">Contact</a>
-        </nav>
-
-        <div class="flex items-center gap-2">
-
-            <button onclick="toggleTheme()" class="hidden md:flex w-10 h-10 rounded-xl border border-[#292929] items-center justify-center hover:border-[#d4af37]">
-                <i data-lucide="sun" class="w-4 h-4"></i>
-            </button>
-
-            <button onclick="openSearch()" class="w-10 h-10 rounded-xl border border-[#292929] flex items-center justify-center hover:border-[#d4af37]">
-                <i data-lucide="search" class="w-4 h-4"></i>
-            </button>
-
-            <button onclick="openFavorites()" class="hidden md:flex relative w-10 h-10 rounded-xl border border-[#292929] items-center justify-center">
-                <i data-lucide="heart" class="w-4 h-4"></i>
-                <span id="favCount" class="absolute -top-1 -right-1 w-4 h-4 text-[9px] rounded-full badge flex items-center justify-center">0</span>
-            </button>
-
-            <button onclick="openCart()" class="relative w-11 h-11 rounded-xl btn-gold flex items-center justify-center">
-                <i data-lucide="shopping-bag" class="w-5 h-5"></i>
-                <span id="cartCount" class="absolute -top-2 -right-2 w-5 h-5 bg-white text-black text-[10px] font-black rounded-full flex items-center justify-center">0</span>
-            </button>
-
-            <button onclick="openMobileMenu()" class="lg:hidden w-10 h-10 border border-[#292929] rounded-xl flex items-center justify-center">
-                <i data-lucide="menu"></i>
-            </button>
-
-        </div>
-    </div>
+<header class="topbar">
+  <div class="brand"><div class="brand-mark">QHSE</div><div><h1>QHSE Interactive Workshop</h1><p>Qualité · Hygiène · Sécurité · Environnement / الجودة · الصحة · السلامة · البيئة</p></div></div>
+  <div class="top-actions"><span id="authorLabel"><i class="fas fa-user-shield"></i> Youssef Ouayade — Projet pédagogique / مشروع تعليمي</span><button class="lang-btn" id="langToggle" type="button">العربية</button></div>
 </header>
-
-<!-- MOBILE MENU -->
-<div id="mobileMenu" class="fixed inset-0 z-[100] hidden">
-    <div class="absolute inset-0 bg-black/80" onclick="closeMobileMenu()"></div>
-
-    <div class="mobile-menu absolute right-0 top-0 h-full w-[320px] bg-[#101010] border-l border-[#292929] p-6">
-
-        <div class="flex justify-between items-center mb-10">
-            <span class="font-black text-xl">NUTRIX</span>
-            <button onclick="closeMobileMenu()">
-                <i data-lucide="x"></i>
-            </button>
-        </div>
-
-        <div class="space-y-2">
-            <a onclick="closeMobileMenu()" href="#home" class="block p-4 rounded-xl hover:bg-[#191919]">Accueil</a>
-            <a onclick="closeMobileMenu()" href="#products" class="block p-4 rounded-xl hover:bg-[#191919]">Produits</a>
-            <a onclick="closeMobileMenu()" href="#categories" class="block p-4 rounded-xl hover:bg-[#191919]">Catégories</a>
-            <a onclick="closeMobileMenu()" href="#offers" class="block p-4 rounded-xl hover:bg-[#191919]">Promotions</a>
-            <a onclick="closeMobileMenu()" href="#about" class="block p-4 rounded-xl hover:bg-[#191919]">À propos</a>
-            <a onclick="closeMobileMenu()" href="#contact" class="block p-4 rounded-xl hover:bg-[#191919]">Contact</a>
-        </div>
-
-    </div>
-</div>
-
-<!-- HERO -->
-<section id="home" class="hero relative">
-
-    <div class="max-w-7xl mx-auto px-4 min-h-[680px] flex items-center">
-
-        <div class="max-w-2xl">
-
-            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#705d23] bg-[#17140b] text-[#e7c85b] text-xs font-bold mb-7">
-                <span class="w-2 h-2 bg-[#d4af37] rounded-full animate-pulse"></span>
-                NUTRITION SPORTIVE PREMIUM
-            </div>
-
-            <h1 class="text-5xl md:text-7xl font-black leading-[.95] mb-7">
-                Dépasse tes
-                <span class="gold-gradient">limites.</span>
-            </h1>
-
-            <p class="text-gray-300 text-base md:text-lg leading-8 max-w-xl mb-9">
-                Whey, créatine, mass gainers, vitamines et nutrition sportive.
-                Sélection premium pour accompagner tes objectifs sportifs.
-            </p>
-
-            <div class="flex flex-wrap gap-3">
-
-                <a href="#products" class="btn-gold px-7 py-4 rounded-xl flex items-center gap-3">
-                    Découvrir la boutique
-                    <i data-lucide="arrow-right" class="w-5 h-5"></i>
-                </a>
-
-                <a href="#offers" class="px-7 py-4 rounded-xl border border-white/20 hover:border-[#d4af37] transition flex items-center gap-3">
-                    Voir les offres
-                </a>
-
-            </div>
-
-            <div class="grid grid-cols-3 gap-5 mt-12 max-w-lg">
-
-                <div>
-                    <div class="text-2xl font-black">500+</div>
-                    <div class="text-xs text-gray-500 mt-1">Produits</div>
-                </div>
-
-                <div>
-                    <div class="text-2xl font-black">10K+</div>
-                    <div class="text-xs text-gray-500 mt-1">Clients</div>
-                </div>
-
-                <div>
-                    <div class="text-2xl font-black">24/48H</div>
-                    <div class="text-xs text-gray-500 mt-1">Livraison</div>
-                </div>
-
-            </div>
-
-        </div>
-    </div>
+<section class="hero">
+  <div class="eyebrow" data-fr="Projet pédagogique · OFPPT" data-ar="مشروع تعليمي · OFPPT">Projet pédagogique · OFPPT<br><span style="font-size:0.9em; font-weight:normal; color:var(--muted);">مشروع تعليمي · مكتب التكوين المهني وإنعاش الشغل</span></div>
+  <h2 data-fr="Explorer l’atelier, comprendre les risques." data-ar="اكتشف الورشة وافهم المخاطر.">Explorer l’atelier, comprendre les risques.<br><span style="font-size:0.75em; font-weight:normal; color:var(--muted);">استكشف الورشة، وافهم المخاطر.</span></h2>
+  <p data-fr="Cliquez sur les machines, les zones et les marquages au sol pour découvrir leur rôle, les risques associés, les mesures de prévention et les références utiles." data-ar="اضغط على الآلات والمناطق والخطوط الأرضية لاكتشاف دورها والمخاطر ووسائل الوقاية والمراجع المفيدة.">Cliquez sur les machines, les zones et les marquages au sol pour découvrir leur rôle, les risques associés, les mesures de prévention et les références utiles.<br><span style="font-size:0.9em; color:var(--muted);">انقر على الآلات، المناطق، والخطوط الأرضية اكتشاف دورها، المخاطر المرتبطة بها، تدابير الوقاية والمراجع المفيدة.</span></p>
+  <nav class="nav"><a href="#atelier" data-fr="Atelier interactif" data-ar="الورشة التفاعلية">Atelier interactif / الورشة التفاعلية</a><a href="#marquage" data-fr="Marquage au sol" data-ar="الخطوط الأرضية">Marquage au sol / الخطوط الأرضية</a><a href="#normes" data-fr="Normes et sources" data-ar="المعايير والمصادر">Normes et sources / المعايير والمصادر</a><a href="#quiz" data-fr="Mini-quiz" data-ar="اختبار قصير">Mini-quiz / اختبار قصير</a><a href="#fiches" data-fr="Fiches de Sécurité" data-ar="بطاقات السلامة">Fiches de Sécurité / بطاقات السلامة</a></nav>
 </section>
-
-<!-- TRUST -->
-<section class="border-y border-[#222] bg-[#0d0d0d]">
-    <div class="max-w-7xl mx-auto px-4 py-8 grid grid-cols-2 md:grid-cols-4 gap-6">
-
-        <div class="flex items-center gap-4">
-            <div class="w-12 h-12 rounded-xl bg-[#181818] flex items-center justify-center text-[#d4af37]">
-                <i data-lucide="shield-check"></i>
-            </div>
-            <div>
-                <b class="text-sm">Produits authentiques</b>
-                <p class="text-xs text-gray-500">Qualité contrôlée</p>
-            </div>
-        </div>
-
-        <div class="flex items-center gap-4">
-            <div class="w-12 h-12 rounded-xl bg-[#181818] flex items-center justify-center text-[#d4af37]">
-                <i data-lucide="truck"></i>
-            </div>
-            <div>
-                <b class="text-sm">Livraison rapide</b>
-                <p class="text-xs text-gray-500">Partout au Maroc</p>
-            </div>
-        </div>
-
-        <div class="flex items-center gap-4">
-            <div class="w-12 h-12 rounded-xl bg-[#181818] flex items-center justify-center text-[#d4af37]">
-                <i data-lucide="credit-card"></i>
-            </div>
-            <div>
-                <b class="text-sm">Paiement flexible</b>
-                <p class="text-xs text-gray-500">À la livraison</p>
-            </div>
-        </div>
-
-        <div class="flex items-center gap-4">
-            <div class="w-12 h-12 rounded-xl bg-[#181818] flex items-center justify-center text-[#d4af37]">
-                <i data-lucide="headphones"></i>
-            </div>
-            <div>
-                <b class="text-sm">Support client</b>
-                <p class="text-xs text-gray-500">7j/7</p>
-            </div>
-        </div>
-
+<main class="wrap">
+<section id="atelier">
+  <div class="section-head"><div><h2 data-fr="1. Atelier industriel interactif" data-ar="1. ورشة صناعية تفاعلية">1. Atelier industriel interactif<br><span style="font-size:0.75em; font-weight:normal; color:var(--muted);">1. ورشة صناعية تفاعلية</span></h2><p data-fr="Sélectionnez un point numéroté ou un élément dans la liste." data-ar="اختر نقطة مرقمة أو عنصراً من القائمة.">Sélectionnez un point numéroté ou un élément dans la liste.<br><span style="font-size:0.9em; color:var(--muted);">حدد نقطة مرقمة أو عنصراً من القائمة.</span></p></div><button class="btn secondary" id="floorToggle" data-fr="Masquer les marquages" data-ar="إخفاء الخطوط">Masquer les marquages / إخفاء الخطوط</button></div>
+  <div class="workshop-card">
+    <div class="workshop-toolbar"><div class="toolbar-left"><span class="tag" data-fr="Vue pédagogique illustrative" data-ar="رسم توضيحي تعليمي">Vue pédagogique illustrative / رؤية تعليمية توضيحية</span><span class="tag" data-fr="Zones cliquables" data-ar="مناطق قابلة للضغط">Zones cliquables / مناطق قابلة للضغط</span></div><span class="hint" data-fr="Utilisez les repères 1 à 8 pour explorer l’atelier." data-ar="استعمل العلامات من 1 إلى 8 لاستكشاف الورشة.">Utilisez les repères 1 à 8 pour explorer l’atelier.<br><span style="font-size:0.9em; color:var(--muted);">استخدم العلامات من 1 إلى 8 لاستكشاف الورشة.</span></span></div>
+    <div class="scene-wrap" id="sceneWrap">
+      <svg class="scene" viewBox="0 0 1200 610" role="img" aria-label="Illustration interactive d'un atelier industriel">
+        <defs>
+          <linearGradient id="wall" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#f8fbf9"/><stop offset="1" stop-color="#d8e2dd"/></linearGradient>
+          <linearGradient id="floor" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#c7d0cc"/><stop offset="1" stop-color="#aebbb5"/></linearGradient>
+          <linearGradient id="metal" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f6f8f7"/><stop offset=".5" stop-color="#87948e"/><stop offset="1" stop-color="#e9eeeb"/></linearGradient>
+          <pattern id="hazard" width="24" height="24" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="12" height="24" fill="#f9d728"/><rect x="12" width="12" height="24" fill="#202522"/></pattern>
+        </defs>
+        <rect width="1200" height="360" fill="url(#wall)"/>
+        <path d="M0 0H1200L1100 50H100Z" fill="#c4d0ca"/><path d="M80 0L165 360M300 0L350 360M540 0L555 360M780 0L760 360M1010 0L970 360" stroke="#c1cec7" stroke-width="5"/>
+        <g fill="#c9e4ef" stroke="#9aaea5" stroke-width="8"><rect x="105" y="55" width="170" height="105"/><rect x="360" y="55" width="170" height="105"/><rect x="615" y="55" width="170" height="105"/><rect x="870" y="55" width="170" height="105"/></g>
+        <g stroke="#fff" stroke-width="4"><path d="M190 55V160M105 108H275M445 55V160M360 108H530M700 55V160M615 108H785M955 55V160M870 108H1040"/></g>
+        <rect y="350" width="1200" height="260" fill="url(#floor)"/>
+        <path d="M0 350L1200 350M0 435L1200 435M0 520L1200 520" stroke="#899a92" stroke-width="2" opacity=".5"/>
+        <g class="floor-line" fill="none" stroke-width="13"><path d="M25 580L210 375H990L1175 580" stroke="#1769e0"/><path class="animated-dash" d="M70 605L255 397H945L1130 605" stroke="#ffda24"/><path d="M130 610L300 420H900L1070 610" stroke="#e32932"/><path d="M390 610L450 435H750L810 610" stroke="#ffda24"/></g>
+        <g class="floor-line"><path d="M470 610L505 448H695L730 610Z" fill="url(#hazard)" stroke="#171a18" stroke-width="3"/><path d="M500 610L525 468H675L700 610Z" fill="#303936"/><path d="M600 580V500M600 530l-18 18M600 530l18 18" stroke="#ffd928" stroke-width="9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+        <!-- drill press -->
+        <g transform="translate(85 260)" class="animated-svg-element"><rect x="10" y="120" width="145" height="28" rx="5" fill="url(#metal)" stroke="#596660" stroke-width="3"/><rect x="65" y="10" width="38" height="112" fill="#1769e0" stroke="#42564d" stroke-width="4"/><rect x="40" y="5" width="88" height="30" rx="5" fill="#e9efec" stroke="#53625c" stroke-width="4"/><circle cx="84" cy="20" r="9" fill="#303a35"/><rect x="57" y="65" width="54" height="16" fill="#87968f"/><path d="M83 80v27" stroke="#242c28" stroke-width="6"/><rect x="28" y="143" width="110" height="18" fill="#343c38"/><rect x="38" y="163" width="15" height="20" fill="#343c38"/><rect x="113" y="163" width="15" height="20" fill="#343c38"/></g>
+        <!-- lathe -->
+        <g transform="translate(300 290)"><rect x="0" y="70" width="220" height="75" rx="7" fill="#e7ece9" stroke="#485650" stroke-width="4"/><rect x="18" y="28" width="72" height="48" rx="6" fill="#dce5e0" stroke="#485650" stroke-width="4"/><circle class="animated-svg-element" cx="55" cy="52" r="18" fill="#343d38" stroke="#aab6b0" stroke-width="5"/><rect x="90" y="42" width="94" height="16" fill="#8a9992"/><rect x="178" y="28" width="25" height="48" fill="#dce5e0" stroke="#485650" stroke-width="3"/><rect x="25" y="145" width="18" height="25" fill="#313a35"/><rect x="185" y="145" width="18" height="25" fill="#313a35"/><rect x="8" y="75" width="205" height="12" fill="url(#hazard)"/></g>
+        <!-- CNC -->
+        <g transform="translate(535 225)"><rect x="0" y="40" width="245" height="185" rx="8" fill="#697770" stroke="#36433c" stroke-width="5"/><rect x="20" y="57" width="205" height="112" rx="5" fill="#202a26" stroke="#aebbb4" stroke-width="5"/><rect x="36" y="70" width="170" height="82" fill="#b8d3d9"/><path d="M45 143L190 79" stroke="#718b89" stroke-width="3"/><rect x="88" y="85" width="58" height="10" fill="#5a6862"/><rect x="110" y="95" width="14" height="36" fill="#3a4540"/><rect x="16" y="177" width="213" height="25" fill="#d5ded9"/><rect x="190" y="45" width="38" height="18" fill="#1d2924"/><circle class="animated-svg-element" cx="207" cy="53" r="4" fill="#ffcf27"/><rect x="20" y="225" width="25" height="23" fill="#303a35"/><rect x="200" y="225" width="25" height="23" fill="#303a35"/></g>
+        <!-- work bench -->
+        <g transform="translate(830 330)"><rect x="0" y="0" width="220" height="20" rx="3" fill="#b57d43"/><rect x="12" y="20" width="12" height="100" fill="#1769e0"/><rect x="194" y="20" width="12" height="100" fill="#1769e0"/><rect x="-10" y="118" width="240" height="12" fill="#1769e0"/><rect x="50" y="-22" width="40" height="22" fill="#d3ded8"/><rect x="110" y="-26" width="44" height="26" fill="#d3ded8"/></g>
+        <!-- saw / conveyor -->
+        <g transform="translate(930 235)"><rect x="0" y="55" width="170" height="60" rx="5" fill="#e9efec" stroke="#485650" stroke-width="4"/><circle class="animated-svg-element" cx="48" cy="56" r="30" fill="#333d38" stroke="#b5c2bb" stroke-width="5"/><circle cx="48" cy="56" r="9" fill="#b5c2bb"/><rect x="75" y="40" width="75" height="16" fill="#53615a"/><rect x="10" y="115" width="15" height="24" fill="#343d38"/><rect x="145" y="115" width="15" height="24" fill="#343d38"/><rect x="10" y="140" width="180" height="13" fill="#202724"/></g>
+        <g transform="translate(850 465)"><rect width="300" height="20" fill="#38433d"/><rect y="26" width="300" height="17" fill="#89968f"/><g fill="#d3ddd7" class="animated-svg-element"><circle cx="20" cy="10" r="7"/><circle cx="55" cy="10" r="7"/><circle cx="90" cy="10" r="7"/><circle cx="125" cy="10" r="7"/><circle cx="160" cy="10" r="7"/><circle cx="195" cy="10" r="7"/><circle cx="230" cy="10" r="7"/><circle cx="265" cy="10" r="7"/></g><path d="M15 43v30M280 43v30" stroke="#343d38" stroke-width="10"/></g>
+        <!-- electrical cabinet -->
+        <g transform="translate(30 180)"><rect width="48" height="110" rx="4" fill="#e8eeeb" stroke="#35423b" stroke-width="3"/><rect x="8" y="12" width="32" height="28" fill="#202925"/><circle class="animated-svg-element" cx="17" cy="57" r="5" fill="#15995d"/><circle class="animated-svg-element" cx="32" cy="57" r="5" fill="#e32932"/><rect x="8" y="73" width="32" height="22" fill="#c4d0c9"/><path d="M0 0H48" stroke="#ffd928" stroke-width="7"/></g>
+        <!-- extinguisher -->
+        <g transform="translate(1120 175)"><rect x="7" y="17" width="28" height="62" rx="8" fill="#e32932" stroke="#8d1e23" stroke-width="3"/><rect x="14" y="6" width="15" height="13" fill="#303936"/><path d="M14 7Q-5 4 0 24" fill="none" stroke="#303936" stroke-width="4"/><rect x="12" y="36" width="18" height="20" fill="#fff"/><path d="M21 39v13M15 45h12" stroke="#e32932" stroke-width="3"/></g>
+        <!-- signs -->
+        <g transform="translate(1020 35)"><rect width="120" height="45" rx="5" fill="#0b875a"/><text x="60" y="18" font-size="12" fill="white" text-anchor="middle" font-weight="bold">SORTIE</text><text x="60" y="33" font-size="11" fill="white" text-anchor="middle">DE SECOURS →</text></g>
+        <g transform="translate(25 30)"><rect width="145" height="52" rx="6" fill="#075e43"/><text x="72" y="21" font-size="14" fill="white" text-anchor="middle" font-weight="bold">PORT DES EPI</text><text x="72" y="39" font-size="12" fill="white" text-anchor="middle">OBLIGATOIRE</text></g>
+        <!-- SVG 2003 Enhancement Badge -->
+        <g transform="translate(525 15)" class="animated-svg-element">
+          <rect width="150" height="32" rx="8" fill="#1769e0" stroke="#ffda24" stroke-width="2"/>
+          <text x="75" y="21" font-size="13" fill="#fff" text-anchor="middle" font-weight="bold">★ EST. 2003 QHSE ★</text>
+        </g>
+        <g class="floor-line"><g transform="translate(60 480)"><rect width="180" height="34" rx="6" fill="#1769e0"/><text x="90" y="22" font-size="15" fill="white" text-anchor="middle" font-weight="bold">ZONE DE TRAVAIL</text></g><g transform="translate(435 545)"><rect width="330" height="32" rx="6" fill="#ffda24"/><text x="165" y="21" font-size="15" fill="#202522" text-anchor="middle" font-weight="bold">CIRCULATION PIÉTONNE</text></g></g>
+        <g class="hotspot" tabindex="0" role="button" aria-label="Perceuse" data-item="drill"><circle cx="155" cy="315" r="20"/><text x="155" y="315">1</text></g>
+        <g class="hotspot" tabindex="0" role="button" aria-label="Tour" data-item="lathe"><circle cx="405" cy="330" r="20"/><text x="405" y="330">2</text></g>
+        <g class="hotspot" tabindex="0" role="button" aria-label="Centre CNC" data-item="cnc"><circle cx="660" cy="290" r="20"/><text x="660" y="290">3</text></g>
+        <g class="hotspot" tabindex="0" role="button" aria-label="Établi" data-item="bench"><circle cx="930" cy="315" r="20"/><text x="930" y="315">4</text></g>
+        <g class="hotspot" tabindex="0" role="button" aria-label="Scie" data-item="saw"><circle cx="1010" cy="275" r="20"/><text x="1010" y="275">5</text></g>
+        <g class="hotspot" tabindex="0" role="button" aria-label="Convoyeur" data-item="conveyor"><circle cx="1010" cy="470" r="20"/><text x="1010" y="470">6</text></g>
+        <g class="hotspot" tabindex="0" role="button" aria-label="Armoire électrique" data-item="electric"><circle cx="53" cy="205" r="20"/><text x="53" y="205">7</text></g>
+        <g class="hotspot" tabindex="0" role="button" aria-label="Marquage au sol" data-item="floor"><circle cx="600" cy="450" r="20"/><text x="600" y="450">8</text></g>
+      </svg>
     </div>
-</section>
-
-<!-- CATEGORIES -->
-<section id="categories" class="py-24">
-
-    <div class="max-w-7xl mx-auto px-4">
-
-        <div class="text-center mb-12">
-            <span class="text-[#d4af37] text-sm font-bold uppercase tracking-[3px]">
-                SHOP BY CATEGORY
-            </span>
-
-            <h2 class="section-title mt-3">
-                Trouve ton <span class="gold-gradient">essentiel</span>
-            </h2>
-        </div>
-
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-
-            <button onclick="filterCategory('Whey')" class="category-card rounded-2xl p-6 text-center bg-[#111]">
-                <div class="text-4xl mb-4">🥛</div>
-                <h3 class="font-bold">Whey</h3>
-                <p class="text-xs text-gray-500 mt-1">Protéines</p>
-            </button>
-
-            <button onclick="filterCategory('Creatine')" class="category-card rounded-2xl p-6 text-center bg-[#111]">
-                <div class="text-4xl mb-4">⚡</div>
-                <h3 class="font-bold">Créatine</h3>
-                <p class="text-xs text-gray-500 mt-1">Performance</p>
-            </button>
-
-            <button onclick="filterCategory('Gainer')" class="category-card rounded-2xl p-6 text-center bg-[#111]">
-                <div class="text-4xl mb-4">💪</div>
-                <h3 class="font-bold">Gainer</h3>
-                <p class="text-xs text-gray-500 mt-1">Prise de masse</p>
-            </button>
-
-            <button onclick="filterCategory('Pre-Workout')" class="category-card rounded-2xl p-6 text-center bg-[#111]">
-                <div class="text-4xl mb-4">🔥</div>
-                <h3 class="font-bold">Pre-Workout</h3>
-                <p class="text-xs text-gray-500 mt-1">Énergie</p>
-            </button>
-
-            <button onclick="filterCategory('Vitamins')" class="category-card rounded-2xl p-6 text-center bg-[#111]">
-                <div class="text-4xl mb-4">💊</div>
-                <h3 class="font-bold">Vitamines</h3>
-                <p class="text-xs text-gray-500 mt-1">Bien-être</p>
-            </button>
-
-            <button onclick="filterCategory('Accessories')" class="category-card rounded-2xl p-6 text-center bg-[#111]">
-                <div class="text-4xl mb-4">🎒</div>
-                <h3 class="font-bold">Accessoires</h3>
-                <p class="text-xs text-gray-500 mt-1">Gym</p>
-            </button>
-
-        </div>
+    <div class="scene-legend">
+      <span class="legend-item"><i class="swatch sw-yellow"></i><span data-fr="Circulation / délimitation selon le plan" data-ar="مسارات أو تحديد المناطق حسب المخطط">Circulation / délimitation selon le plan / الحركة والتحديد حسب المخطط</span></span>
+      <span class="legend-item"><i class="swatch sw-blue"></i><span data-fr="Zone de travail dans cet exemple" data-ar="منطقة عمل في هذا المثال">Zone de travail dans cet exemple / منطقة عمل في هذا المثال</span></span>
+      <span class="legend-item"><i class="swatch sw-red"></i><span data-fr="Zone signalée selon l’évaluation des risques" data-ar="منطقة محددة حسب تقييم المخاطر">Zone signalée selon l’évaluation des risques / منطقة محددة حسب تقييم المخاطر</span></span>
+      <span class="legend-item"><i class="swatch sw-hazard"></i><span data-fr="Danger / obstacle à signaler" data-ar="خطر أو عائق يجب التنبيه إليه">Danger / obstacle à signaler / خطر أو عائق يجب التنبيه إليه</span></span>
     </div>
-</section>
-
-<!-- PRODUCTS -->
-<section id="products" class="py-24 bg-[#0d0d0d]">
-
-    <div class="max-w-7xl mx-auto px-4">
-
-        <div class="flex flex-col md:flex-row justify-between md:items-end gap-6 mb-10">
-
-            <div>
-                <span class="text-[#d4af37] text-sm font-bold tracking-[3px]">
-                    COLLECTION
-                </span>
-
-                <h2 class="section-title mt-2">
-                    Produits <span class="gold-gradient">populaires</span>
-                </h2>
-            </div>
-
-            <div class="flex flex-wrap gap-3">
-
-                <select id="sortSelect" onchange="renderProducts()" class="bg-[#151515] border border-[#292929] rounded-xl px-4 py-3 text-sm">
-                    <option value="default">Trier par</option>
-                    <option value="priceAsc">Prix croissant</option>
-                    <option value="priceDesc">Prix décroissant</option>
-                    <option value="rating">Mieux notés</option>
-                </select>
-
-                <button onclick="filterCategory('all')" class="px-5 py-3 rounded-xl border border-[#292929] hover:border-[#d4af37] text-sm">
-                    Tout
-                </button>
-
-            </div>
-        </div>
-
-        <div id="productsGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6"></div>
-
-        <div id="emptyProducts" class="hidden text-center py-20">
-            <div class="text-5xl mb-5">🔍</div>
-            <h3 class="text-xl font-bold">Aucun produit trouvé</h3>
-            <p class="text-gray-500 mt-2">Essaie une autre recherche.</p>
-        </div>
-
-    </div>
-</section>
-
-<!-- OFFERS -->
-<section id="offers" class="py-24">
-
-    <div class="max-w-7xl mx-auto px-4">
-
-        <div class="rounded-3xl overflow-hidden relative border border-[#332b14] bg-gradient-to-br from-[#17130a] to-[#0d0d0d]">
-
-            <div class="absolute right-0 top-0 w-96 h-96 bg-[#d4af37]/10 blur-[100px] rounded-full"></div>
-
-            <div class="relative p-8 md:p-16 flex flex-col md:flex-row items-center justify-between gap-10">
-
-                <div>
-                    <span class="text-[#d4af37] font-bold text-sm tracking-[3px]">
-                        OFFRE LIMITÉE
-                    </span>
-
-                    <h2 class="text-4xl md:text-6xl font-black mt-4">
-                        Jusqu'à <span class="gold-gradient">-25%</span>
-                    </h2>
-
-                    <p class="text-gray-400 mt-5 max-w-xl">
-                        Profite de nos offres spéciales sur une sélection de produits
-                        de nutrition sportive.
-                    </p>
-
-                    <a href="#products" class="inline-flex btn-gold px-7 py-4 rounded-xl mt-7">
-                        Acheter maintenant
-                    </a>
-                </div>
-
-                <div class="text-center">
-                    <div class="text-7xl">🔥</div>
-                    <p class="text-[#d4af37] font-black mt-4">FLASH SALE</p>
-                </div>
-
-            </div>
-        </div>
-
-    </div>
-</section>
-
-<!-- WHY US -->
-<section id="about" class="py-24 bg-[#0d0d0d]">
-
-    <div class="max-w-7xl mx-auto px-4">
-
-        <div class="grid lg:grid-cols-2 gap-16 items-center">
-
-            <div>
-
-                <span class="text-[#d4af37] text-sm font-bold tracking-[3px]">
-                    POURQUOI NUTRIX
-                </span>
-
-                <h2 class="section-title mt-4">
-                    Plus qu'une boutique.<br>
-                    <span class="gold-gradient">Un lifestyle.</span>
-                </h2>
-
-                <p class="text-gray-400 leading-8 mt-6">
-                    Notre objectif est simple : proposer une expérience premium
-                    aux passionnés de sport et de fitness au Maroc.
-                </p>
-
-                <div class="space-y-5 mt-8">
-
-                    <div class="flex gap-4">
-                        <div class="w-12 h-12 shrink-0 rounded-xl bg-[#19160d] text-[#d4af37] flex items-center justify-center">
-                            <i data-lucide="badge-check"></i>
-                        </div>
-
-                        <div>
-                            <h3 class="font-bold">Sélection soigneuse</h3>
-                            <p class="text-sm text-gray-500 mt-1">
-                                Une gamme pensée pour différents objectifs sportifs.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="flex gap-4">
-                        <div class="w-12 h-12 shrink-0 rounded-xl bg-[#19160d] text-[#d4af37] flex items-center justify-center">
-                            <i data-lucide="package-check"></i>
-                        </div>
-
-                        <div>
-                            <h3 class="font-bold">Commande simple</h3>
-                            <p class="text-sm text-gray-500 mt-1">
-                                Ajoute tes produits, renseigne tes coordonnées et commande.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="flex gap-4">
-                        <div class="w-12 h-12 shrink-0 rounded-xl bg-[#19160d] text-[#d4af37] flex items-center justify-center">
-                            <i data-lucide="message-circle"></i>
-                        </div>
-
-                        <div>
-                            <h3 class="font-bold">Support rapide</h3>
-                            <p class="text-sm text-gray-500 mt-1">
-                                Notre équipe est disponible pour t'aider.
-                            </p>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-            <div class="grid grid-cols-2 gap-4">
-
-                <div class="rounded-3xl bg-[#151515] border border-[#252525] p-7 min-h-[190px] flex flex-col justify-between">
-                    <i data-lucide="users" class="text-[#d4af37] w-8 h-8"></i>
-                    <div>
-                        <div class="text-4xl font-black">10K+</div>
-                        <p class="text-gray-500 text-sm">Clients satisfaits</p>
-                    </div>
-                </div>
-
-                <div class="rounded-3xl bg-[#151515] border border-[#252525] p-7 min-h-[190px] flex flex-col justify-between mt-8">
-                    <i data-lucide="boxes" class="text-[#d4af37] w-8 h-8"></i>
-                    <div>
-                        <div class="text-4xl font-black">500+</div>
-                        <p class="text-gray-500 text-sm">Références</p>
-                    </div>
-                </div>
-
-                <div class="rounded-3xl bg-[#151515] border border-[#252525] p-7 min-h-[190px] flex flex-col justify-between">
-                    <i data-lucide="map-pin" class="text-[#d4af37] w-8 h-8"></i>
-                    <div>
-                        <div class="text-4xl font-black">24/48H</div>
-                        <p class="text-gray-500 text-sm">Livraison</p>
-                    </div>
-                </div>
-
-                <div class="rounded-3xl bg-[#151515] border border-[#252525] p-7 min-h-[190px] flex flex-col justify-between mt-8">
-                    <i data-lucide="star" class="text-[#d4af37] w-8 h-8"></i>
-                    <div>
-                        <div class="text-4xl font-black">4.9/5</div>
-                        <p class="text-gray-500 text-sm">Satisfaction</p>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-    </div>
-</section>
-
-<!-- REVIEWS -->
-<section class="py-24">
-
-    <div class="max-w-7xl mx-auto px-4">
-
-        <div class="text-center mb-12">
-
-            <span class="text-[#d4af37] text-sm font-bold tracking-[3px]">
-                AVIS CLIENTS
-            </span>
-
-            <h2 class="section-title mt-3">
-                Ils parlent de <span class="gold-gradient">NUTRIX</span>
-            </h2>
-
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-5">
-
-            <div class="bg-[#121212] border border-[#252525] rounded-2xl p-7">
-                <div class="text-[#d4af37]">★★★★★</div>
-                <p class="text-gray-400 leading-7 mt-5">
-                    "Commande rapide, produit bien emballé et livraison parfaite."
-                </p>
-
-                <div class="flex items-center gap-3 mt-7">
-                    <div class="w-10 h-10 rounded-full bg-[#242424] flex items-center justify-center font-bold">Y</div>
-                    <div>
-                        <b>Youssef</b>
-                        <p class="text-xs text-gray-500">Casablanca</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bg-[#121212] border border-[#252525] rounded-2xl p-7">
-                <div class="text-[#d4af37]">★★★★★</div>
-                <p class="text-gray-400 leading-7 mt-5">
-                    "Le site est simple et j'ai pu commander facilement via WhatsApp."
-                </p>
-
-                <div class="flex items-center gap-3 mt-7">
-                    <div class="w-10 h-10 rounded-full bg-[#242424] flex items-center justify-center font-bold">A</div>
-                    <div>
-                        <b>Amine</b>
-                        <p class="text-xs text-gray-500">Rabat</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bg-[#121212] border border-[#252525] rounded-2xl p-7">
-                <div class="text-[#d4af37]">★★★★★</div>
-                <p class="text-gray-400 leading-7 mt-5">
-                    "Très bonne expérience, je recommande pour les commandes sportives."
-                </p>
-
-                <div class="flex items-center gap-3 mt-7">
-                    <div class="w-10 h-10 rounded-full bg-[#242424] flex items-center justify-center font-bold">M</div>
-                    <div>
-                        <b>Mehdi</b>
-                        <p class="text-xs text-gray-500">Tanger</p>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-    </div>
-</section>
-
-<!-- NEWSLETTER -->
-<section class="py-20 bg-[#0d0d0d]">
-
-    <div class="max-w-4xl mx-auto px-4 text-center">
-
-        <div class="w-16 h-16 mx-auto rounded-2xl bg-[#19160d] text-[#d4af37] flex items-center justify-center">
-            <i data-lucide="mail" class="w-7 h-7"></i>
-        </div>
-
-        <h2 class="text-3xl md:text-4xl font-black mt-6">
-            Reçois nos <span class="gold-gradient">offres</span>
-        </h2>
-
-        <p class="text-gray-500 mt-3">
-            Nouveautés, promotions et offres exclusives.
-        </p>
-
-        <div class="flex flex-col sm:flex-row gap-3 mt-8 max-w-xl mx-auto">
-            <input id="newsletterEmail"
-                   type="email"
-                   placeholder="Ton adresse email"
-                   class="flex-1 bg-[#151515] border border-[#292929] rounded-xl px-5 py-4">
-            <button onclick="subscribe()" class="btn-gold rounded-xl px-7 py-4">
-                S'inscrire
-            </button>
-        </div>
-
-    </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact" class="py-24">
-
-    <div class="max-w-7xl mx-auto px-4">
-
-        <div class="grid lg:grid-cols-2 gap-12">
-
-            <div>
-                <span class="text-[#d4af37] text-sm font-bold tracking-[3px]">
-                    CONTACT
-                </span>
-
-                <h2 class="section-title mt-4">
-                    Besoin d'aide ?
-                </h2>
-
-                <p class="text-gray-500 mt-5 leading-8">
-                    Une question sur un produit, une commande ou la livraison ?
-                    Contacte-nous directement.
-                </p>
-
-                <div class="space-y-4 mt-8">
-
-                    <a href="https://wa.me/212600000000" target="_blank"
-                       class="flex items-center gap-4 p-5 rounded-2xl bg-[#151515] border border-[#252525] hover:border-[#d4af37]">
-                        <div class="w-12 h-12 rounded-xl bg-[#153d28] text-green-400 flex items-center justify-center">
-                            <i data-lucide="message-circle"></i>
-                        </div>
-
-                        <div>
-                            <b>WhatsApp</b>
-                            <p class="text-sm text-gray-500">Réponse rapide</p>
-                        </div>
-                    </a>
-
-                    <div class="flex items-center gap-4 p-5 rounded-2xl bg-[#151515] border border-[#252525]">
-                        <div class="w-12 h-12 rounded-xl bg-[#19160d] text-[#d4af37] flex items-center justify-center">
-                            <i data-lucide="clock"></i>
-                        </div>
-
-                        <div>
-                            <b>Horaires</b>
-                            <p class="text-sm text-gray-500">Lun - Sam : 09:00 - 20:00</p>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-            <form onsubmit="sendContact(event)" class="bg-[#121212] border border-[#252525] rounded-3xl p-7 md:p-9">
-
-                <h3 class="text-xl font-black mb-6">
-                    Envoyer un message
-                </h3>
-
-                <div class="space-y-4">
-
-                    <input id="contactName"
-                           required
-                           placeholder="Nom complet"
-                           class="w-full bg-[#181818] border border-[#292929] rounded-xl px-5 py-4">
-
-                    <input id="contactPhone"
-                           required
-                           placeholder="Téléphone"
-                           class="w-full bg-[#181818] border border-[#292929] rounded-xl px-5 py-4">
-
-                    <textarea id="contactMessage"
-                              required
-                              rows="5"
-                              placeholder="Votre message..."
-                              class="w-full bg-[#181818] border border-[#292929] rounded-xl px-5 py-4"></textarea>
-
-                    <button class="w-full btn-gold py-4 rounded-xl">
-                        Envoyer sur WhatsApp
-                    </button>
-
-                </div>
-
-            </form>
-
-        </div>
-    </div>
-</section>
-
-<!-- FOOTER -->
-<footer class="border-t border-[#222] bg-[#080808]">
-
-    <div class="max-w-7xl mx-auto px-4 py-14">
-
-        <div class="grid md:grid-cols-4 gap-10">
-
-            <div class="md:col-span-2">
-
-                <div class="flex items-center gap-3">
-                    <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-[#f5d06f] to-[#9e7818] flex items-center justify-center text-black font-black text-xl">
-                        N
-                    </div>
-
-                    <div>
-                        <div class="font-black text-xl">NUTRIX</div>
-                        <div class="text-[9px] text-gray-500 tracking-[4px]">SPORTS NUTRITION</div>
-                    </div>
-                </div>
-
-                <p class="text-gray-500 max-w-md mt-5 leading-7">
-                    Votre boutique de nutrition sportive au Maroc.
-                    Whey, créatine, gainer et plus.
-                </p>
-
-                <div class="flex gap-3 mt-6">
-
-                    <a href="#" class="w-10 h-10 rounded-xl bg-[#151515] border border-[#252525] flex items-center justify-center">
-                        <i data-lucide="instagram" class="w-4 h-4"></i>
-                    </a>
-
-                    <a href="#" class="w-10 h-10 rounded-xl bg-[#151515] border border-[#252525] flex items-center justify-center">
-                        <i data-lucide="facebook" class="w-4 h-4"></i>
-                    </a>
-
-                    <a href="https://wa.me/212600000000" class="w-10 h-10 rounded-xl bg-[#151515] border border-[#252525] flex items-center justify-center">
-                        <i data-lucide="message-circle" class="w-4 h-4"></i>
-                    </a>
-
-                </div>
-
-            </div>
-
-            <div>
-                <h4 class="font-bold mb-5">Boutique</h4>
-
-                <div class="space-y-3 text-sm text-gray-500">
-                    <a href="#products" class="block hover:text-white">Tous les produits</a>
-                    <a href="#categories" class="block hover:text-white">Whey</a>
-                    <a href="#categories" class="block hover:text-white">Créatine</a>
-                    <a href="#categories" class="block hover:text-white">Gainers</a>
-                    <a href="#offers" class="block hover:text-white">Promotions</a>
-                </div>
-            </div>
-
-            <div>
-                <h4 class="font-bold mb-5">Informations</h4>
-
-                <div class="space-y-3 text-sm text-gray-500">
-                    <a href="#" class="block hover:text-white">Livraison</a>
-                    <a href="#" class="block hover:text-white">Conditions de vente</a>
-                    <a href="#" class="block hover:text-white">Politique de confidentialité</a>
-                    <a href="#contact" class="block hover:text-white">Contact</a>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="border-t border-[#222] mt-12 pt-7 flex flex-col md:flex-row justify-between gap-4 text-xs text-gray-600">
-            <p>© 2026 NUTRIX. Tous droits réservés.</p>
-            <p>Made for athletes • Morocco 🇲🇦</p>
-        </div>
-
-    </div>
-</footer>
-
-<!-- SEARCH MODAL -->
-<div id="searchModal" class="fixed inset-0 z-[200] hidden">
-
-    <div class="absolute inset-0 bg-black/80" onclick="closeSearch()"></div>
-
-    <div class="relative max-w-2xl mx-auto mt-24 px-4">
-
-        <div class="bg-[#111] border border-[#292929] rounded-2xl p-5">
-
-            <div class="flex items-center gap-3">
-                <i data-lucide="search" class="text-gray-500"></i>
-
-                <input id="searchInput"
-                       oninput="searchProducts()"
-                       autofocus
-                       placeholder="Rechercher whey, créatine..."
-                       class="flex-1 bg-transparent outline-none text-lg">
-
-                <button onclick="closeSearch()">
-                    <i data-lucide="x"></i>
-                </button>
-            </div>
-
-            <div id="searchResults" class="mt-5 max-h-[500px] overflow-y-auto"></div>
-
-        </div>
-
-    </div>
-</div>
-
-<!-- CART DRAWER -->
-<div id="cartModal" class="fixed inset-0 z-[150] hidden">
-
-    <div class="absolute inset-0 bg-black/70" onclick="closeCart()"></div>
-
-    <div class="absolute right-0 top-0 h-full w-full sm:w-[470px] bg-[#101010] border-l border-[#292929] flex flex-col">
-
-        <div class="p-6 border-b border-[#252525] flex items-center justify-between">
-
-            <div>
-                <h2 class="text-xl font-black">Votre panier</h2>
-                <p id="cartSubtitle" class="text-xs text-gray-500 mt-1">0 produit</p>
-            </div>
-
-            <button onclick="closeCart()" class="w-10 h-10 rounded-xl border border-[#292929] flex items-center justify-center">
-                <i data-lucide="x"></i>
-            </button>
-
-        </div>
-
-        <div id="cartItems" class="flex-1 overflow-y-auto p-5"></div>
-
-        <div class="border-t border-[#252525] p-6">
-
-            <div class="flex justify-between mb-5">
-                <span class="text-gray-500">Sous-total</span>
-                <strong id="cartTotal" class="text-xl">0 DH</strong>
-            </div>
-
-            <button onclick="openCheckout()" class="w-full btn-gold py-4 rounded-xl font-black">
-                Passer la commande
-            </button>
-
-        </div>
-
-    </div>
-</div>
-
-<!-- PRODUCT MODAL -->
-<div id="productModal" class="fixed inset-0 z-[180] hidden">
-
-    <div class="absolute inset-0 bg-black/80" onclick="closeProduct()"></div>
-
-    <div class="relative max-w-4xl mx-auto mt-10 md:mt-20 px-4">
-
-        <div class="modal bg-[#111] border border-[#292929] rounded-3xl overflow-hidden">
-
-            <div id="productDetails"></div>
-
-        </div>
-
-    </div>
-</div>
-
-<!-- CHECKOUT -->
-<div id="checkoutModal" class="fixed inset-0 z-[220] hidden overflow-y-auto">
-
-    <div class="absolute inset-0 bg-black/80" onclick="closeCheckout()"></div>
-
-    <div class="relative max-w-xl mx-auto my-10 px-4">
-
-        <div class="bg-[#111] border border-[#292929] rounded-3xl p-7">
-
-            <div class="flex justify-between items-center mb-7">
-
-                <div>
-                    <h2 class="text-2xl font-black">Finaliser la commande</h2>
-                    <p class="text-sm text-gray-500 mt-1">Remplis tes informations</p>
-                </div>
-
-                <button onclick="closeCheckout()">
-                    <i data-lucide="x"></i>
-                </button>
-
-            </div>
-
-            <form onsubmit="submitOrder(event)" class="space-y-4">
-
-                <input id="customerName"
-                       required
-                       placeholder="Nom complet"
-                       class="w-full bg-[#181818] border border-[#292929] rounded-xl px-5 py-4">
-
-                <input id="customerPhone"
-                       required
-                       placeholder="Téléphone"
-                       class="w-full bg-[#181818] border border-[#292929] rounded-xl px-5 py-4">
-
-                <input id="customerCity"
-                       required
-                       placeholder="Ville"
-                       class="w-full bg-[#181818] border border-[#292929] rounded-xl px-5 py-4">
-
-                <input id="customerAddress"
-                       required
-                       placeholder="Adresse de livraison"
-                       class="w-full bg-[#181818] border border-[#292929] rounded-xl px-5 py-4">
-
-                <select id="paymentMethod"
-                        class="w-full bg-[#181818] border border-[#292929] rounded-xl px-5 py-4">
-                    <option>Paiement à la livraison</option>
-                    <option>Virement bancaire</option>
-                </select>
-
-                <textarea id="customerNote"
-                          rows="3"
-                          placeholder="Note de commande (optionnel)"
-                          class="w-full bg-[#181818] border border-[#292929] rounded-xl px-5 py-4"></textarea>
-
-                <div class="rounded-2xl bg-[#181818] border border-[#292929] p-5">
-                    <div class="flex justify-between">
-                        <span class="text-gray-500">Total</span>
-                        <strong id="checkoutTotal" class="text-[#d4af37] text-xl">0 DH</strong>
-                    </div>
-                </div>
-
-                <button type="submit" class="w-full btn-gold py-4 rounded-xl font-black flex items-center justify-center gap-2">
-                    <i data-lucide="message-circle"></i>
-                    Confirmer via WhatsApp
-                </button>
-
-            </form>
-
-        </div>
-
-    </div>
-</div>
-
-<!-- FAVORITES -->
-<div id="favoritesModal" class="fixed inset-0 z-[170] hidden">
-
-    <div class="absolute inset-0 bg-black/80" onclick="closeFavorites()"></div>
-
-    <div class="relative max-w-5xl mx-auto mt-10 px-4">
-
-        <div class="bg-[#111] border border-[#292929] rounded-3xl p-7">
-
-            <div class="flex justify-between mb-7">
-                <h2 class="text-2xl font-black">Mes favoris ❤️</h2>
-
-                <button onclick="closeFavorites()">
-                    <i data-lucide="x"></i>
-                </button>
-            </div>
-
-            <div id="favoritesGrid" class="grid grid-cols-2 md:grid-cols-4 gap-5"></div>
-
-        </div>
-
-    </div>
-</div>
-
-<!-- TOAST -->
-<div id="toastContainer" class="fixed bottom-5 right-5 z-[500] space-y-3"></div>
-
-<script>
-
-/* =========================================================
-   CONFIGURATION
-========================================================= */
-
-const WHATSAPP_NUMBER = "212600000000";
-
-/*
-   IMPORTANT:
-   Remplace 212600000000 par ton vrai numéro WhatsApp.
-*/
-
-const products = [
-
-{
-    id:1,
-    name:"Gold Whey Premium",
-    category:"Whey",
-    price:449,
-    oldPrice:499,
-    rating:4.9,
-    reviews:128,
-    badge:"BEST SELLER",
-    image:"https://images.unsplash.com/photo-1593095948071-474c5cc2989d?auto=format&fit=crop&w=800&q=80",
-    description:"Protéine whey premium pour compléter facilement ton apport quotidien en protéines.",
-    flavors:["Vanille","Chocolat","Fraise"],
-    size:"2 KG"
-},
-
-{
-    id:2,
-    name:"100% Whey Isolate",
-    category:"Whey",
-    price:529,
-    oldPrice:599,
-    rating:4.8,
-    reviews:96,
-    badge:"PREMIUM",
-    image:"https://images.unsplash.com/photo-1593095948071-474c5cc2989d?auto=format&fit=crop&w=800&q=80",
-    description:"Isolat de whey avec une formule simple et pratique pour les sportifs.",
-    flavors:["Chocolat","Vanille"],
-    size:"1.8 KG"
-},
-
-{
-    id:3,
-    name:"Creatine Monohydrate",
-    category:"Creatine",
-    price:249,
-    oldPrice:299,
-    rating:4.9,
-    reviews:215,
-    badge:"TOP",
-    image:"https://images.unsplash.com/photo-1579722821273-0f6c1d443b9f?auto=format&fit=crop&w=800&q=80",
-    description:"Créatine monohydrate en poudre destinée aux personnes pratiquant une activité sportive.",
-    flavors:["Sans saveur"],
-    size:"300 G"
-},
-
-{
-    id:4,
-    name:"Mass Gainer Pro",
-    category:"Gainer",
-    price:399,
-    oldPrice:449,
-    rating:4.7,
-    reviews:84,
-    badge:"PROMO",
-    image:"https://images.unsplash.com/photo-1579722821273-0f6c1d443b9f?auto=format&fit=crop&w=800&q=80",
-    description:"Gainer destiné à compléter l'alimentation des personnes recherchant un apport calorique supplémentaire.",
-    flavors:["Chocolat","Vanille"],
-    size:"3 KG"
-},
-
-{
-    id:5,
-    name:"Pre Workout Energy",
-    category:"Pre-Workout",
-    price:289,
-    oldPrice:329,
-    rating:4.8,
-    reviews:72,
-    badge:"NEW",
-    image:"https://images.unsplash.com/photo-1579758629938-03607ccdbaba?auto=format&fit=crop&w=800&q=80",
-    description:"Formule pré-entraînement conçue pour accompagner les séances intenses.",
-    flavors:["Fruit Rouge","Cola"],
-    size:"300 G"
-},
-
-{
-    id:6,
-    name:"BCAA Recovery",
-    category:"Accessories",
-    price:229,
-    oldPrice:259,
-    rating:4.6,
-    reviews:61,
-    badge:"",
-    image:"https://images.unsplash.com/photo-1579758629938-03607ccdbaba?auto=format&fit=crop&w=800&q=80",
-    description:"Complément destiné à accompagner la récupération et l'hydratation pendant les entraînements.",
-    flavors:["Pastèque","Citron"],
-    size:"400 G"
-},
-
-{
-    id:7,
-    name:"Omega 3 Sport",
-    category:"Vitamins",
-    price:179,
-    oldPrice:199,
-    rating:4.8,
-    reviews:54,
-    badge:"",
-    image:"https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=800&q=80",
-    description:"Complément alimentaire à base d'oméga 3.",
-    flavors:["Capsules"],
-    size:"100 CAPS"
-},
-
-{
-    id:8,
-    name:"Multivitamin Daily",
-    category:"Vitamins",
-    price:159,
-    oldPrice:189,
-    rating:4.7,
-    reviews:48,
-    badge:"NEW",
-    image:"https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=800&q=80",
-    description:"Complexe de vitamines et minéraux destiné à compléter une alimentation équilibrée.",
-    flavors:["Comprimés"],
-    size:"90 TABS"
-},
-
-{
-    id:9,
-    name:"Whey Concentrate 80%",
-    category:"Whey",
-    price:329,
-    oldPrice:379,
-    rating:4.7,
-    reviews:102,
-    badge:"",
-    image:"https://images.unsplash.com/photo-1593095948071-474c5cc2989d?auto=format&fit=crop&w=800&q=80",
-    description:"Whey concentrée pratique pour compléter les apports en protéines.",
-    flavors:["Chocolat","Vanille"],
-    size:"2 KG"
-},
-
-{
-    id:10,
-    name:"Creatine Premium 500G",
-    category:"Creatine",
-    price:349,
-    oldPrice:399,
-    rating:4.9,
-    reviews:151,
-    badge:"BEST",
-    image:"https://images.unsplash.com/photo-1579722821273-0f6c1d443b9f?auto=format&fit=crop&w=800&q=80",
-    description:"Créatine monohydrate premium en grand format.",
-    flavors:["Sans saveur"],
-    size:"500 G"
-},
-
-{
-    id:11,
-    name:"Hard Gainer XXL",
-    category:"Gainer",
-    price:549,
-    oldPrice:649,
-    rating:4.6,
-    reviews:45,
-    badge:"-15%",
-    image:"https://images.unsplash.com/photo-1579722821273-0f6c1d443b9f?auto=format&fit=crop&w=800&q=80",
-    description:"Formule gainer haute calorie destinée aux personnes ayant besoin de compléter leur apport énergétique.",
-    flavors:["Chocolat","Cookies"],
-    size:"5 KG"
-},
-
-{
-    id:12,
-    name:"Shaker Premium Black",
-    category:"Accessories",
-    price:89,
-    oldPrice:109,
-    rating:4.9,
-    reviews:190,
-    badge:"HOT",
-    image:"https://images.unsplash.com/photo-1593095948071-474c5cc2989d?auto=format&fit=crop&w=800&q=80",
-    description:"Shaker pratique pour préparer tes boissons sportives.",
-    flavors:["Black"],
-    size:"700 ML"
-}
-
-];
-
-/* =========================================================
-   STATE
-========================================================= */
-
-let cart = JSON.parse(localStorage.getItem("nutrix_cart") || "[]");
-let favorites = JSON.parse(localStorage.getItem("nutrix_favorites") || "[]");
-let activeCategory = "all";
-
-/* =========================================================
-   INIT
-========================================================= */
-
-document.addEventListener("DOMContentLoaded",()=>{
-
-    renderProducts();
-    updateCart();
-    updateFavorites();
-
-    lucide.createIcons();
-
-});
-
-/* =========================================================
-   PRODUCTS
-========================================================= */
-
-function renderProducts(){
-
-    const grid = document.getElementById("productsGrid");
-    const empty = document.getElementById("emptyProducts");
-
-    let list = [...products];
-
-    if(activeCategory !== "all"){
-        list = list.filter(p=>p.category === activeCategory);
-    }
-
-    const sort = document.getElementById("sortSelect").value;
-
-    if(sort === "priceAsc"){
-        list.sort((a,b)=>a.price-b.price);
-    }
-
-    if(sort === "priceDesc"){
-        list.sort((a,b)=>b.price-a.price);
-    }
-
-    if(sort === "rating"){
-        list.sort((a,b)=>b.rating-a.rating);
-    }
-
-    if(!list.length){
-        grid.innerHTML="";
-        empty.classList.remove("hidden");
-        return;
-    }
-
-    empty.classList.add("hidden");
-
-    grid.innerHTML = list.map(productCard).join("");
-
-    lucide.createIcons();
-
-}
-
-function productCard(p){
-
-    const isFav = favorites.includes(p.id);
-
-    return `
-    <article class="product-card rounded-2xl overflow-hidden">
-
-        <div class="relative product-img cursor-pointer" onclick="openProduct(${p.id})">
-
-            ${p.badge ? `
-                <span class="absolute top-3 left-3 z-10 bg-[#d4af37] text-black text-[10px] font-black px-3 py-1.5 rounded-full">
-                    ${p.badge}
-                </span>
-            `:""}
-
-            <button onclick="event.stopPropagation();toggleFavorite(${p.id})"
-                    class="absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-black/70 border border-white/10 flex items-center justify-center">
-                <i data-lucide="heart" class="w-4 h-4 ${isFav?'fill-red-500 text-red-500':''}"></i>
-            </button>
-
-            <img src="${p.image}" alt="${p.name}">
-        </div>
-
-        <div class="p-4 md:p-5">
-
-            <div class="text-[10px] uppercase tracking-widest text-[#d4af37] font-bold">
-                ${p.category}
-            </div>
-
-            <h3 onclick="openProduct(${p.id})"
-                class="font-bold mt-2 cursor-pointer hover:text-[#d4af37] transition line-clamp-2">
-                ${p.name}
-            </h3>
-
-            <div class="flex items-center gap-2 mt-2">
-                <span class="text-[#f5c84c] text-xs">★★★★★</span>
-                <span class="text-[10px] text-gray-500">
-                    ${p.rating} (${p.reviews})
-                </span>
-            </div>
-
-            <div class="flex items-end justify-between mt-4 gap-2">
-
-                <div>
-                    <span class="text-lg md:text-xl font-black">
-                        ${p.price} DH
-                    </span>
-
-                    <span class="text-xs text-gray-600 line-through ml-1">
-                        ${p.oldPrice} DH
-                    </span>
-                </div>
-
-                <button onclick="addToCart(${p.id})"
-                        class="w-10 h-10 shrink-0 rounded-xl btn-gold flex items-center justify-center">
-                    <i data-lucide="plus" class="w-5 h-5"></i>
-                </button>
-
-            </div>
-
-        </div>
-
+  </div>
+  <div class="info-grid">
+    <article class="panel detail-panel" aria-live="polite">
+      <div class="detail-title"><div><h3 id="detailName">Perceuse à colonne</h3><p id="detailIntro">Machine utilisée pour percer des trous dans une pièce.</p></div><span class="pill" id="detailType">MACHINE</span></div>
+      <div class="detail-content">
+        <div class="mini-card"><h4 data-fr="Rôle" data-ar="الدور">Rôle / الدور</h4><p id="detailRole"></p></div>
+        <div class="mini-card"><h4 data-fr="Risques principaux" data-ar="المخاطر الرئيسية">Risques principaux / المخاطر الرئيسية</h4><p id="detailRisks"></p></div>
+        <div class="mini-card"><h4 data-fr="Mesures de prévention" data-ar="إجراءات الوقاية">Mesures de prévention / إجراءات الوقاية</h4><ul id="detailMeasures"></ul></div>
+        <div class="mini-card"><h4 data-fr="EPI et comportement" data-ar="معدات الوقاية والسلوك">EPI et comportement / معدات الوقاية والسلوك</h4><p id="detailPpe"></p></div>
+      </div>
+      <div class="refs"><strong data-fr="Référence / source à consulter :" data-ar="المرجع / المصدر للمراجعة:">Référence / source à consulter : / المرجع / المصدر للمراجعة:</strong> <span id="detailRef"></span></div>
     </article>
-    `;
-}
+    <aside class="panel machine-list"><h3 data-fr="Explorer les éléments" data-ar="استكشاف العناصر">Explorer les éléments / استكشاف العناصر</h3><input class="search" id="machineSearch" type="search" placeholder="Rechercher une machine ou un risque…" aria-label="Rechercher"><div class="machine-buttons" id="machineButtons"></div></aside>
+  </div>
+</section>
 
-function filterCategory(category){
+<section class="content-section" id="marquage">
+  <div class="section-head"><div><h2 data-fr="2. Pourquoi tracer le sol ?" data-ar="2. لماذا نرسم الخطوط على الأرض؟">2. Pourquoi tracer le sol ?<br><span style="font-size:0.75em; font-weight:normal; color:var(--muted);">2. لماذا نرسم الخطوط على الأرض؟</span></h2><p data-fr="Les marquages rendent les zones plus visibles et aident à organiser les déplacements." data-ar="تساعد الخطوط على توضيح المناطق وتنظيم الحركة داخل الورشة.">Les marquages rendent les zones plus visibles et aident à organiser les déplacements.<br><span style="font-size:0.9em; color:var(--muted);">الخطوط الأرضية تجعل المناطق أكثر وضوحاً وتساعد على تنظيم التنقلات.</span></p></div></div>
+  <div class="cards">
+    <article class="info-card"><div class="icon">🟨</div><h3 data-fr="Jaune — circulation et limites" data-ar="الأصفر — الحركة والحدود">Jaune — circulation et limites / الأصفر — الحركة والحدود</h3><div class="color-chip" style="background:#ffda24"></div><p data-fr="Dans cet exemple, le jaune aide à repérer les passages et certaines limites. Le sens exact doit être indiqué dans le plan de marquage de l’atelier." data-ar="في هذا المثال يساعد اللون الأصفر على تحديد الممرات وبعض الحدود. يجب توضيح المعنى الدقيق في مخطط الورشة.">Dans cet exemple, le jaune aide à repérer les passages et certaines limites. Le sens exact doit être indiqué dans le plan de marquage de l’atelier.<br><span style="font-size:0.9em; color:var(--muted);">في هذا المثال، يساعد الأصفر في تحديد الممرات وبعض الحدود. يجب توضيح المعنى الدقيق في مخطط تخطيط الورشة.</span></p></article>
+    <article class="info-card"><div class="icon">🟦</div><h3 data-fr="Bleu — zone de travail illustrée" data-ar="الأزرق — منطقة العمل في المثال">Bleu — zone de travail illustrée / الأزرق — منطقة العمل التوضيحية</h3><div class="color-chip" style="background:#1769e0"></div><p data-fr="Le bleu est utilisé ici pour illustrer une zone de travail. Ce n’est pas une signification universelle obligatoire pour tous les ateliers." data-ar="يُستخدم الأزرق هنا كمثال لتحديد منطقة العمل، وليس معنى إلزامياً موحداً في جميع الورشات.">Le bleu est utilisé ici pour illustrer une zone de travail. Ce n’est pas une signification universelle obligatoire pour tous les ateliers.<br><span style="font-size:0.9em; color:var(--muted);">يستخدم الأزرق هنا لتوضيح منطقة العمل. ليس دلالة عالمية إجبارية لجميع الورش.</span></p></article>
+    <article class="info-card"><div class="icon">🟥</div><h3 data-fr="Rouge — repérage visuel" data-ar="الأحمر — التحديد البصري">Rouge — repérage visuel / الأحمر — التحديد البصري</h3><div class="color-chip" style="background:#e32932"></div><p data-fr="Le rouge peut servir à attirer l’attention sur certains équipements ou zones définies par l’établissement. Il faut vérifier le plan local et la signalisation réglementaire." data-ar="قد يُستخدم الأحمر لجذب الانتباه إلى معدات أو مناطق تحددها المؤسسة. يجب مراجعة مخطط المكان وقواعد الإشارات المعمول بها.">Le rouge peut servir à attirer l’attention sur certains équipements ou zones définies par l’établissement. Il faut vérifier le plan local et la signalisation réglementaire.<br><span style="font-size:0.9em; color:var(--muted);">يمكن أن يُستخدم الأحمر لجذب الانتباه نحو معدات أو مناطق محددة من قبل المؤسسة. يجب التحقق من المخطط المحلي وإشارات التنظيم.</span></p></article>
+    <article class="info-card"><div class="icon">⚠️</div><h3 data-fr="Jaune et noir — danger" data-ar="الأصفر والأسود — الخطر">Jaune et noir — danger / الأصفر والأسود — الخطر</h3><div class="color-chip" style="background:repeating-linear-gradient(135deg,#171717 0 8px,#ffda24 8px 16px)"></div><p data-fr="Ces bandes contrastées peuvent attirer l’attention sur des obstacles, des zones à risque ou des parties à éviter, selon l’évaluation des risques." data-ar="تساعد هذه الأشرطة المتباينة على التنبيه إلى العوائق أو مناطق الخطر حسب تقييم المخاطر.">Ces bandes contrastées peuvent attirer l’attention sur des obstacles, des zones à risque ou des parties à éviter, selon l’évaluation des risques.<br><span style="font-size:0.9em; color:var(--muted);">هذه الخطوط المتباينة تلفت الانتباه نحو العوائق، مناطق الخطر أو الأجزاء الواجب تفاديها حسب تقييم المخاطر.</span></p></article>
+    <article class="info-card"><div class="icon">⬜</div><h3 data-fr="Blanc — délimitation" data-ar="الأبيض — تحديد المناطق">Blanc — délimitation / الأبيض — التحديد</h3><div class="color-chip" style="background:#fff;border:1px solid #d5ded9"></div><p data-fr="Le blanc peut délimiter des emplacements ou des zones de rangement, selon le système de marquage adopté." data-ar="يمكن استعمال الأبيض لتحديد أماكن أو مناطق التخزين حسب نظام التخطيط المعتمد.">Le blanc peut délimiter des emplacements ou des zones de rangement, selon le système de marquage adopté.<br><span style="font-size:0.9em; color:var(--muted);">يمكن أن يحدد الأبيض المواقع أو مناطق التخزين حسب نظام العلامات المعتمد.</span></p></article>
+    <article class="info-card"><div class="icon">🟩</div><h3 data-fr="Vert — secours et évacuation" data-ar="الأخضر — الإسعاف والإخلاء">Vert — secours et évacuation / الأخضر — الإنقاذ والإخلاء</h3><div class="color-chip" style="background:#0b875a"></div><p data-fr="Les panneaux verts normalisés peuvent indiquer des sorties de secours ou des informations de sauvetage. Ne pas confondre ces panneaux avec toutes les lignes vertes au sol." data-ar="يمكن للوحات الخضراء المعيارية أن تدل على مخارج النجاة ومعلومات الإنقاذ. لا ينبغي الخلط بينها وبين كل الخطوط الخضراء الأرضية.">Les panneaux verts normalisés peuvent indiquer des sorties de secours ou des informations de sauvetage. Ne pas confondre ces panneaux avec toutes les lignes vertes au sol.<br><span style="font-size:0.9em; color:var(--muted);">اللوحات الخضراء المعيارية تشير إلى مخارج الطوارئ أو معلومات الإنقاذ. لا تخلط بينها وبين جميع الخطوط الخضراء الأرضية.</span></p></article>
+  </div>
+  <div class="notice" data-fr="Important : les couleurs des lignes au sol ne sont pas toutes définies de manière identique dans chaque établissement. Le plan de circulation, l’évaluation des risques, les règles nationales applicables et la signalisation normalisée doivent être vérifiés." data-ar="مهم: ليست ألوان الخطوط الأرضية موحدة المعنى في كل مؤسسة. يجب الرجوع إلى مخطط الحركة وتقييم المخاطر والقوانين المحلية وإشارات السلامة المعيارية.">Important : les couleurs des lignes au sol ne sont pas toutes définies de manière identique dans chaque établissement. Le plan de circulation, l’évaluation des risques, les règles nationales applicables et la signalisation normalisée doivent être vérifiés.<br><span style="font-size:0.9em; color:var(--muted);">مهم: ألوان الخطوط الأرضية ليست موحدة تماماً في كل مؤسسة. يجب التحقق من مخطط الحركة، تقييم المخاطر، القواعد الوطنية المعمول بها وإشارات السلامة القياسية.</span></div>
+</section>
 
-    activeCategory = category;
+<section class="content-section" id="normes">
+  <div class="section-head"><div><h2 data-fr="3. Normes et sources utiles" data-ar="3. المعايير والمصادر المفيدة">3. Normes et sources utiles<br><span style="font-size:0.75em; font-weight:normal; color:var(--muted);">3. المعايير والمصادر المفيدة</span></h2><p data-fr="Une référence doit être reliée à son vrai domaine d’application ; elle ne remplace pas l’évaluation des risques ni la réglementation marocaine." data-ar="يجب ربط كل معيار بمجال تطبيقه الحقيقي، ولا يعوض تقييم المخاطر أو التشريع المغربي.">Une référence doit être reliée à son vrai domaine d’application ; elle ne remplace pas l’évaluation des risques ni la réglementation marocaine.<br><span style="font-size:0.9em; color:var(--muted);">يجب ربط أي مرجع بمجال تطبيقه الحقيقي؛ ولا يعوض تقييم المخاطر ولا التشريع المغربي.</span></p></div></div>
+  <div class="standard-grid">
+    <article class="standard"><strong>ISO 9001:2015</strong><p data-fr="Système de management de la qualité : organisation des processus, satisfaction des bénéficiaires et amélioration." data-ar="نظام إدارة الجودة: تنظيم العمليات ورضا المستفيدين والتحسين المستمر.">Système de management de la qualité : organisation des processus, satisfaction des bénéficiaires et amélioration.<br><span style="font-size:0.9em; color:var(--muted);">نظام إدارة الجودة: تنظيم العمليات، رضا المستفيدين والتحسين المستمر.</span></p><a href="https://www.iso.org/standard/62085.html" target="_blank" rel="noopener">Site officiel ISO ↗ / موقع إيزو الرسمي ↗</a></article>
+    <article class="standard"><strong>ISO 14001</strong><p data-fr="Système de management environnemental : maîtriser les aspects et impacts environnementaux." data-ar="نظام الإدارة البيئية: التحكم في الجوانب والتأثيرات البيئية.">Système de management environnemental : maîtriser les aspects et impacts environnementaux.<br><span style="font-size:0.9em; color:var(--muted);">نظام الإدارة البيئية: التحكم في الجوانب والتأثيرات البيئية.</span></p><a href="https://www.iso.org/iso-14001-environmental-management.html" target="_blank" rel="noopener">Site officiel ISO ↗ / موقع إيزو الرسمي ↗</a></article>
+    <article class="standard"><strong>ISO 45001</strong><p data-fr="Système de management de la santé et de la sécurité au travail." data-ar="نظام إدارة الصحة والسلامة المهنية.">Système de management de la santé et de la sécurité au travail.<br><span style="font-size:0.9em; color:var(--muted);">نظام إدارة الصحة والسلامة في العمل.</span></p><a href="https://www.iso.org/iso-45001-occupational-health-and-safety.html" target="_blank" rel="noopener">Site officiel ISO ↗ / موقع إيزو الرسمي ↗</a></article>
+    <article class="standard"><strong>ISO 12100</strong><p data-fr="Principes généraux pour concevoir les machines en sécurité et évaluer les risques." data-ar="مبادئ عامة لتصميم الآلات بأمان وتقييم مخاطرها.">Principes généraux pour concevoir les machines en sécurité et évaluer les risques.<br><span style="font-size:0.9em; color:var(--muted);">المبادئ العامة لتصميم الآلات بأمان وتقييم المخاطر.</span></p><a href="https://www.iso.org/search.html?q=ISO%2012100" target="_blank" rel="noopener">Rechercher la norme ↗ / البحث عن المعيار ↗</a></article>
+    <article class="standard"><strong>ISO 7010 / ISO 3864</strong><p data-fr="Références liées aux panneaux de sécurité, aux symboles graphiques et aux principes de couleurs de sécurité." data-ar="مراجع مرتبطة بلوحات السلامة والرموز الرسومية ومبادئ ألوان السلامة.">Références liées aux panneaux de sécurité, aux symboles graphiques et aux principes de couleurs de sécurité.<br><span style="font-size:0.9em; color:var(--muted);">مراجع مرتبطة بلوحات السلامة، الرموز التوضيحية ومبادئ ألوان الأمان.</span></p><a href="https://www.iso.org/search.html?q=ISO%207010" target="_blank" rel="noopener">Rechercher la norme ↗ / البحث عن المعيار ↗</a></article>
+    <article class="standard"><strong>IEC 60204-1</strong><p data-fr="Exigences concernant l’équipement électrique des machines." data-ar="متطلبات التجهيزات الكهربائية للآلات.">Exigences concernant l’équipement électrique des machines.<br><span style="font-size:0.9em; color:var(--muted);">متطلبات التجهيزات الكهربائية للآلات.</span></p><a href="https://www.iec.ch/" target="_blank" rel="noopener">Site officiel IEC ↗ / موقع الكونسورتيوم IEC الرسمي ↗</a></article>
+  </div>
+  <div class="notice" data-fr="À retenir : ISO 9001 est une norme de management de la qualité ; elle ne fixe pas à elle seule toutes les couleurs des marquages au sol. Avant d’utiliser ce support comme consigne officielle, faites valider les informations par le formateur et vérifiez les normes dans leur édition applicable." data-ar="تذكّر: ISO 9001 معيار لإدارة الجودة، ولا يحدد بمفرده جميع ألوان الخطوط الأرضية. قبل اعتماد هذا المحتوى كتعليمات رسمية، يجب أن يراجعه الأستاذ والتحقق من النسخ المعمول بها للمعايير.">À retenir : ISO 9001 est une norme de management de la qualité ; elle ne fixe pas à elle seule toutes les couleurs des marquages au sol. Avant d’utiliser ce support comme consigne officielle, faites valider les informations par le formateur et vérifiez les normes dans leur édition applicable.<br><span style="font-size:0.9em; color:var(--muted);">للتذكير: ISO 9001 هو معيار لإدارة الجودة؛ ولا يحدد بمفرده جميع ألوان الخطوط الأرضية. قبل استخدام هذا الدعم كتعليمات رسمية، احرص على اعتماد المعلومات من طرف المكون والتحقق من المعايير في طبعتها السارية.</span></div>
+</section>
 
-    document.getElementById("products").scrollIntoView({
-        behavior:"smooth"
-    });
+<section class="content-section" id="quiz">
+  <div class="section-head"><div><h2 data-fr="4. Mini-quiz QHSE" data-ar="4. اختبار قصير في QHSE">4. Mini-quiz QHSE<br><span style="font-size:0.75em; font-weight:normal; color:var(--muted);">4. اختبار قصير في السلامة والجودة</span></h2><p data-fr="Testez vos connaissances après l’exploration." data-ar="اختبر معلوماتك بعد الاستكشاف.">Testez vos connaissances après l’exploration.<br><span style="font-size:0.9em; color:var(--muted);">اختبر معلوماتك بعد عملية الاستكشاف.</span></p></div></div>
+  <div class="panel quiz-box"><h3 id="quizCount">Question 1 / 5</h3><div class="quiz-question" id="quizQuestion"></div><div class="answers" id="quizAnswers"></div><div class="feedback" id="quizFeedback" aria-live="polite"></div><div style="display:flex;justify-content:space-between;gap:10px;margin-top:14px"><span class="small" id="quizScore">Score : 0</span><button class="btn" id="nextQuestion" disabled data-fr="Question suivante" data-ar="السؤال التالي">Question suivante / السؤال التالي</button></div></div>
+</section>
 
-    renderProducts();
-}
+<!-- Fiches de Sécurité Integration -->
+<section class="content-section qhse-fiches-section" id="fiches">
+    <header class="fiches-header container" style="border-radius:12px;">
+        <h1><i class="fas fa-hard-hat"></i> QHSE - FICHES DE SÉCURITÉ / بطاقات السلامة</h1>
+        <p>Consignes de sécurité et prévention des machines d'atelier / تعليمات السلامة والوقاية لآلات الورشة</p>
+    </header>
 
-/* =========================================================
-   PRODUCT DETAILS
-========================================================= */
+    <div class="container">
+        <div class="grid-container">
 
-function openProduct(id){
+            <!-- 1. Presse Hydraulique -->
+            <div class="card">
+                <div class="card-header"><i class="fas fa-compress-arrows-alt"></i> Presse Hydraulique WPP 50 BK 50T / المكبس الهيدروليكي</div>
+                <div class="machine-img-container">
+                    <a href="https://imgbb.com/" target="_blank" rel="noopener"><img src="https://i.ibb.co/WNrkmLDj/7b658b0c-7e8a-4be0-a283-c91864769dbe.jpg" alt="Presse Hydraulique"></a>
+                </div>
+                <div class="card-body">
+                    <p><strong>Définition / التعريف:</strong> Presse hydraulique 50T pour serrage, formage et assemblage.<br><span style="font-size:0.9em; color:var(--muted);">مكبس هيدروليكي بقوة 50 طن للشد والتشكيل والتجميع.</span></p>
 
-    const p = products.find(x=>x.id===id);
+                    <div class="section-title danger"><i class="fas fa-exclamation-triangle"></i> Dangers & Risques / المخاطر</div>
+                    <ul>
+                        <li>Écrasement 50T (coincement des mains) / سحق 50 طن (احتمال انحشار الأيدي)</li>
+                        <li>Projection de pièces / fragments / تطاير القطع والشظايا</li>
+                        <li>Chute de charge / سقوط الحمولة</li>
+                        <li>Risque hydraulique (fuite d'huile HP) / خطر هيدروليكي (تسرب زيت عالي الضغط)</li>
+                    </ul>
 
-    if(!p)return;
+                    <div class="section-title epc"><i class="fas fa-shield-alt"></i> Protections Collectives (EPC) / الحماية الجماعية</div>
+                    <ul>
+                        <li>Grille de protection fixe / شبكة حماية ثابتة</li>
+                        <li>Manomètre 50T étalonné / مقياس ضغط 50 طن معاير</li>
+                        <li>Butées mécaniques réglables / مصدات ميكانيكية قابلة للضبط</li>
+                    </ul>
 
-    document.getElementById("productDetails").innerHTML=`
-
-        <div class="grid md:grid-cols-2">
-
-            <div class="product-img min-h-[350px] md:min-h-[500px]">
-                <img src="${p.image}" alt="${p.name}">
+                    <div class="section-title epi"><i class="fas fa-user-shield"></i> Protections Individuelles (EPI) / الحماية الفردية</div>
+                    <ul>
+                        <li>Lunettes EN166 & Gants EN388 / نظارات EN166 وقفازات EN388</li>
+                        <li>Chaussures S3 & Casque de sécurité / حذاء أمان S3 وخوذة سلامة</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <span>Version: Octobre 2024</span>
+                    <span>Ref: WPP50BK-50T</span>
+                </div>
             </div>
 
-            <div class="p-7 md:p-10">
-
-                <div class="flex justify-between items-start">
-
-                    <div>
-                        <span class="text-[#d4af37] text-xs uppercase tracking-[3px] font-bold">
-                            ${p.category}
-                        </span>
-
-                        <h2 class="text-3xl font-black mt-3">
-                            ${p.name}
-                        </h2>
-                    </div>
-
-                    <button onclick="closeProduct()">
-                        <i data-lucide="x"></i>
-                    </button>
-
+            <!-- 2. Fraiseuse Universelle OPTIMUM -->
+            <div class="card">
+                <div class="card-header"><i class="fas fa-cut"></i> Fraiseuse Universelle OPTIMUM / آلة التفريز العالمية</div>
+                <div class="machine-img-container">
+                    <a href="https://imgbb.com/" target="_blank" rel="noopener"><img src="https://i.ibb.co/Q3980C3R/913a661d-93f0-4553-8de2-0a9eba78b8db.jpg" alt="Fraiseuse Universelle"></a>
                 </div>
+                <div class="card-body">
+                    <p><strong>Définition / التعريف:</strong> Fraisage de surfaces planes, rainures et engrenages.<br><span style="font-size:0.9em; color:var(--muted);">تفريز الأسطح المستوية، المجاري والتروس.</span></p>
 
-                <div class="flex items-center gap-3 mt-5">
-                    <span class="text-[#f5c84c]">★★★★★</span>
-                    <span class="text-gray-500 text-sm">
-                        ${p.rating} · ${p.reviews} avis
-                    </span>
+                    <div class="section-title danger"><i class="fas fa-exclamation-triangle"></i> Dangers & Risques / المخاطر</div>
+                    <ul>
+                        <li>Écrasement / Coupure outil rotatif / سحق أو جرح بواسطة الأداة الدوارة</li>
+                        <li>Projection de copeaux chauds / تطاير الرايش الساخن</li>
+                        <li>Happement courroie / التشابك في السير</li>
+                        <li>Risque électrique 380V / خطر كهربائي 380 فولت</li>
+                    </ul>
+
+                    <div class="section-title epc"><i class="fas fa-shield-alt"></i> Protections Collectives (EPC) / الحماية الجماعية</div>
+                    <ul>
+                        <li>Carter fraise & carter courroie / غطاء القاطع وغطاء السير</li>
+                        <li>Arrêt d'urgence & Marquage au sol / زر التوقف الاستعجالي والخطوط الأرضية</li>
+                    </ul>
+
+                    <div class="section-title epi"><i class="fas fa-user-shield"></i> Protections Individuelles (EPI) / الحماية الفردية</div>
+                    <ul>
+                        <li>Lunettes EN166 & Chaussures S3 / نظارات EN166 وحذاء أمان S3</li>
+                        <li>Gants interdits en rotation / منع القفازات أثناء الدوران</li>
+                    </ul>
                 </div>
-
-                <p class="text-gray-400 leading-8 mt-7">
-                    ${p.description}
-                </p>
-
-                <div class="mt-7">
-                    <span class="text-gray-500 text-sm">Format</span>
-
-                    <div class="mt-2 px-4 py-3 rounded-xl bg-[#181818] border border-[#292929] inline-block">
-                        ${p.size}
-                    </div>
+                <div class="card-footer">
+                    <span>Version: Octobre 2024</span>
+                    <span>Ref: FRAISEUSE-OPT/001</span>
                 </div>
+            </div>
 
-                <div class="mt-7">
-
-                    <div class="text-gray-500 text-sm mb-2">
-                        Saveur
-                    </div>
-
-                    <div class="flex flex-wrap gap-2">
-                        ${p.flavors.map(f=>`
-                            <button class="px-4 py-2 rounded-lg bg-[#181818] border border-[#292929] text-sm hover:border-[#d4af37]">
-                                ${f}
-                            </button>
-                        `).join("")}
-                    </div>
-
+            <!-- 3. Affûteuse OPTIMUM OPTIgrind GH 20T -->
+            <div class="card">
+                <div class="card-header"><i class="fas fa-cog"></i> Affûteuse OPTIgrind GH 20T / آلة الشحذ</div>
+                <div class="machine-img-container">
+                    <a href="https://imgbb.com/" target="_blank" rel="noopener"><img src="https://i.ibb.co/V0r784h4/5dac86f9-7f4b-4a4f-9491-fd9e9cb641d4.jpg" alt="Affûteuse"></a>
                 </div>
+                <div class="card-body">
+                    <p><strong>Définition / التعريف:</strong> Affûtage universel de forets, fraises et outils (1-20mm).<br><span style="font-size:0.9em; color:var(--muted);">الشحذ الشامل لقمم الثقب، القواطع والأدوات (1-20 مم).</span></p>
 
-                <div class="flex items-end gap-3 mt-8">
+                    <div class="section-title danger"><i class="fas fa-exclamation-triangle"></i> Dangers & Risques / المخاطر</div>
+                    <ul>
+                        <li>Éclatement meule / Projection / انفجار الحجر الكاشط / التناثر</li>
+                        <li>Choc électrique 400V / صدمة كهربائية 400 فولت</li>
+                        <li>Bruit 90dB & Particules / ضجيج 90 ديسيبل وجزيئات متطايرة</li>
+                    </ul>
 
-                    <span class="text-3xl font-black">
-                        ${p.price} DH
-                    </span>
+                    <div class="section-title epc"><i class="fas fa-shield-alt"></i> Protections Collectives (EPC) / الحماية الجماعية</div>
+                    <ul>
+                        <li>Carter de protection meule / غطاء حماية الحجر الكاشط</li>
+                        <li>Bouton marche/arrêt verrouillable / زر تشغيل/إيقاف قابل للقفل</li>
+                        <li>Fixation table & Réglage hors tension / تثبيت الطاولة وضبطها في حالة انقطاع الطاقة</li>
+                    </ul>
 
-                    <span class="text-gray-600 line-through">
-                        ${p.oldPrice} DH
-                    </span>
-
+                    <div class="section-title epi"><i class="fas fa-user-shield"></i> Protections Individuelles (EPI) / الحماية الفردية</div>
+                    <ul>
+                        <li>Lunettes EN166 (M004) + Visière / نظارات EN166 + واقي وجه</li>
+                        <li>Bouchons d'oreilles EN352 (M003) / سدادات الأذن EN352</li>
+                        <li>Chaussures S3 & Interdiction gants P026 / حذاء S3 ومنع القفازات P026</li>
+                    </ul>
                 </div>
+                <div class="card-footer">
+                    <span>Version: 2024</span>
+                    <span>Ref: GH 20T</span>
+                </div>
+            </div>
 
-                <button onclick="addToCart(${p.id});closeProduct()"
-                        class="w-full btn-gold py-4 rounded-xl mt-7 font-black flex items-center justify-center gap-2">
-                    <i data-lucide="shopping-bag"></i>
-                    Ajouter au panier
-                </button>
+            <!-- 4. Touret à meuler OPTIMUM -->
+            <div class="card">
+                <div class="card-header"><i class="fas fa-circle-notch"></i> Touret à meuler double meule / المجلخة ذات الحجرين</div>
+                <div class="machine-img-container">
+                    <a href="https://ibb.co/7JbsNNYv" target="_blank" rel="noopener"><img src="https://i.ibb.co/kgMN66HK/282a8690-b20b-4f9c-819a-bcd871173c82.jpg" alt="Touret à meuler"></a>
+                </div>
+                <div class="card-body">
+                    <p><strong>Définition / التعريف:</strong> Touret à meuler double meule sur socle pour affûtage et ébavurage.<br><span style="font-size:0.9em; color:var(--muted);">مجلخة مزدوجة الأحجار على قاعدة للشحذ وإزالة الزوائد.</span></p>
 
+                    <div class="section-title danger"><i class="fas fa-exclamation-triangle"></i> Dangers & Risques / المخاطر</div>
+                    <ul>
+                        <li>Éclatement meule / Projection étincelles / انكسار الحجر الكاشط / تطاير الشرر</li>
+                        <li>Contact meule 3000 tr/min / ملامسة الحجر بسرعة 3000 دورة في الدقيقة</li>
+                        <li>Risque électrique 230V/400V / خطر كهربائي 230V/400V</li>
+                    </ul>
+
+                    <div class="section-title epc"><i class="fas fa-shield-alt"></i> Protections Collectives (EPC) / الحماية الجماعية</div>
+                    <ul>
+                        <li>Carter protection & Écrans plexi / غطاء الحماية وشاشات البلكسيغلاس</li>
+                        <li>Appui-pièce < 2mm & Aspiration / مسند القطعة أقل من 2 مم ونظام الشفط</li>
+                        <li>Arrêt d'urgence / زر التوقف الاستعجالي</li>
+                    </ul>
+
+                    <div class="section-title epi"><i class="fas fa-user-shield"></i> Protections Individuelles (EPI) / الحماية الفردية</div>
+                    <ul>
+                        <li>Lunettes EN166 + Visière / نظارات EN166 مع واقي وجه</li>
+                        <li>Masque P2 & Tablier cuir / قناع غبار P2 ومئزر جلدي</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <span>Version: 2024</span>
+                    <span>Ref: OPTIMUM Double Meule</span>
+                </div>
+            </div>
+
+            <!-- 5. Étau d'établi -->
+            <div class="card">
+                <div class="card-header"><i class="fas fa-hammer"></i> Étau d'établi - Serrurier / ملزمة الطاولة</div>
+                <div class="machine-img-container">
+                    <a href="https://ibb.co/tPQ2w20K" target="_blank" rel="noopener"><img src="https://i.ibb.co/Xkj5f5nL/c7e58b89-b17f-4958-96e5-e02b9e9559e6.jpg" alt="Étau d'établi"></a>
+                </div>
+                <div class="card-body">
+                    <p><strong>Définition / التعريف:</strong> Établi métallique pour serrage, ajustage, limage, sciage.<br><span style="font-size:0.9em; color:var(--muted);">طاولة معدنية للشد، الضبط، التبريد والنشر.</span></p>
+
+                    <div class="section-title danger"><i class="fas fa-exclamation-triangle"></i> Dangers & Risques / المخاطر</div>
+                    <ul>
+                        <li>Écrasement doigts / Chute pièce lourde / سحق الأصابع / سقوط قطعة ثقيلة</li>
+                        <li>Coupure / Blessure outils coupants / جروح وإصابات بأدوات القطع</li>
+                        <li>Trouble Musculo-Squelettique (TMS) / اضطرابات عضلية هيكلية</li>
+                    </ul>
+
+                    <div class="section-title epc"><i class="fas fa-shield-alt"></i> Protections Collectives (EPC) / الحماية الجماعية</div>
+                    <ul>
+                        <li>Étau fixé stable & Établi ancré au sol / ملزمة مثبتة وطاولة مثبتة بالأرض</li>
+                        <li>Éclairage suffisant de la zone / إضاءة كافية للمنطقة</li>
+                        <li>Rangement des outils adapté / تنظيم ملائم للأدوات</li>
+                    </ul>
+
+                    <div class="section-title epi"><i class="fas fa-user-shield"></i> Protections Individuelles (EPI) / الحماية الفردية</div>
+                    <ul>
+                        <li>Lunettes de sécurité EN166 / نظارات أمان EN166</li>
+                        <li>Gants manutention anti-coupure / قفازات مناولة مضادة للقطع</li>
+                        <li>Chaussures S3 / حذاء أمان S3</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <span>Version: 2024</span>
+                    <span>Port EPI Obligatoire / إجبارية ارتداء معدات الوقاية</span>
+                </div>
+            </div>
+
+            <!-- 6. Perceuse à colonne + Tour parallèle -->
+            <div class="card">
+                <div class="card-header"><i class="fas fa-wrench"></i> Perceuse à colonne + Tour parallèle / المثقاب العمودي + المخرطة</div>
+                <div class="machine-img-container">
+                    <a href="https://imgbb.com/" target="_blank" rel="noopener"><img src="https://i.ibb.co/gLMh2qmb/1e5c4507-1f47-4496-95ed-b85c89adc5e1.jpg" alt="Perceuse et Tour"></a>
+                </div>
+                <div class="card-body">
+                    <p><strong>Définition / التعريف:</strong> Perçage de précision / Chariotage et usinage cylindrique.<br><span style="font-size:0.9em; color:var(--muted);">ثقب دقيق / خراطة وتشكيل أسطواني.</span></p>
+
+                    <div class="section-title danger"><i class="fas fa-exclamation-triangle"></i> Dangers & Risques / المخاطر</div>
+                    <ul>
+                        <li>Happement / Entraînement par foret / التشابك والسحب بواسطة ريشة الثقب</li>
+                        <li>Projection de copeaux brûlants / تطاير الرايش الساخن</li>
+                        <li>Écrasement table et pièce / سحق بين الطاولة والقطعة</li>
+                        <li>Risque électrique 400V / خطر كهربائي 400 فولت</li>
+                    </ul>
+
+                    <div class="section-title epc"><i class="fas fa-shield-alt"></i> Protections Collectives (EPC) / الحماية الجماعية</div>
+                    <ul>
+                        <li>Carter plexiglass transparent obligatoire / غطاء بلكسيغلاس شفاف إجباري</li>
+                        <li>Arrêt d'urgence rouge accessible / زر توقف استعجالي أحمر وفي متناول اليد</li>
+                        <li>Lubrification & Consignation LOTO / التبريد وعزل الطاقة (LOTO)</li>
+                    </ul>
+
+                    <div class="section-title epi"><i class="fas fa-user-shield"></i> Protections Individuelles (EPI) / الحماية الفردية</div>
+                    <ul>
+                        <li>Lunettes EN166 & Chaussures S3 / نظارات EN166 وحذاء أمان S3</li>
+                        <li>Interdit : gants en rotation / ممنوع: القفازات أثناء الدوران</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <span>Version: 2024</span>
+                    <span>Ref: OPTIMUM</span>
+                </div>
+            </div>
+
+            <!-- 7. Tour Parallèle OPTIturn D320x750 -->
+            <div class="card">
+                <div class="card-header"><i class="fas fa-cogs"></i> Tour Parallèle OPTIturn D320x750 / المخرطة المتوازية</div>
+                <div class="machine-img-container">
+                    <a href="https://imgbb.com/" target="_blank" rel="noopener"><img src="https://i.ibb.co/zhQgxsBp/5c47672d-a01c-4355-9475-d262619a051e.jpg" alt="Tour Parallèle"></a>
+                </div>
+                <div class="card-body">
+                    <p><strong>Définition / التعريف:</strong> Usinage, chariotage, dressage, filetage (Norme ISO 23125 CE).<br><span style="font-size:0.9em; color:var(--muted);">تشغيل، خراطة، تسوية، قلاووظ (معيار ISO 23125 CE).</span></p>
+
+                    <div class="section-title danger"><i class="fas fa-exclamation-triangle"></i> Dangers & Risques / المخاطر</div>
+                    <ul>
+                        <li>Happement / Écrasement (2000 tr/min) / التشابك / السحق (2000 دورة/دقيقة)</li>
+                        <li>Coupures graves par outil de coupe / جروح خطيرة بأداة القطع</li>
+                        <li>Risque électrique 400V & Bruit > 85 dB / خطر كهربائي 400V وضجيج > 85dB</li>
+                    </ul>
+
+                    <div class="section-title epc"><i class="fas fa-shield-alt"></i> Protections Collectives (EPC) / الحماية الجماعية</div>
+                    <ul>
+                        <li>Carter protection mandrin transparent / غطاء حماية شفاف لرأس المخرطة</li>
+                        <li>Carter chariot & Barre anti-panique / غطاء العربة وعارضة الطوارئ</li>
+                        <li>Bac récupération copeaux / حوض جمع الرايش</li>
+                    </ul>
+
+                    <div class="section-title epi"><i class="fas fa-user-shield"></i> Protections Individuelles (EPI) / الحماية الفردية</div>
+                    <ul>
+                        <li>Lunettes EN166 + Visière & Bouchons / نظارات EN166 + واقي وجه وسدادات</li>
+                        <li>Tablier cuir & Interdiction gants en rotation / مئزر جلدي ومنع القفازات أثناء الدوران</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <span>Version: 2024</span>
+                    <span>ISO 23125 CE</span>
+                </div>
+            </div>
+
+            <!-- 8. Scie à ruban OPTIMUM -->
+            <div class="card">
+                <div class="card-header"><i class="fas fa-industry"></i> Scie à Ruban OPTIMUM / المنشار الشريطي</div>
+                <div class="machine-img-container">
+                    <a href="https://imgbb.com/" target="_blank" rel="noopener"><img src="https://i.ibb.co/G4xStpwp/f60b3064-3d01-42d2-a2ab-0de1332d95c6.jpg" alt="Scie à Ruban"></a>
+                </div>
+                <div class="card-body">
+                    <p><strong>Définition / التعريف:</strong> Scie à ruban à tronçonner profils et barres métalliques.<br><span style="font-size:0.9em; color:var(--muted);">منشار شريطي لقطع المقاطع والقضبان المعدنية.</span></p>
+
+                    <div class="section-title danger"><i class="fas fa-exclamation-triangle"></i> Dangers & Risques / المخاطر</div>
+                    <ul>
+                        <li>Coupure / Sectionnement par lame dentée / جروح / بتر بالشفرة المسننة</li>
+                        <li>Projection copeaux / lubrifiant / تطاير الرايش / سائل التبريد</li>
+                        <li>Écrasement serrage pièce et archet / سحق أثناء شد القطعة</li>
+                        <li>Risque électrique 400V & Bruit > 85 dB(A) / خطر كهربائي 400V وضجيج > 85dB</li>
+                    </ul>
+
+                    <div class="section-title epc"><i class="fas fa-shield-alt"></i> Protections Collectives (EPC) / الحماية الجماعية</div>
+                    <ul>
+                        <li>Carter de lame & Étau serrage rapide / غطاء الشفرة وملزمة الشد السريع</li>
+                        <li>Bac récupération copeaux & Convoyeur / حوض جمع الرايش والناقل</li>
+                    </ul>
+
+                    <div class="section-title epi"><i class="fas fa-user-shield"></i> Protections Individuelles (EPI) / الحماية الفردية</div>
+                    <ul>
+                        <li>Lunettes EN166 & Bouchons d'oreilles / نظارات EN166 وسدادات أذن</li>
+                        <li>Chaussures S3 & Vêtements ajustés / حذاء أمان S3 وملابس ضيقة</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <span>Version: 2024</span>
+                    <span>Ref: OPTIMUM</span>
+                </div>
             </div>
 
         </div>
-    `;
+    </div>
+</section>
 
-    document.getElementById("productModal").classList.remove("hidden");
-
-    lucide.createIcons();
-
+</main>
+<footer class="footer"><div><strong>QHSE Interactive Workshop</strong><div>Projet pédagogique — Youssef Ouayade — OFPPT / مشروع تعليمي — يوسف أوياد — مكتب التكوين المهني وإنعاش الشغل</div></div><div data-fr="Apprendre · Prévenir · Améliorer" data-ar="التعلم · الوقاية · التحسين">Apprendre · Prévenir · Améliorer / التعلم · الوقاية · التحسين</div></footer>
+<script>
+const DATA={
+drill:{type:{fr:"MACHINE",ar:"آلة"},name:{fr:"Perceuse à colonne OPTIMUM",ar:"مثقاب عمودي OPTIMUM"},intro:{fr:"Machine utilisée pour percer des trous de précision dans une pièce.",ar:"آلة تُستخدم لثقب القطع بدقة."},role:{fr:"Percer des trous avec un foret en rotation.",ar:"إنجاز ثقوب باستعمال ريشة دوارة."},risks:{fr:"Happement, copeaux brûlants, écrasement, risque électrique 400V.",ar:"التشابك، تطاير الرايش الساخن، السحق، والمخاطر الكهربائية 400V."},measures:{fr:["Carter plexiglass de protection du foret","Arrêt d'urgence et éclairage intégré","LOTO - Consignation électrique avant maintenance"],ar:["غطاء بلكسيغلاس لحماية الريشة","زر التوقف الاستعجالي وإنارة مدمجة","عزل الطاقة قبل الصيانة"]},ppe:{fr:"Lunettes EN166, vêtements ajustés, chaussures S3. Interdit: gants en rotation.",ar:"نظارات EN166، ملابس ضيقة، حذاء S3. ممنوع القفازات أثناء الدوران."},ref:"ISO 12100 ; Document QHSE Version 2024 - OPTIMUM"},
+lathe:{type:{fr:"MACHINE",ar:"آلة"},name:{fr:"Tour Parallèle OPTIMturn D320x750",ar:"المخرطة الموازية OPTIMturn D320x750"},intro:{fr:"Machine usinage par enlèvement de matière, rotation pièce, outil coupe.",ar:"آلة تشغيل عن طريق إزالة الخراطة وتدوير القطع."},role:{fr:"Chariotage, dressage, perçage, filetage, tronçonnage.",ar:"الخراطة، التسوية، الثقب، القلاووظ والقطع."},risks:{fr:"Happement / entraînement, projection copeaux, écrasement, électrique 400V, bruit >85 dB.",ar:"التشابك والسحب، تطاير الرايش، السحق، كهرباء 400V، وضجيج >85 dB."},measures:{fr:["Carter protection mandrin transparent","Barre anti-panique et arrêt d'urgence","Bac récupération copeaux"],ar:["غطاء شفاف لرأس المخرطة","عارض الأمان وزر التوقف الاستعجالي","حوض جمع الرايش"]},ppe:{fr:"Lunettes EN166 + Visière, chaussures S3, bouchons d'oreilles. Interdiction gants en rotation.",ar:"نظارات EN166 + واقي وجه، حذاء S3، واقيات السمع. ممنوع القفازات أثناء الدوران."},ref:"Norme ISO 23125 CE ; OPTIMUM"},
+cnc:{type:{fr:"MACHINE",ar:"آلة"},name:{fr:"Centre d’usinage CNC",ar:"مركز تشغيل CNC"},intro:{fr:"Machine à commande numérique qui réalise des opérations programmées.",ar:"آلة رقمية تنفذ عمليات تشغيل مبرمجة."},role:{fr:"Usiner des pièces avec précision selon un programme.",ar:"تشغيل القطع بدقة حسب برنامج محدد."},risks:{fr:"Mouvements automatiques, projections, bruit et risques électriques.",ar:"حركات آلية، تطاير الشظايا، الضجيج والمخاطر الكهربائية."},measures:{fr:["Garder les portes et protecteurs fermés en cycle.","Ne pas neutraliser les dispositifs de sécurité.","Consigner les énergies avant une intervention appropriée."],ar:["إبقاء الأبواب والحواجز مغلقة أثناء التشغيل.","عدم تعطيل وسائل السلامة.","عزل مصادر الطاقة قبل التدخل المناسب."]},ppe:{fr:"EPI définis par l’évaluation des risques et les consignes du poste.",ar:"معدات الوقاية تحدد حسب تقييم المخاطر وتعليمات المحطة."},ref:"ISO 12100 ; IEC 60204-1 pour l’équipement électrique des machines."},
+bench:{type:{fr:"POSTE DE TRAVAIL",ar:"محطة عمل"},name:{fr:"Étau d'établi - Etabli de serrurier",ar:"ملزمة طاوية العمل - طاولة الحداد"},intro:{fr:"Etabli métallique avec étau parallèle pour serrage et travail manuel des pièces.",ar:"طاولة معدنية مع ملزمة متوازية للشد والعمل اليدوي."},role:{fr:"Ajustage, limage, sciage et serrage sécurisé des pièces.",ar:"التعديل، التبريد بالمبرد، النشر والشد الآمن للقطع."},risks:{fr:"Écrasement doigts, chute de pièce, coupures (lime, scie), trouble musculosquelettique.",ar:"سحق الأصابع، سقوط القطع، الجروح، واضطرابات العضلات."},measures:{fr:["Etau fixé stable, monté correctement","Etabli ancré au sol","Eclairage suffisant et rangement des outils"],ar:["ملزمة مثبتة بشكل مستقر","طاولة مثبتة على الأرض","إنارة كافية وترتيب الأدوات"]},ppe:{fr:"Lunettes de sécurité EN166, gants de manutention anti-coupure, chaussures S3, vêtements ajustés.",ar:"نظارات EN166، قفازات مناولة مضادة للقطع، حذاء S3، ملابس ضيقة."},ref:"Document QHSE Version 2024"},
+saw:{type:{fr:"MACHINE",ar:"آلة"},name:{fr:"Scie à ruban OPTIMUM",ar:"منشار شريطي OPTIMUM"},intro:{fr:"Scie à ruban métallique à cour tronçonnage de profilés et barres avec arrosage.",ar:"منشار شريطي معدني لقطع المقاطع والقضبان مع التبريد."},role:{fr:"Tronçonnage de profilés et barres métalliques.",ar:"قطع القضبان والمقاطع المعدنية."},risks:{fr:"Coupure / sectionnement, projections copeaux, écrasement, électrique 400V, bruit >85 dB.",ar:"الجروح والقطع، تطاير الرايش، السحق، كهرباء 400V، وضجيج >85 dB."},measures:{fr:["Carter de lame et étau serrage rapide","Arrêt d'urgence et bac récupération copeaux","Convoyeur à rouleaux support de pièce"],ar:["غطاء شفرة وملزمة شد سريع","زر التوقف الاستعجالي وحوض الرايش","ناقل بكرات لدعم القطع"]},ppe:{fr:"Lunettes EN166, gants manutention hors rotation, chaussures S3, bouchons d'oreilles.",ar:"نظارات EN166، قفازات خارج وقت الدوران، حذاء S3، واقيات السمع."},ref:"Document QHSE - OPTIMUM"},
+press:{type:{fr:"MACHINE",ar:"آلة"},name:{fr:"Presse hydraulique WPP 50 BK 50T",ar:"مكبس هيدروليكي WPP 50 BK 50T"},intro:{fr:"Presse hydraulique de 50 tonnes pour serrage, formage et assemblage de pièces.",ar:"مكبس هيدروليكي بقوة 50 طن للشد والتشكيل والتجميع."},role:{fr:"Serrage, formage et assemblage de pièces métalliques.",ar:"الشد، التشكيل وتجميع القطع المعدنية."},risks:{fr:"Écrasement 50T, projection de pièces, chute de charge, risque hydraulique haute pression.",ar:"سحق بقوة 50 طن، تطاير القطع، سقوط الحمل، ومخاطر هيدروليكية."},measures:{fr:["Grille de protection fixe autour de la zone","Manomètre 50T étalonné avec commande bimanuelle","Butées mécaniques réglables"],ar:["شبكة حماية ثابتة حول منطقة العمل","مقياس ضغط 50 طن مع تحكم ثنائي اليد","مصدات ميكانيكية قابلة للضبط"]},ppe:{fr:"Lunettes EN166, chaussures de sécurité S3, gants de protection EN388, casque de sécurité.",ar:"نظارات EN166، حذاء S3، قفازات EN388، وخوذة سلامة."},ref:"Réf: QHSE-SEC-WPP50BK-50T | Octobre 2024"},
+affuteuse:{type:{fr:"MACHINE",ar:"آلة"},name:{fr:"Affuteuse OPTIgrind GH 20T",ar:"آلة الشحذ OPTIgrind GH 20T"},intro:{fr:"Affuteuse universelle pour affutage de forets, fraises et outils de coupe.",ar:"آلة شحذ عالمية لريف المثقاب والقواطع وأدوات القطع."},role:{fr:"Affutage précis des outils de coupe par meule abrasive.",ar:"الشحذ الدقيق لأدوات القطع بواسطة عجلة كاشطة."},risks:{fr:"Éclatement meule / projection, projection particules, coupure / écrasement, électrique 230V.",ar:"انفجار العجلة والتطاير، تطاير الجزيئات، الجروح والسحق، كهرباء 230V."},measures:{fr:["Carter meule et capot de protection","Pince porte-outil sécurisée et arrêt d'urgence","Table stable"],ar:["غطاء العجلة وغطاء الحماية","كماشة حاملة للأدوات آمنة وزر توقف استعجالي","طاولة مستقرة"]},ppe:{fr:"Lunettes EN166 + Visière, masque anti-poussière P2, gants manutention seulement, chaussures S3, tablier cuir, bouchons d'oreilles.",ar:"نظارات + واقي وجه، قناع غبار P2، قفازات مناولة فقط، حذاء S3، مئزر جلد، سدادات أذن."},ref:"Document QHSE - OPTIMUM"},
+touret:{type:{fr:"MACHINE",ar:"آلة"},name:{fr:"Touret à meuler OPTIMUM double meule",ar:"مجلخة قاعدة ثنائية العجلات OPTIMUM"},intro:{fr:"Touret à meuler double meule sur socle pour affutage et ébavurage.",ar:"مجلخة ثنائية العجلات على قاعدة للشحذ وإزالة الزوائد."},role:{fr:"Affutage et ébavurage de pièces métalliques.",ar:"الشحذ وإزالة الزوائد عن القطع المعدنية."},risks:{fr:"Éclatement meule, projection étincelles et poussières, coupure, électrique 230/400V.",ar:"انفجار العجلة، تطاير الشرر والغبار، الجروح، كهرباء 230/400V."},measures:{fr:["Carter protection meule et écrans plexi","Appui-piece < 2mm et système d'aspiration","Arrêt d'urgence"],ar:["غطاء حماية وشاشات بلكسيغلاس","سند القطعة أقل من 2 ملم ونظام شفط","زر التوقف الاستعجالي"]},ppe:{fr:"Lunettes EN166 + Visière, masque P2, bouchons d'oreilles, chaussures S3, tablier cuir.",ar:"نظارات + واقي وجه، قناع P2، سدادات أذن، حذاء S3، مئزر جلد."},ref:"Document QHSE - OPTIMUM"},
+fraiseuse:{type:{fr:"MACHINE",ar:"آلة"},name:{fr:"Fraiseuse universelle OPTIMUM",ar:"آلة التفريز العالمية OPTIMUM"},intro:{fr:"Fraiseuse universelle à table croisée pour usinage par enlèvement de matière.",ar:"آلة تفريز عالمية لطاولة متقاطعة لإزالة المعدن."},role:{fr:"Fraisage de surfaces planes, rainures et engrenages sur pièces métalliques.",ar:"تفريز الأسطح المستوية، المجاري والتسنينات على القطع المعدنية."},risks:{fr:"Écrasement / coupure, projection de copeaux, happement courroie, électrique 380V.",ar:"السحق والجروح، تطاير الرايش، التشابك في الحزام، كهرباء 380V."},measures:{fr:["Carter de protection fraise et carter courroie","Arrêt d'urgence et marquage au sol"],ar:["غطاء حماية القاطع وغطاء الحزام","زر التوقف الاستعجالي والخطوط الأرضية"]},ppe:{fr:"Lunettes EN166, vêtements ajustés, chaussures S3, casque si besoin. Gants interdits en rotation.",ar:"نظارات EN166، ملابس ضيقة، حذاء S3، خوذة عند الحاجة. القفازات ممنوعة أثناء الدوران."},ref:"Réf: QHSE-SEC-FRAISEUSE-OPT/001 | Octobre 2024"},
+electric:{type:{fr:"ÉQUIPEMENT ÉLECTRIQUE",ar:"معدات كهربائية"},name:{fr:"Armoire électrique",ar:"خزانة كهربائية"},intro:{fr:"Armoire regroupant des composants de commande ou de distribution électrique.",ar:"خزانة تضم مكونات التحكم أو توزيع الكهرباء."},role:{fr:"Commander ou distribuer l’alimentation des équipements selon l’installation.",ar:"التحكم في التغذية الكهربائية أو توزيعها حسب التركيب."},risks:{fr:"Électrisation, électrocution, arc électrique et incendie.",ar:"الصعق الكهربائي والقوس الكهربائي والحريق."},measures:{fr:["Accès réservé aux personnes autorisées et compétentes.","Garder l’armoire fermée et identifier les circuits.","Appliquer les procédures d’isolement et de consignation."],ar:["الدخول للأشخاص المخولين والمؤهلين فقط.","إبقاء الخزانة مغلقة وتعريف الدوائر.","تطبيق إجراءات العزل والقفل ووضع بطاقة التحذير."]},ppe:{fr:"Les interventions électriques doivent être réalisées par du personnel habilité avec les procédures et protections adaptées.",ar:"يجب أن يتولى التدخل الكهربائي أشخاص مؤهلون مع اتباع الإجراءات ووسائل الحماية المناسبة."},ref:"IEC 60204-1 pour l’équipement électrique des machines ; règles électriques applicables."},
+floor:{type:{fr:"ORGANISATION DE L’ATELIER",ar:"تنظيم الورشة"},name:{fr:"Marquage au sol et circulation",ar:"الخطوط الأرضية ومسارات الحركة"},intro:{fr:"Repères visuels pour organiser l’espace et rendre les déplacements plus lisibles.",ar:"علامات بصرية لتنظيم المساحة وتوضيح مسارات الحركة."},role:{fr:"Séparer les circulations, délimiter des postes ou signaler certains dangers selon le plan local.",ar:"فصل مسارات الحركة وتحديد محطات العمل أو التنبيه لبعض المخاطر حسب المخطط المحلي."},risks:{fr:"Collision avec un engin, chute, accès bloqué ou confusion entre zones.",ar:"الاصطدام بالمعدات المتحركة والسقوط وانسداد الممرات والخلط بين المناطق."},measures:{fr:["Garder les passages et issues libres.","Respecter le plan de circulation affiché.","Renouveler les marquages effacés et signaler les défauts."],ar:["إبقاء الممرات ومخارج النجدة خالية.","احترام مخطط الحركة المعلن.","تجديد الخطوط الممحوة والتبليغ عن العيوب."]},ppe:{fr:"Respecter les voies piétonnes, les règles de circulation et les EPI obligatoires de l’atelier.",ar:"احترام ممرات المشاة وقواعد الحركة ومعدات الوقاية الإلزامية في الورشة."},ref:"Plan de circulation de l’établissement ; ISO 45001 comme cadre de management SST ; ISO 7010 pour les panneaux de sécurité, selon le cas."}
+};
+let lang="fr",current="drill",floorsVisible=true;
+const $=id=>document.getElementById(id);
+function t(obj){return obj[lang]||obj.fr}
+function renderDetail(key){current=key;const d=DATA[key];$("detailName").textContent=t(d.name);$("detailIntro").textContent=t(d.intro);$("detailType").textContent=t(d.type);$("detailRole").textContent=t(d.role);$("detailRisks").textContent=t(d.risks);$("detailPpe").textContent=t(d.ppe);$("detailRef").textContent=d.ref;
+$("detailMeasures").innerHTML="";d.measures[lang].forEach(m=>{const li=document.createElement("li");li.textContent=m;$("detailMeasures").appendChild(li)});
+document.querySelectorAll(".machine-btn").forEach(b=>b.classList.toggle("active",b.dataset.item===key));
 }
-
-function closeProduct(){
-    document.getElementById("productModal").classList.add("hidden");
-}
-
-/* =========================================================
-   CART
-========================================================= */
-
-function addToCart(id){
-
-    const existing = cart.find(item=>item.id===id);
-
-    if(existing){
-        existing.qty++;
-    }else{
-        cart.push({
-            id,
-            qty:1
-        });
-    }
-
-    saveCart();
-    updateCart();
-
-    const p = products.find(x=>x.id===id);
-
-    showToast(`${p.name} ajouté au panier`);
-
-}
-
-function removeFromCart(id){
-
-    cart = cart.filter(item=>item.id!==id);
-
-    saveCart();
-    updateCart();
-
-}
-
-function changeQty(id,amount){
-
-    const item = cart.find(x=>x.id===id);
-
-    if(!item)return;
-
-    item.qty += amount;
-
-    if(item.qty<=0){
-        removeFromCart(id);
-        return;
-    }
-
-    saveCart();
-    updateCart();
-
-}
-
-function cartTotal(){
-
-    return cart.reduce((total,item)=>{
-
-        const p = products.find(x=>x.id===item.id);
-
-        return total + (p.price * item.qty);
-
-    },0);
-
-}
-
-function cartCount(){
-
-    return cart.reduce((total,item)=>total+item.qty,0);
-
-}
-
-function updateCart(){
-
-    localStorage.setItem("nutrix_cart",JSON.stringify(cart));
-
-    document.getElementById("cartCount").textContent=cartCount();
-
-    document.getElementById("cartSubtitle").textContent=
-        `${cartCount()} produit${cartCount()>1?"s":""}`;
-
-    document.getElementById("cartTotal").textContent=
-        `${cartTotal()} DH`;
-
-    document.getElementById("checkoutTotal").textContent=
-        `${cartTotal()} DH`;
-
-    const container=document.getElementById("cartItems");
-
-    if(!cart.length){
-
-        container.innerHTML=`
-            <div class="h-full flex flex-col items-center justify-center text-center py-20">
-                <div class="w-20 h-20 rounded-full bg-[#181818] flex items-center justify-center mb-5">
-                    <i data-lucide="shopping-bag" class="w-8 h-8 text-gray-600"></i>
-                </div>
-                <h3 class="font-bold text-lg">Votre panier est vide</h3>
-                <p class="text-gray-500 text-sm mt-2">Ajoute quelques produits pour commencer.</p>
-                <button onclick="closeCart();document.getElementById('products').scrollIntoView({behavior:'smooth'})"
-                        class="btn-gold px-6 py-3 rounded-xl mt-6">
-                    Voir les produits
-                </button>
-            </div>
-        `;
-
-        lucide.createIcons();
-
-        return;
-    }
-
-    container.innerHTML=cart.map(item=>{
-
-        const p=products.find(x=>x.id===item.id);
-
-        return `
-        <div class="flex gap-4 py-5 border-b border-[#222]">
-
-            <div class="w-20 h-20 rounded-xl bg-[#171717] shrink-0 flex items-center justify-center">
-                <img src="${p.image}" class="w-full h-full object-contain rounded-xl">
-            </div>
-
-            <div class="flex-1 min-w-0">
-
-                <div class="flex justify-between gap-2">
-                    <h4 class="font-bold text-sm line-clamp-2">
-                        ${p.name}
-                    </h4>
-
-                    <button onclick="removeFromCart(${p.id})" class="text-gray-600 hover:text-red-400">
-                        <i data-lucide="trash-2" class="w-4 h-4"></i>
-                    </button>
-                </div>
-
-                <p class="text-[#d4af37] font-bold mt-2">
-                    ${p.price} DH
-                </p>
-
-                <div class="flex items-center justify-between mt-3">
-
-                    <div class="flex items-center bg-[#181818] rounded-lg border border-[#292929]">
-                        <button onclick="changeQty(${p.id},-1)" class="w-8 h-8">−</button>
-                        <span class="w-8 text-center text-sm">${item.qty}</span>
-                        <button onclick="changeQty(${p.id},1)" class="w-8 h-8">+</button>
-                    </div>
-
-                    <strong class="text-sm">
-                        ${p.price*item.qty} DH
-                    </strong>
-
-                </div>
-
-            </div>
-
-        </div>
-        `;
-
-    }).join("");
-
-    lucide.createIcons();
-
-}
-
-function saveCart(){
-    localStorage.setItem("nutrix_cart",JSON.stringify(cart));
-}
-
-function openCart(){
-    document.getElementById("cartModal").classList.remove("hidden");
-    updateCart();
-}
-
-function closeCart(){
-    document.getElementById("cartModal").classList.add("hidden");
-}
-
-/* =========================================================
-   FAVORITES
-========================================================= */
-
-function toggleFavorite(id){
-
-    if(favorites.includes(id)){
-        favorites=favorites.filter(x=>x!==id);
-        showToast("Supprimé des favoris");
-    }else{
-        favorites.push(id);
-        showToast("Ajouté aux favoris ❤️");
-    }
-
-    localStorage.setItem("nutrix_favorites",JSON.stringify(favorites));
-
-    updateFavorites();
-    renderProducts();
-
-}
-
-function updateFavorites(){
-
-    document.getElementById("favCount").textContent=favorites.length;
-
-}
-
-function openFavorites(){
-
-    const grid=document.getElementById("favoritesGrid");
-
-    const favProducts=products.filter(p=>favorites.includes(p.id));
-
-    if(!favProducts.length){
-
-        grid.innerHTML=`
-            <div class="col-span-full text-center py-16">
-                <div class="text-5xl mb-4">❤️</div>
-                <h3 class="font-bold">Aucun favori</h3>
-                <p class="text-gray-500 text-sm mt-2">
-                    Ajoute des produits à tes favoris.
-                </p>
-            </div>
-        `;
-
-    }else{
-
-        grid.innerHTML=favProducts.map(productCard).join("");
-
-    }
-
-    document.getElementById("favoritesModal").classList.remove("hidden");
-
-    lucide.createIcons();
-
-}
-
-function closeFavorites(){
-    document.getElementById("favoritesModal").classList.add("hidden");
-}
-
-/* =========================================================
-   CHECKOUT
-========================================================= */
-
-function openCheckout(){
-
-    if(!cart.length){
-        showToast("Votre panier est vide");
-        return;
-    }
-
-    closeCart();
-
-    document.getElementById("checkoutTotal").textContent=
-        `${cartTotal()} DH`;
-
-    document.getElementById("checkoutModal").classList.remove("hidden");
-
-}
-
-function closeCheckout(){
-    document.getElementById("checkoutModal").classList.add("hidden");
-}
-
-function submitOrder(e){
-
-    e.preventDefault();
-
-    const name=document.getElementById("customerName").value;
-    const phone=document.getElementById("customerPhone").value;
-    const city=document.getElementById("customerCity").value;
-    const address=document.getElementById("customerAddress").value;
-    const payment=document.getElementById("paymentMethod").value;
-    const note=document.getElementById("customerNote").value;
-
-    let message=`*NOUVELLE COMMANDE NUTRIX*%0A%0A`;
-
-    message+=`👤 *Client:* ${encodeURIComponent(name)}%0A`;
-    message+=`📱 *Téléphone:* ${encodeURIComponent(phone)}%0A`;
-    message+=`📍 *Ville:* ${encodeURIComponent(city)}%0A`;
-    message+=`🏠 *Adresse:* ${encodeURIComponent(address)}%0A`;
-    message+=`💳 *Paiement:* ${encodeURIComponent(payment)}%0A%0A`;
-
-    message+=`*PRODUITS:*%0A`;
-
-    cart.forEach(item=>{
-
-        const p=products.find(x=>x.id===item.id);
-
-        message+=`• ${encodeURIComponent(p.name)} × ${item.qty} = ${p.price*item.qty} DH%0A`;
-
-    });
-
-    message+=`%0A💰 *TOTAL: ${cartTotal()} DH*%0A`;
-
-    if(note){
-        message+=`%0A📝 *Note:* ${encodeURIComponent(note)}`;
-    }
-
-    const url=`https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
-
-    window.open(url,"_blank");
-
-    showToast("Commande préparée sur WhatsApp");
-
-}
-
-/* =========================================================
-   SEARCH
-========================================================= */
-
-function openSearch(){
-
-    document.getElementById("searchModal").classList.remove("hidden");
-
-    setTimeout(()=>{
-        document.getElementById("searchInput").focus();
-    },100);
-
-}
-
-function closeSearch(){
-
-    document.getElementById("searchModal").classList.add("hidden");
-
-}
-
-function searchProducts(){
-
-    const value=document.getElementById("searchInput").value.toLowerCase().trim();
-
-    const results=document.getElementById("searchResults");
-
-    if(!value){
-
-        results.innerHTML=`
-            <div class="text-center py-10 text-gray-500">
-                <i data-lucide="search" class="w-8 h-8 mx-auto mb-3"></i>
-                <p>Recherche un produit...</p>
-            </div>
-        `;
-
-        lucide.createIcons();
-
-        return;
-    }
-
-    const list=products.filter(p=>
-        p.name.toLowerCase().includes(value) ||
-        p.category.toLowerCase().includes(value)
-    );
-
-    if(!list.length){
-
-        results.innerHTML=`
-            <div class="text-center py-10 text-gray-500">
-                Aucun résultat.
-            </div>
-        `;
-
-        return;
-    }
-
-    results.innerHTML=list.map(p=>`
-
-        <button onclick="closeSearch();openProduct(${p.id})"
-                class="w-full flex items-center gap-4 p-3 rounded-xl hover:bg-[#191919] text-left">
-
-            <img src="${p.image}" class="w-16 h-16 rounded-xl bg-[#181818] object-contain">
-
-            <div class="flex-1">
-                <div class="font-bold text-sm">${p.name}</div>
-                <div class="text-xs text-gray-500 mt-1">${p.category}</div>
-                <div class="text-[#d4af37] font-bold text-sm mt-1">${p.price} DH</div>
-            </div>
-
-        </button>
-
-    `).join("");
-
-}
-
-/* =========================================================
-   CONTACT
-========================================================= */
-
-function sendContact(e){
-
-    e.preventDefault();
-
-    const name=document.getElementById("contactName").value;
-    const phone=document.getElementById("contactPhone").value;
-    const message=document.getElementById("contactMessage").value;
-
-    const text=
-        `Bonjour NUTRIX.%0A%0A`+
-        `👤 Nom: ${encodeURIComponent(name)}%0A`+
-        `📱 Téléphone: ${encodeURIComponent(phone)}%0A%0A`+
-        `💬 Message:%0A${encodeURIComponent(message)}`;
-
-    window.open(
-        `https://wa.me/${WHATSAPP_NUMBER}?text=${text}`,
-        "_blank"
-    );
-
-}
-
-/* =========================================================
-   NEWSLETTER
-========================================================= */
-
-function subscribe(){
-
-    const email=document.getElementById("newsletterEmail").value;
-
-    if(!email || !email.includes("@")){
-        showToast("Entre une adresse email valide");
-        return;
-    }
-
-    localStorage.setItem("nutrix_newsletter",email);
-
-    document.getElementById("newsletterEmail").value="";
-
-    showToast("Merci ! Tu es inscrit 🎉");
-
-}
-
-/* =========================================================
-   THEME
-========================================================= */
-
-function toggleTheme(){
-
-    document.body.classList.toggle("light");
-
-    localStorage.setItem(
-        "nutrix_theme",
-        document.body.classList.contains("light")?"light":"dark"
-    );
-
-}
-
-if(localStorage.getItem("nutrix_theme")==="light"){
-    document.body.classList.add("light");
-}
-
-/* =========================================================
-   MOBILE MENU
-========================================================= */
-
-function openMobileMenu(){
-    document.getElementById("mobileMenu").classList.remove("hidden");
-}
-
-function closeMobileMenu(){
-    document.getElementById("mobileMenu").classList.add("hidden");
-}
-
-/* =========================================================
-   TOAST
-========================================================= */
-
-function showToast(message){
-
-    const container=document.getElementById("toastContainer");
-
-    const toast=document.createElement("div");
-
-    toast.className=
-        "toast glass rounded-xl px-5 py-4 flex items-center gap-3 shadow-2xl";
-
-    toast.innerHTML=`
-        <div class="w-8 h-8 rounded-full bg-[#d4af37] text-black flex items-center justify-center">
-            ✓
-        </div>
-
-        <span class="text-sm font-semibold">${message}</span>
-    `;
-
-    container.appendChild(toast);
-
-    setTimeout(()=>{
-        toast.remove();
-    },3000);
-
-}
-
+function renderButtons(){const query=$("machineSearch").value.toLocaleLowerCase();$("machineButtons").innerHTML="";Object.entries(DATA).forEach(([key,d],i)=>{if(!(t(d.name)+" "+t(d.risks)+" "+t(d.role)).toLocaleLowerCase().includes(query))return;const b=document.createElement("button");b.type="button";b.className="machine-btn"+(key===current?" active":"");b.dataset.item=key;b.innerHTML=`<span><strong>${i+1}. ${t(d.name)}</strong><small>${t(d.type)}</small></span><span class="arrow">›</span>`;b.addEventListener("click",()=>renderDetail(key));$("machineButtons").appendChild(b)})}
+document.querySelectorAll(".hotspot").forEach(el=>{const activate=()=>renderDetail(el.dataset.item);el.addEventListener("click",activate);el.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();activate()}})});
+$("machineSearch").addEventListener("input",renderButtons);
+$("floorToggle").addEventListener("click",()=>{floorsVisible=!floorsVisible;$("sceneWrap").classList.toggle("floor-hidden",!floorsVisible);$("floorToggle").textContent=lang==="fr"?(floorsVisible?"Masquer les marquages":"Afficher les marquages"):(floorsVisible?"إخفاء الخطوط":"إظهار الخطوط")});
+const QUIZ=[
+{q:{fr:"À quoi sert principalement le marquage au sol ?",ar:"ما الهدف الأساسي من الخطوط الأرضية؟"},a:[{fr:"À organiser et rendre les zones visibles",ar:"تنظيم المناطق وتوضيحها"},{fr:"À décorer l’atelier uniquement",ar:"تزيين الورشة فقط"},{fr:"À remplacer toutes les protections",ar:"تعويض جميع وسائل الحماية"}],correct:0,why:{fr:"Exact : le marquage aide à organiser les déplacements et les zones.",ar:"صحيح: تساعد الخطوط على تنظيم الحركة والمناطق."}},
+{q:{fr:"Que faire avant une intervention électrique ?",ar:"ماذا يجب فعله قبل التدخل الكهربائي؟"},a:[{fr:"Ouvrir l’armoire sans autorisation",ar:"فتح الخزانة دون إذن"},{fr:"Appliquer les procédures d’isolement et de consignation",ar:"تطبيق إجراءات العزل والقفل والتحذير"},{fr:"Toucher les fils pour vérifier",ar:"لمس الأسلاك للتحقق"}],correct:1,why:{fr:"Exact : l’intervention doit être réalisée par une personne autorisée selon les procédures applicables.",ar:"صحيح: يجب أن يقوم بالتدخل شخص مخول وفق الإجراءات المعتمدة."}},
+{q:{fr:"Quelle est une mesure importante sur un tour ?",ar:"ما الإجراء المهم عند استعمال المخرطة؟"},a:[{fr:"Porter des vêtements flottants",ar:"ارتداء ملابس فضفاضة"},{fr:"Retirer les copeaux à la main pendant la rotation",ar:"إزالة الرايش باليد أثناء الدوران"},{fr:"Éloigner vêtements et mains des pièces tournantes",ar:"إبعاد الملابس واليدين عن الأجزاء الدوارة"}],correct:2,why:{fr:"Exact : les pièces tournantes peuvent provoquer un happement grave.",ar:"صحيح: قد تتسبب الأجزاء الدوارة في تشابك خطير."}},
+{q:{fr:"ISO 9001 concerne principalement…",ar:"بماذا يهتم ISO 9001 أساساً؟"},a:[{fr:"Le management de la qualité",ar:"إدارة الجودة"},{fr:"Les couleurs de toutes les lignes au sol",ar:"ألوان جميع الخطوط الأرضية"},{fr:"Uniquement les extincteurs",ar:"طفايات الحريق فقط"}],correct:0,why:{fr:"Exact : ISO 9001 concerne le système de management de la qualité.",ar:"صحيح: يهتم ISO 9001 بنظام إدارة الجودة."}},
+{q:{fr:"Pourquoi garder les issues de secours dégagées ?",ar:"لماذا يجب إبقاء مخارج النجدة خالية؟"},a:[{fr:"Pour stocker des outils",ar:"لتخزين الأدوات"},{fr:"Pour faciliter l’évacuation en urgence",ar:"لتسهيل الإخلاء في حالة الطوارئ"},{fr:"Pour garer les chariots",ar:"لركن العربات"}],correct:1,why:{fr:"Exact : une issue dégagée facilite l’évacuation rapide.",ar:"صحيح: المخرج الخالي يسهل الإخلاء بسرعة."}}
+];let qi=0,score=0,answered=false;
+function renderQuiz(){const q=QUIZ[qi];$("quizCount").textContent=lang==="fr"?`Question ${qi+1} / ${QUIZ.length}`:`السؤال ${qi+1} من ${QUIZ.length}`;$("quizQuestion").textContent=t(q.q);$("quizAnswers").innerHTML="";q.a.forEach((a,i)=>{const b=document.createElement("button");b.className="answer";b.textContent=t(a);b.addEventListener("click",()=>{if(answered)return;answered=true;if(i===q.correct){score++;b.classList.add("correct");$("quizFeedback").textContent="✓ "+t(q.why)}else{b.classList.add("wrong");$("quizAnswers").children[q.correct].classList.add("correct");$("quizFeedback").textContent="✗ "+(lang==="fr"?"Bonne réponse : ":"الإجابة الصحيحة: ")+t(q.a[q.correct])+" — "+t(q.why)}$("quizScore").textContent=(lang==="fr"?"Score : ":"النتيجة: ")+score+"/"+QUIZ.length;$("nextQuestion").disabled=false;$("nextQuestion").textContent=qi===QUIZ.length-1?(lang==="fr"?"Recommencer":"إعادة الاختبار"):(lang==="fr"?"Question suivante":"السؤال التالي")});$("quizAnswers").appendChild(b)}$("quizFeedback").textContent="";$("nextQuestion").disabled=true;answered=false}
+$("nextQuestion").addEventListener("click",()=>{if(qi===QUIZ.length-1){qi=0;score=0}else qi++;renderQuiz()});
+$("langToggle").addEventListener("click",()=>{lang=lang==="fr"?"ar":"fr";document.documentElement.lang=lang;document.documentElement.dir=lang==="ar"?"rtl":"ltr";$("langToggle").textContent=lang==="fr"?"العربية":"Français";document.querySelectorAll("[data-fr][data-ar]").forEach(el=>{if(el.tagName==="INPUT")el.placeholder=el.dataset[lang];else el.textContent=el.dataset[lang]});$("floorToggle").textContent=lang==="fr"?(floorsVisible?"Masquer les marquages":"Afficher les marquages"):(floorsVisible?"إخفاء الخطوط":"إظهار الخطوط");$("machineSearch").placeholder=lang==="fr"?"Rechercher une machine ou un risque…":"ابحث عن آلة أو خطر…";renderButtons();renderDetail(current);renderQuiz()});
+renderButtons();renderDetail(current);renderQuiz();
 </script>
-
 </body>
 </html>
-```
